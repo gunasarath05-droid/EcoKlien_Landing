@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { images } from "@/data/images";
-import { LuPlus } from "react-icons/lu";
+import { motion } from "motion/react";
 
 export default function ApplicationsSection() {
   const facilities = [
@@ -48,7 +50,13 @@ export default function ApplicationsSection() {
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-14">
-          <div className="lg:col-span-8">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-8"
+          >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-4">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
@@ -62,18 +70,30 @@ export default function ApplicationsSection() {
               <br />
               that can’t stand still.
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-4 lg:pb-1">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 lg:pb-1"
+          >
             <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[360px] font-normal">
               Designed for healthcare facilities and laboratories generating biomedical liquid waste.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* 2 Featured Environment Images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12 lg:mb-14">
-          <div className="relative rounded-[20px] overflow-hidden aspect-[567/320] group">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="relative rounded-[20px] overflow-hidden aspect-[567/320] group"
+          >
             <Image
               src={images.application.app1}
               alt="Healthcare facilities"
@@ -90,9 +110,15 @@ export default function ApplicationsSection() {
                 Healthcare facilities
               </h3>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="relative rounded-[20px] overflow-hidden aspect-[567/320] group">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="relative rounded-[20px] overflow-hidden aspect-[567/320] group"
+          >
             <Image
               src={images.application.app2}
               alt="Laboratories"
@@ -109,7 +135,7 @@ export default function ApplicationsSection() {
                 Laboratories
               </h3>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* 9 Category Items Grid with dividers */}
@@ -118,9 +144,17 @@ export default function ApplicationsSection() {
             const isLastRow = idx >= 6;
             const isLastItemMobile = idx === facilities.length - 1;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className={`py-6 flex flex-col justify-between ${
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{
+                  delay: (idx % 3) * 0.1,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className={`py-6 flex flex-col justify-between group cursor-default ${
                   !isLastRow ? "md:border-b md:border-[#e3e7e5]" : ""
                 } ${!isLastItemMobile ? "border-b border-[#e3e7e5]" : ""} ${
                   isLastRow ? "md:border-b-0" : ""
@@ -128,10 +162,10 @@ export default function ApplicationsSection() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-4">
-                    <h4 className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e]">
+                    <h4 className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] group-hover:text-[#00B050] transition-colors">
                       {fac.title}
                     </h4>
-                    <span className="text-[20px] font-light text-[#5d6762] shrink-0">
+                    <span className="text-[20px] font-light text-[#5d6762] group-hover:text-[#00B050] group-hover:rotate-45 transition-all shrink-0">
                       +
                     </span>
                   </div>
@@ -139,7 +173,7 @@ export default function ApplicationsSection() {
                     {fac.subtitle}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -147,4 +181,3 @@ export default function ApplicationsSection() {
     </section>
   );
 }
-

@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { images } from "@/data/images";
 import { LuMoveDiagonal2, LuLayoutGrid, LuPlug, LuCross } from "react-icons/lu";
+import { motion } from "motion/react";
 
 export default function TechnologySection() {
   const specs = [
@@ -36,7 +39,13 @@ export default function TechnologySection() {
       <div className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-14">
-          <div className="lg:col-span-8">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-8"
+          >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-4">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
@@ -50,19 +59,31 @@ export default function TechnologySection() {
               <br />
               Practical proportions.
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-4 lg:pb-1">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 lg:pb-1"
+          >
             <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[360px] font-normal">
               A compact, modular and plug-and-play design — built around the realities of on-site liquid waste treatment.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Content: Image on Left + 2x2 Feature Grid on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {/* Left: Machine in facility visual */}
-          <div className="lg:col-span-7 relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 relative"
+          >
             <div className="relative w-full h-[380px] sm:h-[460px] lg:h-full lg:min-h-[530px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
               <Image
                 src={images.facility}
@@ -79,14 +100,23 @@ export default function TechnologySection() {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: 2x2 Cards Grid */}
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {specs.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="p-6 sm:p-7 rounded-[14px] bg-[#f0f2ef] hover:bg-[#e7ece6] transition-colors flex flex-col justify-start"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  delay: idx * 0.1,
+                  duration: 0.55,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="p-6 sm:p-7 rounded-[14px] bg-[#f0f2ef] hover:bg-[#e7ece6] transition-colors flex flex-col justify-start cursor-default"
               >
                 <div className="mb-5 sm:mb-6 text-[#0e2a1e]">
                   {item.icon}
@@ -97,7 +127,7 @@ export default function TechnologySection() {
                 <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] font-normal">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -105,4 +135,3 @@ export default function TechnologySection() {
     </section>
   );
 }
-

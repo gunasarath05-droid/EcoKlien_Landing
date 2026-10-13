@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
 import { LuArrowUpRight } from "react-icons/lu";
+import { motion } from "motion/react";
 
 export default function ConfigurationsSection() {
   const configs = [
@@ -15,7 +18,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "LABORATORIES · PROCEDURE AREAS · SMALL HEALTHCARE FACILITIES · SPECIFIC WASTE STREAMS",
       image: images.product.product3,
-      link:"https://ecoklien.com/biomedical-liquid-waste-treatment-system/"
+      link: "https://ecoklien.com/biomedical-liquid-waste-treatment-system/",
     },
     {
       version: "ECOKlien V2",
@@ -26,7 +29,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "HOSPITALS · DIAGNOSTIC CENTRES · MULTI-DEPARTMENT FACILITIES · HEALTHCARE CAMPUSES",
       image: images.product.product1,
-      link:"https://ecoklien.com/hospital-effluent-treatment-systems/"
+      link: "https://ecoklien.com/hospital-effluent-treatment-systems/",
     },
     {
       version: "ECOKlien V3",
@@ -37,7 +40,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "HOSPITALS · LABORATORIES · DIAGNOSTIC CENTRES · HEALTHCARE FACILITIES",
       image: images.product.product2,
-      link:"https://ecoklien.com/biomedical-liquid-disinfection-system/"
+      link: "https://ecoklien.com/biomedical-liquid-disinfection-system/",
     },
   ];
 
@@ -55,13 +58,18 @@ export default function ConfigurationsSection() {
           priority
           className="object-cover object-center"
         />
-        
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-16">
-          <div className="lg:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-4 sm:mb-6">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
@@ -75,9 +83,15 @@ export default function ConfigurationsSection() {
               <br />
               One treatment principle.
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-7 lg:pb-1">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 lg:pb-1"
+          >
             <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] font-normal">
               Biomedical liquid waste doesn&apos;t come from one source, and
               healthcare facilities don&apos;t operate at one scale. ECOKlien
@@ -85,63 +99,81 @@ export default function ConfigurationsSection() {
               configurations, allowing the system to be matched to the volume,
               source and treatment requirements of the facility.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* 3 Product Configuration Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
           {configs.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-[10px] border border-white/[0.18] rounded-[24px] p-3 sm:p-3.5 flex flex-col justify-between group hover:border-white/30 transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                delay: idx * 0.12,
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-[10px] border border-white/[0.18] rounded-[24px] p-3 sm:p-3.5 flex flex-col justify-between group hover:border-white/35 transition-all duration-300 shadow-xl cursor-default"
             >
               <div className="flex flex-col flex-1">
                 {/* Image Container with Floating Badge, Overlay Title and Arrow Button */}
                 <div className="relative w-full h-[260px] sm:h-[300px] rounded-[14px] overflow-hidden bg-[#0e1410] mb-6 shrink-0">
-                  {/* Top-left Pill Badge */}
-                  <div className="absolute top-3.5 left-3.5 z-10 bg-[#f3f3f1] rounded-full px-4 py-1.5 shadow-sm">
-                    <span className="text-[10px] font-mono text-[#111] font-medium items-center justify-center flex">
-                      {item.version}
-                    </span>
-                  </div>
-
-                  {/* Machine Image */}
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                    priority={idx === 0}
                   />
 
-                  {/* Dark Gradient Overlay at Bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+                  {/* Top-Right Pill Badge: Configuration Version */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white font-mono text-[11px] font-semibold tracking-wider uppercase">
+                      {item.version}
+                    </span>
+                  </div>
 
-                  {/* Bottom Content inside image box: Title on Left, Green Circular Button on Right */}
+                  {/* Bottom Gradient Overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
+
+                  {/* Bottom Title Info & Circular Arrow Link Button */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 flex items-end justify-between gap-3">
                     <div>
-                      <h3 className="text-[18px] sm:text-[20px] font-semibold text-white leading-[1.2] max-w-[280px]">
+                      <h4 className="text-white text-[17px] sm:text-[19px] font-medium leading-[1.2] drop-shadow-sm">
                         {item.title}
-                        <span className="font-normal text-[13.5px] sm:text-[14px] text-white/90 block mt-0.5">
-                          {item.subtitle}
-                        </span>
-                      </h3>
+                      </h4>
+                      <p className="text-white/80 text-[12.5px] sm:text-[13.5px] font-normal mt-0.5">
+                        {item.subtitle}
+                      </p>
                     </div>
 
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0a9a3a] text-white flex items-center justify-center shrink-0 shadow-md group-hover:rotate-45 transition-transform duration-300">
-                      <LuArrowUpRight size={18} strokeWidth={2.2} />
-                    </div>
+                    {/* Circular Action Button */}
+                    <Link
+                      href={item.link}
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 hover:bg-[#00B050] border border-white/30 hover:border-[#00B050] text-white flex items-center justify-center transition-all duration-300 shrink-0 backdrop-blur-md hover:scale-110 shadow-md group/btn"
+                      aria-label={`View details for ${item.title}`}
+                    >
+                      <LuArrowUpRight
+                        size={18}
+                        className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                      />
+                    </Link>
                   </div>
                 </div>
 
-                <div className="p-3 flex flex-col flex-1 justify-between">
-                  {/* Body Description */}
+                {/* Card Text Content */}
+                <div className="px-3 sm:px-4 pb-3 flex flex-col flex-1 justify-between">
+                  {/* Description */}
                   <div className="min-h-[110px] mb-6">
                     <p className="text-[14px] sm:text-[15px] text-white/85 leading-[1.55] font-normal">
                       {item.description}
                     </p>
                   </div>
 
-                  {/* Best Suited For Section */}
+                  {/* Best Suited For Tag Box */}
                   <div className="min-h-[80px] mb-6 sm:mb-8 text-[14px] sm:text-[15px] leading-[1.55]">
                     <b className="font-medium text-white block mb-1">
                       Best suited for:
@@ -162,12 +194,18 @@ export default function ConfigurationsSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Bottom Assessment Callout Bar */}
-        <div className="pt-10 border-t border-white/[0.18] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
+        {/* Bottom CTA Row: Dark Question Box */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-10 border-t border-white/[0.18] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8"
+        >
           <div className="space-y-2 max-w-2xl">
             <h4 className="text-[18px] sm:text-[20px] font-medium text-white">
               Not sure which configuration fits your facility?
@@ -181,7 +219,7 @@ export default function ConfigurationsSection() {
 
           <Link
             href="https://ecoklien.com/contact/"
-            className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-black hover:bg-neutral-900 text-white text-[14px] font-medium transition-all duration-300 shadow-md shrink-0 inline-flex items-center gap-6 group"
+            className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-black hover:bg-neutral-900 text-white text-[14px] font-medium transition-all duration-300 shadow-md shrink-0 inline-flex items-center gap-6 group hover:scale-[1.02]"
           >
             <span>Talk to an engineer</span>
             <LuArrowUpRight
@@ -189,7 +227,7 @@ export default function ConfigurationsSection() {
               className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

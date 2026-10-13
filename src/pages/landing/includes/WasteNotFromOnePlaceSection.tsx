@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "motion/react";
 
 export default function WasteNotFromOnePlaceSection() {
   const sources = [
@@ -13,7 +16,13 @@ export default function WasteNotFromOnePlaceSection() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left Column */}
-          <div className="lg:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-2">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
@@ -30,17 +39,33 @@ export default function WasteNotFromOnePlaceSection() {
             {/* List of generation locations */}
             <div className="space-y-5 sm:space-y-6">
               {sources.map((item, idx) => (
-                <div key={idx}>
-                  <span className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] block">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: idx * 0.1,
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <span className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] block hover:text-[#00B050] transition-colors cursor-default">
                     {item}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column */}
-          <div className="lg:col-span-7 lg:pt-1">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 lg:pt-1"
+          >
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-medium text-[#0f3d2a] leading-[1.05] tracking-[-0.005em] mb-6 sm:mb-8">
               Biomedical liquid waste doesn&apos;t come from
               <br />
@@ -60,10 +85,9 @@ export default function WasteNotFromOnePlaceSection() {
                 It&apos;s treating it safely, effectively and practically.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
