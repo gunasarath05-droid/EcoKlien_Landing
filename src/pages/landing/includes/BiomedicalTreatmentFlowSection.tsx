@@ -290,21 +290,21 @@ export default function BiomedicalTreatmentFlowSection() {
             </div>
 
             {/* Right: 2x2 Cards Grid */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 lg:gap-5">
               {cards.map((card, idx) => {
                 const isDark = card.theme === "dark";
                 return (
                   <div
                     key={idx}
-                    className={`p-6 sm:p-7 min-h-[175px] sm:min-h-[195px] rounded-[24px] shadow-2xl transition-all duration-300 hover:scale-[1.02] flex flex-col justify-start ${
+                    className={`p-5.5 sm:p-7 min-h-[165px] sm:min-h-[195px] rounded-[22px] sm:rounded-[24px] shadow-xl sm:shadow-2xl transition-all duration-300 hover:scale-[1.02] flex flex-col justify-start ${
                       isDark
-                        ? "bg-[#000000]/21 backdrop-blur-xl border border-white/10 text-white"
-                        : "bg-[#000000]/0 backdrop-blur-xl border border-white/50 text-[#18251E]"
+                        ? "bg-[#101C15]/80 sm:bg-[#000000]/25 backdrop-blur-xl border border-white/15 text-white"
+                        : "bg-white/95 sm:bg-white/70 backdrop-blur-xl border border-[#E3ECE6]/90 sm:border-white/50 text-[#18251E] shadow-lg"
                     }`}
                   >
                     <div>{card.icon}</div>
                     <h3
-                      className={`text-base sm:text-[17px] font-semibold mb-2 leading-snug ${
+                      className={`text-[15.5px] sm:text-[17px] font-semibold mb-2 leading-snug ${
                         isDark ? "text-white" : "text-[#18251E]"
                       }`}
                     >
@@ -312,7 +312,7 @@ export default function BiomedicalTreatmentFlowSection() {
                     </h3>
                     <p
                       className={`text-xs sm:text-[13px] leading-relaxed ${
-                        isDark ? "text-white" : "text-[#5D6B62]"
+                        isDark ? "text-white/90" : "text-[#5D6B62]"
                       }`}
                     >
                       {card.description}
