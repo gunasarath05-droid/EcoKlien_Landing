@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { LuArrowUpRight } from "react-icons/lu";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-white text-[#18251E] pt-10 pb-6 border-t border-[#EDEDED]">
+    <footer id="contact" className="bg-white text-[#18251E] pt-10 pb-7 border-t border-[#EAEFEA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Content: Left & Right Balanced Minimalist Section */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 pb-8">
@@ -28,102 +29,93 @@ export default function Footer() {
               )}
             </div>
 
-            <p className="text-[13px] sm:text-[13.5px] text-[#4A5550] leading-relaxed">
+            <p className="text-[13px] sm:text-[13.5px] text-[#4F5E55] leading-relaxed max-w-md">
               Advanced hybrid reactor based effluent treatment systems manufacturer and supplier. ECO Safe wastewater effluent treatment system
             </p>
 
             <div className="pt-1">
               <Link
                 href="https://ecoklien.com/contact/"
-                className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#262827] hover:bg-[#00B050] text-white text-[13px] font-medium transition-all duration-300 shadow-xs hover:shadow hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1E2421] hover:bg-[#00B050] text-white text-[13px] font-medium transition-all duration-300 shadow-xs hover:shadow hover:scale-[1.02] group"
               >
-                Want To be a Dealer ?
+                <span>Want To be a Dealer ?</span>
+                <LuArrowUpRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Socials, Contact Button & Policy */}
-          <div className="flex flex-col items-start md:items-start space-y-3.5 shrink-0">
-            <h4 className="text-[13px] font-semibold text-[#18251E] tracking-tight">
+          {/* Right Column: Socials */}
+          <div className="flex flex-col items-start md:items-end space-y-3 shrink-0 pt-1">
+            <span className="text-[13px] font-semibold text-[#18251E] tracking-tight">
               Socials
-            </h4>
+            </span>
 
             {/* Social Icons Row */}
-            <div className="flex items-center gap-4 text-[#262827]">
+            <div className="flex items-center gap-4 text-[#26332B]">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="hover:text-[#00B050] hover:scale-115 transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-[#F4F7F5] hover:bg-[#00B050] hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs hover:scale-110"
               >
-                <FaInstagram className="w-[18px] h-[18px]" />
+                <FaInstagram className="w-4 h-4" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="hover:text-[#00B050] hover:scale-115 transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-[#F4F7F5] hover:bg-[#00B050] hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs hover:scale-110"
               >
-                <FaFacebook className="w-[18px] h-[18px]" />
+                <FaFacebook className="w-4 h-4" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="hover:text-[#00B050] hover:scale-115 transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-[#F4F7F5] hover:bg-[#00B050] hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs hover:scale-110"
               >
-                <FaYoutube className="w-[18px] h-[18px]" />
+                <FaYoutube className="w-4 h-4" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="hover:text-[#00B050] hover:scale-115 transition-all duration-200"
+                className="w-8 h-8 rounded-full bg-[#F4F7F5] hover:bg-[#00B050] hover:text-white flex items-center justify-center transition-all duration-300 shadow-2xs hover:scale-110"
               >
-                <FaLinkedin className="w-[18px] h-[18px]" />
+                <FaLinkedin className="w-4 h-4" />
               </a>
-            </div>
-
-            {/* Contact Us Button */}
-            <div className="pt-1">
-              <Link
-                href="https://ecoklien.com/contact/"
-                className="inline-flex items-center justify-center px-8 py-2.5 rounded-full bg-[#262827] hover:bg-[#00B050] text-white text-[13px] font-medium transition-all duration-300 shadow-xs hover:shadow hover:scale-[1.02]"
-              >
-                Contact Us
-              </Link>
-            </div>
-
-            {/* Privacy Policy Link */}
-            <div className="pt-0.5">
-              <Link
-                href="https://ecoklien.com/privacy-policy/"
-                target="_blank"
-                className="text-[11.5px] text-[#6E7B74] hover:text-[#00B050] transition-colors"
-              >
-                Privacy Policy
-              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom Line: Copyright & Credits */}
-        <div className="pt-4 border-t border-[#F0F2F1] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11.5px] text-[#7E8B84]">
+        {/* Bottom Line: Copyright, Credits & Policy */}
+        <div className="pt-4 border-t border-[#EDF2EE] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11.5px] text-[#78887F]">
           <p>
             Copyright © 2026 ECOKlien | Powered by ECOKlien
           </p>
+          
           <a
             href="https://ec4you.in/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#00B050] transition-colors"
           >
-            Developed by <span className="font-medium text-[#4B5851] hover:text-[#00B050]">ec4you.in</span>
+            Developed by <span className="font-semibold text-[#3D4C43] hover:text-[#00B050]">ec4you.in</span>
           </a>
+
+          <div>
+            <Link
+              href="https://ecoklien.com/privacy-policy/"
+              target="_blank"
+              className="hover:text-[#00B050] transition-colors underline-offset-4 hover:underline"
+            >
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
