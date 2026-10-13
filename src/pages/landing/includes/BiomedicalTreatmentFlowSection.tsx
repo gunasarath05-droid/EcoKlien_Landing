@@ -39,7 +39,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "light",
-      position: "top-14 right-4 sm:top-20 sm:right-10 lg:top-20 lg:right-14",
+      position: "top-18 right-4 sm:top-20 sm:right-10 lg:top-20 lg:right-14",
     },
     {
       title: "Sputum",
@@ -232,7 +232,7 @@ export default function BiomedicalTreatmentFlowSection() {
       {/* ======================================================== */}
       <div className="relative z-10 w-full pb-16 md:pb-24">
         {/* Diagonal Transformation Stream (Liquid2.png) */}
-        <div className="absolute w-full h-full left-0 right-0 bottom-0 top-0 z-0 pointer-events-none">
+        <div className="absolute w-full h-full left-0 right-0 bottom-0 top-0 z-0 pointer-events-none hidden md:block ">
           <Image
             src={images.liquid2}
             alt="Transformation liquid stream"

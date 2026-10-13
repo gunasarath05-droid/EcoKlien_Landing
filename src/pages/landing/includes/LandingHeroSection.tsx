@@ -38,7 +38,7 @@ export default function LandingHeroSection() {
           priority
           className="object-cover object-center"
         />
-        
+        <div className="absolute inset-0 bg-black/50"/>
       </div>
 
       {/* Main Hero Content */}
