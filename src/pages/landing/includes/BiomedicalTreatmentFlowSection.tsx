@@ -278,7 +278,7 @@ export default function BiomedicalTreatmentFlowSection() {
             {/* Left: Button aligned over liquid splash & white bottom */}
             <div className="lg:col-span-6 pb-4 sm:pb-8">
               <Link
-                href="#configurations"
+                href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
                 className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-xs sm:text-[13px] shadow-2xl transition-all duration-300 group"
               >
                 <span>View Configurations</span>

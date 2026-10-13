@@ -33,25 +33,25 @@ export default function Navbar() {
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-9">
           <Link
-            href="#technology"
+            href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
             className="text-md font-medium text-[#123D30] hover:text-[#00B050] transition-colors"
           >
             The systems
           </Link>
           <Link
-            href="#approach"
+            href="https://ecoklien.com/about/"
             className="text-md font-medium text-[#123D30] hover:text-[#00B050] transition-colors"
           >
             About Us
           </Link>
           <Link
-            href="#applications"
+            href="https://ecoklien.com/the-biomedical-glossary/"
             className="text-md font-medium text-[#123D30] hover:text-[#00B050] transition-colors"
           >
             Applications
           </Link>
           <Link
-            href="#faq"
+            href="https://ecoklien.com/photo-gallery/"
             className="text-md font-medium text-[#123D30] hover:text-[#00B050] transition-colors"
           >
             Media
@@ -96,7 +96,7 @@ export default function Navbar() {
 
           {/* Get a quote button with diagonal arrow ↗ */}
           <Link
-            href="#contact"
+            href="https://ecoklien.com/contact/"
             className="inline-flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-sm font-medium tracking-normal transition-all duration-300 shadow-sm hover:shadow group"
           >
             <span>Get a quote</span>

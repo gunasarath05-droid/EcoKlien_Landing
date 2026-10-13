@@ -1,0 +1,35 @@
+# EcoKlien
+
+> Biomedical Liquid Waste Treatment system - Hospital wastewater treatment system. Using advanced hybrid electrochemical technology for hospital effluent treatment and biomedical liquid waste treatment.
+
+## Overview
+EcoKlien designs and manufactures automated onsite effluent treatment plants (ETP) and biomedical liquid waste disinfection systems tailored for healthcare campuses, hospitals, clinical laboratories, and diagnostic centers. The systems leverage advanced hybrid electrochemical and electro-oxidation technologies to neutralize pathogens, active pharmaceutical ingredients (APIs), blood, body fluids, and hazardous chemical reagents at the source before discharge.
+
+## Systems & Configurations
+- **ECOKlien V1**: Dedicated for clinical laboratories, procedure areas, and diagnostic centers with small-to-medium specialized liquid waste streams.
+- **ECOKlien V2**: Full-scale automated hospital effluent treatment systems (HETP) for tertiary care hospitals, multi-department facilities, and large medical campuses.
+- **ECOKlien V3**: Rapid automated liquid waste disinfection systems targeting infectious hospital wastewater and high-risk biological fluids.
+
+## Core Technology
+- Advanced Hybrid Electrochemical Reactor
+- Onsite continuous disinfection and oxidation
+- Zero Liquid Discharge (ZLD) compatible
+- Fully automated PLC-controlled continuous flow
+- Compliant with WHO and Central Pollution Control Board (CPCB) biomedical waste management guidelines
+
+## Key URLs
+- Home: https://ecoklien.com/
+- Systems & Configurations: https://ecoklien.com/products-biomedical-and-hospital-wastewater/
+- Biomedical Liquid Waste Treatment: https://ecoklien.com/biomedical-liquid-waste-treatment-system/
+- Hospital Effluent Treatment: https://ecoklien.com/hospital-effluent-treatment-systems/
+- Biomedical Liquid Disinfection: https://ecoklien.com/biomedical-liquid-disinfection-system/
+- About Us: https://ecoklien.com/about/
+- Biomedical Glossary: https://ecoklien.com/the-biomedical-glossary/
+- Photo Gallery: https://ecoklien.com/photo-gallery/
+- Contact & Quotes: https://ecoklien.com/contact/
+- Privacy Policy: https://ecoklien.com/privacy-policy/
+
+## Contact Information
+- Email: sales@ecoklien.com, captvj@ecoklien.com
+- Phone: +91 7418642999 (India), +65 8834 8223 (Singapore)
+- Headquarters: RT SOLUTIONS PTE LTD, NO.237, Pandan Loop, #04-07 Westech Building, Singapore – 128424

@@ -49,13 +49,13 @@ export default function Footer() {
 
           {/* Col 3: Socials */}
           <div className="space-y-3 shrink-0">
-            <h4 className="text-[14px] md font-semibold text-[#18251E] tracking-tight">
+            <h4 className="text-[14px] md:text-[18px] font-semibold text-[#18251E] tracking-tight">
               Socials
             </h4>
 
             <div className="flex items-center gap-3 text-[#26332B]">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/ecoklien/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -64,7 +64,7 @@ export default function Footer() {
                 <FaInstagram className="w-4 h-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61550611929208"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -73,7 +73,7 @@ export default function Footer() {
                 <FaFacebook className="w-4 h-4" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/playlist?list=PLtU5RHes_z6Jyu8ZvEszvXwVp5niEC-Hq"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
@@ -82,7 +82,7 @@ export default function Footer() {
                 <FaYoutube className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/ecoklien/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"

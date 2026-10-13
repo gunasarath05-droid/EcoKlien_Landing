@@ -15,6 +15,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "LABORATORIES · PROCEDURE AREAS · SMALL HEALTHCARE FACILITIES · SPECIFIC WASTE STREAMS",
       image: images.product.product3,
+      link:"https://ecoklien.com/biomedical-liquid-waste-treatment-system/"
     },
     {
       version: "ECOKlien V2",
@@ -25,6 +26,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "HOSPITALS · DIAGNOSTIC CENTRES · MULTI-DEPARTMENT FACILITIES · HEALTHCARE CAMPUSES",
       image: images.product.product1,
+      link:"https://ecoklien.com/hospital-effluent-treatment-systems/"
     },
     {
       version: "ECOKlien V3",
@@ -35,6 +37,7 @@ export default function ConfigurationsSection() {
       bestSuited:
         "HOSPITALS · LABORATORIES · DIAGNOSTIC CENTRES · HEALTHCARE FACILITIES",
       image: images.product.product2,
+      link:"https://ecoklien.com/biomedical-liquid-disinfection-system/"
     },
   ];
 
@@ -151,7 +154,7 @@ export default function ConfigurationsSection() {
                   {/* Bottom Link */}
                   <div className="mt-auto pt-2">
                     <Link
-                      href="#contact"
+                      href={item.link}
                       className="text-[14px] sm:text-[15px] font-semibold text-white hover:text-[#7fe09a] transition-colors inline-block"
                     >
                       [View configuration →]
@@ -177,7 +180,7 @@ export default function ConfigurationsSection() {
           </div>
 
           <Link
-            href="#contact"
+            href="https://ecoklien.com/contact/"
             className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-black hover:bg-neutral-900 text-white text-[14px] font-medium transition-all duration-300 shadow-md shrink-0 inline-flex items-center gap-6 group"
           >
             <span>Talk to an engineer</span>

@@ -78,7 +78,7 @@ export default function LandingHeroSection() {
           <div className="flex flex-wrap items-center gap-6 sm:gap-7">
             {/* Buy now button with diagonal arrow */}
             <Link
-              href="#configurations"
+              href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
               className="inline-flex items-center justify-center gap-5 sm:gap-6 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-[#0a9a3a] hover:bg-[#088231] text-white font-medium text-[14px] transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
               <span>Buy now</span>
