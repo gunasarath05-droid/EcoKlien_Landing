@@ -7,12 +7,12 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-white text-[#18251E] pt-10 pb-7 border-t border-[#EAEFEA]">
+    <footer id="contact" className="bg-white text-[#18251E] pt-10 pb-6 border-t border-[#EDEDED]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Content: Left & Right Balanced Minimalist Section */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-8 pb-8">
-          {/* Left Column: Brand, Description & Dealer CTA */}
-          <div className="max-w-lg space-y-4">
+        {/* Main 3-Column Content */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8">
+          {/* Col 1: Logo & Dealer Button */}
+          <div className="space-y-4 shrink-0">
             <div className="relative">
               {images.logo ? (
                 <Image
@@ -29,29 +29,31 @@ export default function Footer() {
               )}
             </div>
 
-            <p className="text-[13px] sm:text-[13.5px] text-[#4F5E55] leading-relaxed max-w-md">
-              Advanced hybrid reactor based effluent treatment systems manufacturer and supplier. ECO Safe wastewater effluent treatment system
-            </p>
-
-            <div className="pt-1">
+            <div>
               <Link
                 href="https://ecoklien.com/contact/"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1E2421] hover:bg-[#00B050] text-white text-[13px] font-medium transition-all duration-300 shadow-xs hover:shadow hover:scale-[1.02] group"
               >
                 <span>Want To be a Dealer ?</span>
-                <LuArrowUpRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <LuArrowUpRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Socials */}
-          <div className="flex flex-col items-start md:items-end space-y-3 shrink-0 pt-1">
-            <span className="text-[13px] font-semibold text-[#18251E] tracking-tight">
-              Socials
-            </span>
+          {/* Col 2: Middle Description */}
+          <div className="max-w-md">
+            <p className="text-[13px] sm:text-[13.5px] text-[#4F5E55] leading-relaxed">
+              Advanced hybrid reactor based effluent treatment systems manufacturer and supplier. ECO Safe wastewater effluent treatment system
+            </p>
+          </div>
 
-            {/* Social Icons Row */}
-            <div className="flex items-center gap-4 text-[#26332B]">
+          {/* Col 3: Socials */}
+          <div className="space-y-3 shrink-0">
+            <h4 className="text-[14px] md font-semibold text-[#18251E] tracking-tight">
+              Socials
+            </h4>
+
+            <div className="flex items-center gap-3 text-[#26332B]">
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -93,11 +95,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Line: Copyright, Credits & Policy */}
-        <div className="pt-4 border-t border-[#EDF2EE] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11.5px] text-[#78887F]">
+        <div className="pt-4 border-t border-[#F0F2F0] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11.5px] text-[#78887F]">
           <p>
             Copyright © 2026 ECOKlien | Powered by ECOKlien
           </p>
-          
+
           <a
             href="https://ec4you.in/"
             target="_blank"
@@ -111,7 +113,7 @@ export default function Footer() {
             <Link
               href="https://ecoklien.com/privacy-policy/"
               target="_blank"
-              className="hover:text-[#00B050] transition-colors underline-offset-4 hover:underline"
+              className="hover:text-[#00A859] transition-colors"
             >
               Privacy Policy
             </Link>
