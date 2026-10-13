@@ -10,26 +10,15 @@ import { LuArrowUpRight, LuGlobe, LuChevronDown } from "react-icons/lu";
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
 
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    const diff = latest - previous;
-
     // Detect scrolled state
-    if (latest > 25) {
+    if (latest > 15) {
       setScrolled(true);
     } else {
       setScrolled(false);
-    }
-
-    // Smart auto-hide on scroll down, reveal on scroll up
-    if (latest > 120 && diff > 8 && !mobileMenuOpen) {
-      setHidden(true);
-    } else if (diff < -8 || latest <= 50) {
-      setHidden(false);
     }
   });
 
@@ -64,16 +53,10 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.header
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
-      }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-[#D7DED5]/90 shadow-[0_4px_25px_-4px_rgba(0,0,0,0.06)]"
+          ? "bg-white/92 backdrop-blur-xl border-b border-[#D7DED5]/90 shadow-[0_4px_25px_-4px_rgba(0,0,0,0.07)]"
           : "bg-white border-b border-[#D7DED5]/80"
       }`}
     >
@@ -218,6 +201,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

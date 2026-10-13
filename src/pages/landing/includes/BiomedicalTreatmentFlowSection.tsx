@@ -221,15 +221,10 @@ export default function BiomedicalTreatmentFlowSection() {
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* SEAMLESS DIVIDER LINE INSIDE DARK FLUID BAND            */}
-      {/* ======================================================== */}
       <div className="relative z-10 max-w-7xl mx-auto mb-12 sm:mb-16">
         <div className="w-full border-t border-white/10" />
       </div>
-      {/* ======================================================== */}
-      {/* PART 2: BIOMEDICAL LIQUID WASTE TREATMENT, RE-IMAGINED  */}
-      {/* ======================================================== */}
+
       <div className="relative z-10 w-full pb-16 md:pb-24">
         {/* Diagonal Transformation Stream (Liquid2.png) */}
         <div className="absolute w-full h-full left-0 right-0 bottom-0 top-0 z-0 pointer-events-none">
