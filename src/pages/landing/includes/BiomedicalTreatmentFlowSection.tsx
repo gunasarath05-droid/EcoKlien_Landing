@@ -281,14 +281,14 @@ export default function BiomedicalTreatmentFlowSection() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5"
             >
-              <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-2 h-2 bg-[#00A859] inline-block" />
+              <div className="flex items-center gap-2.5 mb-4">
+                <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
                   THE ECOKLIEN APPROACH
                 </span>
               </div>
 
-              <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-normal text-white tracking-[-0.01em] leading-[1.05]">
+              <h2 className="text-[28px] sm:text-[32px] lg:text-[36px] font-normal text-white tracking-tight leading-[1.05]">
                 Biomedical liquid waste
                 <br />
                 treatment, re-imagined
@@ -300,10 +300,14 @@ export default function BiomedicalTreatmentFlowSection() {
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.6,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="lg:col-span-7 lg:pt-3"
             >
-              <p className="text-xs sm:text-[14px] md:text-base text-[#CBDCD1] leading-relaxed max-w-2xl font-normal">
+              <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] max-w-2xl font-normal">
                 ECOKlien uses advanced electrochemical technology to treat and
                 disinfect potentially contaminated liquid waste on site,
                 bringing treatment closer to where the waste is generated, with
@@ -322,11 +326,11 @@ export default function BiomedicalTreatmentFlowSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-6 pb-4 sm:pb-8"
+              className="lg:col-span-7 pb-4 sm:pb-8"
             >
               <Link
                 href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-xs sm:text-[13px] shadow-2xl transition-all duration-300 group"
+                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-[14px] shadow-2xl transition-all duration-300 group"
               >
                 <span>View Configurations</span>
                 <LuArrowUpRight
@@ -337,7 +341,7 @@ export default function BiomedicalTreatmentFlowSection() {
             </motion.div>
 
             {/* Right: 2x2 Cards Grid */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 lg:gap-5">
+            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {cards.map((card, idx) => {
                 const isDark = card.theme === "dark";
                 return (
@@ -360,15 +364,15 @@ export default function BiomedicalTreatmentFlowSection() {
                   >
                     <div>{card.icon}</div>
                     <h3
-                      className={`text-[15.5px] sm:text-[17px] font-semibold mb-2 leading-snug ${
+                      className={`text-[18px] sm:text-[20px] font-normal mb-2 leading-[1.2] ${
                         isDark ? "text-white" : "text-[#18251E]"
                       }`}
                     >
                       {card.title}
                     </h3>
                     <p
-                      className={`text-xs sm:text-[13px] leading-relaxed ${
-                        isDark ? "text-white/90" : "text-[#5D6B62]"
+                      className={`text-[14px] sm:text-[15px] leading-[1.55] font-normal ${
+                        isDark ? "text-white/85" : "text-[#5d6762]"
                       }`}
                     >
                       {card.description}
