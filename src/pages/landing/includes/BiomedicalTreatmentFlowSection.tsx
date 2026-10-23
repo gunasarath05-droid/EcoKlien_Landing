@@ -140,7 +140,7 @@ export default function BiomedicalTreatmentFlowSection() {
   ];
 
   return (
-    <section className="relative w-full bg-white overflow-hidden">
+    <section className="relative w-full bg-white overflow-visible">
       {/* 
         CONTINUOUS CENTRAL DARK FLUID BAND
       */}
@@ -259,20 +259,33 @@ export default function BiomedicalTreatmentFlowSection() {
         <div className="w-full border-t border-white/10" />
       </div>
 
-      <div className="relative z-10 w-full pb-16 md:pb-24">
         {/* Diagonal Transformation Stream (Liquid2.png) */}
-        <div className="absolute w-full h-full left-0 right-0 bottom-0 top-0 z-0 pointer-events-none">
-          <Image
-            src={images.liquid2}
-            alt="Transformation liquid stream"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full pt-12 md:pt-20 pb-10 lg:aspect-[1920/1080] mb-0 md:mb-32">
+          {/* Splash: full image, no cropping on desktop */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* Desktop: natural ratio, full visible */}
+            <Image
+              src={images.liquid2}
+              alt="Transformation liquid stream"
+              width={1920}
+              height={1080}
+              sizes="100vw"
+              priority
+              className="hidden lg:block w-full h-auto"
+            />
+            {/* Mobile/tablet: cover, anchored to the splash side */}
+            <Image
+              src={images.liquid2}
+              alt="Transformation liquid stream"
+              fill
+              sizes="100vw"
+              className="lg:hidden object-cover object-[35%_bottom]"
+            />
+          </div>
+        
+        <div className="max-w-7xl relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Header Row */}
-          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 lg:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 lg:mb-16">
             {/* Left Column: Eyebrow + Heading */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -326,7 +339,7 @@ export default function BiomedicalTreatmentFlowSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-7 pb-4 sm:pb-8"
+              className="lg:col-span-7 pb-6 lg:pb-8"
             >
               <Link
                 href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
@@ -348,18 +361,25 @@ export default function BiomedicalTreatmentFlowSection() {
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{
-                      delay: idx * 0.1,
-                      duration: 0.55,
-                      ease: [0.16, 1, 0.3, 1],
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        delay: idx * 0.1,
+                        duration: 0.55,
+                        ease: [0.16, 1, 0.3, 1],
+                      },
                     }}
-                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                    className={`p-5.5 sm:p-7 min-h-[165px] sm:min-h-[195px] rounded-[22px] sm:rounded-[24px] shadow-xl sm:shadow-2xl transition-all duration-300 flex flex-col justify-start cursor-default ${
+                    viewport={{ once: true, margin: "-40px" }}
+                    whileHover={{
+                      y: -6,
+                      transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                    }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className={`p-6 sm:p-7 rounded-[14px] flex flex-col justify-start cursor-default transition-[border-color,box-shadow] duration-300 ${
                       isDark
-                        ? "bg-[#101C15]/80 sm:bg-[#000000]/25 backdrop-blur-xl border border-white/15 text-white"
-                        : "bg-white/95 sm:bg-white/70 backdrop-blur-xl border border-[#E3ECE6]/90 sm:border-white/50 text-[#18251E] shadow-lg"
+                        ? "bg-[#101C15]/80 sm:bg-[#000000]/25 backdrop-blur-xl border border-white/15 hover:border-white/35 text-white hover:shadow-2xl"
+                        : "bg-white/95 sm:bg-white/70 backdrop-blur-xl border border-[#E3ECE6]/90 sm:border-white/50 hover:border-white/80 text-[#18251E] shadow-lg hover:shadow-2xl"
                     }`}
                   >
                     <div>{card.icon}</div>

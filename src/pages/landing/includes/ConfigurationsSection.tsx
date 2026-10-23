@@ -120,12 +120,12 @@ export default function ConfigurationsSection() {
             >
               <div className="flex flex-col flex-1">
                 {/* Image Container with Floating Badge, Overlay Title and Arrow Button */}
-                <div className="relative w-full h-[260px] sm:h-[300px] rounded-[14px] overflow-hidden bg-[#0e1410] mb-6 shrink-0">
+                <div className="relative w-full h-[260px] sm:h-[300px] rounded-[14px] overflow-hidden mb-6 shrink-0">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     priority={idx === 0}
                   />
 

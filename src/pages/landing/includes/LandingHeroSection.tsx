@@ -125,8 +125,8 @@ export default function LandingHeroSection() {
       </div>
 
       {/* Bottom 4 Feature Cards with Staggered Scroll Animation */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-12 w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-20 w-full">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           {highlights.map((item, idx) => (
             <motion.div
               key={idx}
@@ -138,13 +138,11 @@ export default function LandingHeroSection() {
                 duration: 0.55,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="flex items-center justify-between sm:justify-start gap-6 sm:gap-8 px-6 sm:px-7 py-5 sm:py-6 rounded-[10px] text-[17px] sm:text-[20px] font-normal text-white bg-gradient-to-r from-black/55 to-white/[0.08] border border-white/22 backdrop-blur-[14px] shadow-lg cursor-default"
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              className="inline-flex items-center gap-3 sm:gap-8 px-5 sm:px-10 py-3.5 sm:py-6 rounded-[12px] text-[14px] sm:text-[20px] font-normal text-white bg-black/30 border border-white/[0.25] inset-shadow-sm inset-shadow-white/15  backdrop-blur-md cursor-default whitespace-nowrap"
             >
               <div className="shrink-0">{item.icon}</div>
-              <span className="tracking-tight font-normal">
-                {item.title}
-              </span>
+              <span className="tracking-tight font-normal">{item.title}</span>
             </motion.div>
           ))}
         </div>
