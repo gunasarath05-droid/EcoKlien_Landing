@@ -97,7 +97,7 @@ export default function Footer() {
         {/* Bottom Line: Copyright, Credits & Policy */}
         <div className="pt-4 border-t border-[#F0F2F0] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11.5px] text-[#78887F]">
           <p>
-            Copyright © 2026 ECOKlien | Powered by ECOKlien
+            Copyright © 2026 ECOKlien
           </p>
 
           <a
