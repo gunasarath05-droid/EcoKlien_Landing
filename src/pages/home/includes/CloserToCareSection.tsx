@@ -15,6 +15,7 @@ export default function CloserToCareSection() {
           src={images.treatment}
           alt="Treatment process backdrop"
           fill
+          sizes="100vw"
           className="object-cover object-center scale-105"
           priority
         />

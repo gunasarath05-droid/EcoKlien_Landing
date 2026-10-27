@@ -55,6 +55,7 @@ export default function ConfigurationsSection() {
           src={images.bioMedicalBg}
           alt="Biomedical fluid backdrop"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
@@ -125,6 +126,7 @@ export default function ConfigurationsSection() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 400px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                     priority={idx === 0}
                   />

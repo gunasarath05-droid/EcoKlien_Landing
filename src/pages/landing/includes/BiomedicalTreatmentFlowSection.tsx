@@ -155,6 +155,7 @@ export default function BiomedicalTreatmentFlowSection() {
           src={images.bioMedicalBg}
           alt="Biomedical dark fluid background"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
@@ -205,6 +206,7 @@ export default function BiomedicalTreatmentFlowSection() {
               src={images.liquid1}
               alt="Bio-waste fluid splash"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 700px"
               priority
               className="object-contain"
             />

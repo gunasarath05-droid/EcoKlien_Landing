@@ -38,10 +38,11 @@ export default function LandingHeroSection() {
           src={images.landingHero}
           alt="EcoKlien Laboratory Biomedical Liquid Waste Treatment System"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/50 md:bg-black/15" />
+        <div className="absolute inset-0 sm:bg-black/50 md:bg-black/0  md:bg-gradient-to-r md:from-black/50 md:via-black/10 md:to-black/0" />
       </div>
 
       {/* Main Hero Content */}

@@ -50,6 +50,7 @@ export default function ReimaginedSection() {
           src={images.fluidbg2}
           alt="Fluids background"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
@@ -61,6 +62,7 @@ export default function ReimaginedSection() {
           src={images.liquid2}
           alt="Transformation liquid stream"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />

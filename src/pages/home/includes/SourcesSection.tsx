@@ -188,6 +188,7 @@ export default function SourcesSection() {
                 src={images.source}
                 alt="Liquid Biomedical Waste Splash"
                 fill
+                sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 380px"
                 priority
                 className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
               />

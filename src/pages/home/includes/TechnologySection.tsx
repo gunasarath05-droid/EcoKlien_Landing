@@ -89,6 +89,7 @@ export default function TechnologySection() {
                 src={images.facility}
                 alt="EcoKlien Biomedical Liquid Waste Treatment System"
                 fill
+                sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 58vw, 750px"
                 className="object-cover object-center"
                 priority
               />

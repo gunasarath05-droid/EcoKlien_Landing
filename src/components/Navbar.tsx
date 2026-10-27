@@ -73,6 +73,7 @@ export default function Navbar() {
                 src={images.logo}
                 alt="ECOKlien"
                 fill
+                sizes="144px"
                 priority
                 className="object-contain object-left"
               />

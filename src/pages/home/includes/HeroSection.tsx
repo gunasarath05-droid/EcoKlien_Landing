@@ -95,6 +95,7 @@ export default function HeroSection() {
                   src={images.hero}
                   alt="ECOKlien On-site System Unit"
                   fill
+                  sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 640px"
                   priority
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-102"
                 />

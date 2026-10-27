@@ -57,6 +57,7 @@ export default function FromBloodToBodyFluidsSection() {
           src={images.fluidbg}
           alt="Fluids background"
           fill
+          sizes="100vw"
           priority
           className="object-cover object-center"
         />
@@ -85,6 +86,7 @@ export default function FromBloodToBodyFluidsSection() {
               src={images.liquid1}
               alt="Bio-waste fluid splash"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 700px"
               priority
               className="object-contain"
             />

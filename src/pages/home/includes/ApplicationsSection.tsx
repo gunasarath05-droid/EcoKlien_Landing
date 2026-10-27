@@ -98,6 +98,7 @@ export default function ApplicationsSection() {
               src={images.application.app1}
               alt="Healthcare facilities"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               priority
             />
@@ -123,6 +124,7 @@ export default function ApplicationsSection() {
               src={images.application.app2}
               alt="Laboratories"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               priority
             />
