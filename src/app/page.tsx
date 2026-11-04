@@ -1,5 +1,4 @@
 
-import HomePage from "@/pages/home";
 import LandingPage from "@/pages/landing";
 
 export default function Page() {

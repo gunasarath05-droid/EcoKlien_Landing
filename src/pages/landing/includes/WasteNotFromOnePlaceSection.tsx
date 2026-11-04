@@ -67,9 +67,7 @@ export default function WasteNotFromOnePlaceSection() {
             className="lg:col-span-7 lg:pt-1"
           >
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-medium text-[#0f3d2a] leading-[1.05] tracking-[-0.005em] mb-6 sm:mb-8">
-              Biomedical liquid waste doesn&apos;t come from
-              <br />
-              one place.
+              Biomedical liquid waste doesn&apos;t come from one place.
             </h2>
 
             <div className="space-y-5 sm:space-y-6 text-[14px] sm:text-[15px] leading-[1.55] font-normal">

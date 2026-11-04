@@ -13,15 +13,21 @@ export const images = {
   product: {
     product1: "/assests/images/home/Hospital Effluent Treatment Systems.png",
     product2: "/assests/images/home/Biomedical Liquid Waste Disinfection System.png",
-    product3: "/assests/images/home/Biomedical Liquid Waste Treatment Systems.png"
+    product3: "/assests/images/home/Biomedical Liquid Waste Treatment Systems.png",
   },
+   
+  productBML:"/assests/images/products/BML.png",
+  machineBML:"/assests/images/products/BMLmachine.png",
+
   fluidbg: "/assests/images/home/Fluids.png",
   fluidbg2: "/assests/images/home/Fluids2.png",
 
   //landing page images (flat keys & object alias)
   bioMedicalBg: "/assests/images/landing/Biomedical bg.png",
   landingHero: "/assests/images/Hero1.jpg",
+  productHeroBg: "/assests/images/landing/Hero.png",
   liquid1: "/assests/images/landing/Liquid.png",
   liquid2: "/assests/images/landing/Liquid2.png",
-
+  bloodToWater: "/assests/images/blood to water.png",
+  enquiry: "/assests/images/enquirybg.jpg",
 };
