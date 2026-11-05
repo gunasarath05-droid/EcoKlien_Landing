@@ -90,7 +90,7 @@ export default function Navbar() {
         },
         {
           title: "Glossary",
-          href: "https://ecoklien.com/the-biomedical-glossary/",
+          href: "/glossary",
         },
       ],
     },
