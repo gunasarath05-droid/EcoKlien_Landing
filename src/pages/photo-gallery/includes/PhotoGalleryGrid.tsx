@@ -8,8 +8,10 @@ import {
   eventExhibitionPhotos,
   eventVideos,
   eventCertificates,
-  CertificateItem,
+  galleryCollections,
+  EventCategoryCollection,
   EventVideoItem,
+  CertificateItem,
 } from "@/data/gallery";
 import { LuArrowUpRight, LuSearch, LuPlay, LuX } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
@@ -33,7 +35,8 @@ type FilterCategory = (typeof filterCategories)[number];
 export default function PhotoGalleryGrid({
   items = photoGalleryItems,
 }: PhotoGalleryGridProps) {
-  const [activeCategory, setActiveCategory] = useState<FilterCategory>("Events");
+  // Default to "All photos" matching the design
+  const [activeCategory, setActiveCategory] = useState<FilterCategory>("All photos");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   // Lightbox Modal state
@@ -53,7 +56,7 @@ export default function PhotoGalleryGrid({
     return text.toLowerCase().includes(searchQuery.toLowerCase().trim());
   };
 
-  // Filtered collections based on category & search
+  // Filtered Event Photos
   const filteredEventPhotos = useMemo(() => {
     if (activeCategory !== "All photos" && activeCategory !== "Events") return [];
     return eventExhibitionPhotos.filter(
@@ -61,13 +64,7 @@ export default function PhotoGalleryGrid({
     );
   }, [activeCategory, searchQuery]);
 
-  const filteredCertificates = useMemo(() => {
-    if (activeCategory !== "All photos" && activeCategory !== "Events") return [];
-    return eventCertificates.filter(
-      (c) => matchesSearch(c.title) || matchesSearch(c.eyebrow)
-    );
-  }, [activeCategory, searchQuery]);
-
+  // Filtered Event Videos
   const filteredEventVideos = useMemo(() => {
     if (
       activeCategory !== "All photos" &&
@@ -83,6 +80,15 @@ export default function PhotoGalleryGrid({
     );
   }, [activeCategory, searchQuery]);
 
+  // Filtered Certificates
+  const filteredCertificates = useMemo(() => {
+    if (activeCategory !== "All photos" && activeCategory !== "Events") return [];
+    return eventCertificates.filter(
+      (c) => matchesSearch(c.title) || matchesSearch(c.eyebrow)
+    );
+  }, [activeCategory, searchQuery]);
+
+  // Filtered Systems & Environment Photos
   const filteredSystemPhotos = useMemo(() => {
     if (activeCategory === "Events" || activeCategory === "Videos") return [];
     return items.filter((p) => {
@@ -165,7 +171,7 @@ export default function PhotoGalleryGrid({
 
             {/* Counts Badge */}
             <div className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#738479] text-right shrink-0">
-              {activeCategory === "Events" || activeCategory === "All photos" ? (
+              {activeCategory === "All photos" || activeCategory === "Events" ? (
                 <>
                   <div>{String(totalPhotos).padStart(2, "0")} PHOTOGRAPHS</div>
                   <div className="text-[10px] text-[#8F9E94]">
@@ -184,11 +190,12 @@ export default function PhotoGalleryGrid({
         </div>
 
         {/* ========================================================= */}
-        {/* SECTION 1: EVENTS / EXHIBITIONS PHOTOS                    */}
+        {/* GROUP 1: EVENTS / EXHIBITIONS PHOTOS                      */}
+        {/* (Rendered when 'All photos' or 'Events' is active)        */}
         {/* ========================================================= */}
         {filteredEventPhotos.length > 0 && (
           <div className="pt-10 sm:pt-14 space-y-6">
-            {/* Section Header */}
+            {/* Group Header */}
             <div className="flex items-center justify-between border-b border-[#EAEFEA] pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
@@ -247,11 +254,12 @@ export default function PhotoGalleryGrid({
         )}
 
         {/* ========================================================= */}
-        {/* SECTION 2: EVENT VIDEOS (YOUTUBE EMBED / PLAYER)          */}
+        {/* GROUP 2: EVENT VIDEOS                                     */}
+        {/* (Only rendered if videos exist for the selected event/all)*/}
         {/* ========================================================= */}
         {filteredEventVideos.length > 0 && (
           <div className="pt-14 sm:pt-16 space-y-6">
-            {/* Section Header */}
+            {/* Group Header */}
             <div className="flex items-center justify-between border-b border-[#EAEFEA] pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
@@ -328,11 +336,12 @@ export default function PhotoGalleryGrid({
         )}
 
         {/* ========================================================= */}
-        {/* SECTION 3: PARTICIPATION CERTIFICATES                      */}
+        {/* GROUP 3: PARTICIPATION CERTIFICATES                       */}
+        {/* (Only rendered if certificates exist for category/all)    */}
         {/* ========================================================= */}
         {filteredCertificates.length > 0 && (
           <div className="pt-14 sm:pt-16 space-y-6">
-            {/* Section Header */}
+            {/* Group Header */}
             <div className="flex items-center justify-between border-b border-[#EAEFEA] pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
@@ -390,17 +399,18 @@ export default function PhotoGalleryGrid({
         )}
 
         {/* ========================================================= */}
-        {/* SECTION 4: SYSTEMS & ENVIRONMENT PHOTOS                    */}
+        {/* GROUP 4: SYSTEMS & ENVIRONMENT PHOTOS                     */}
+        {/* (Rendered when 'All photos' or specific system category)  */}
         {/* ========================================================= */}
         {filteredSystemPhotos.length > 0 && (
           <div className="pt-14 sm:pt-16 space-y-6">
-            {/* Section Header */}
+            {/* Group Header */}
             <div className="flex items-center justify-between border-b border-[#EAEFEA] pb-3">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#5D6B62] font-medium">
                   {activeCategory === "All photos"
-                    ? "SYSTEMS & APPLICATION ENVIRONMENTS"
+                    ? "SYSTEMS & ENVIRONMENTS"
                     : activeCategory.toUpperCase()}
                 </span>
               </div>
@@ -467,7 +477,7 @@ export default function PhotoGalleryGrid({
             <button
               onClick={() => {
                 setSearchQuery("");
-                setActiveCategory("Events");
+                setActiveCategory("All photos");
               }}
               className="mt-3 px-5 py-2 rounded-full bg-[#0E291E] text-white text-[12.5px] font-medium hover:bg-[#00A859] transition-colors"
             >
@@ -477,7 +487,7 @@ export default function PhotoGalleryGrid({
         )}
 
         {/* ========================================================= */}
-        {/* BOTTOM NOTE & GALLERY INDEX STRIP                         */}
+        {/* BOTTOM NOTE & SUMMARY STRIP                               */}
         {/* ========================================================= */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-[12px] text-[#738479] leading-relaxed max-w-2xl font-normal">

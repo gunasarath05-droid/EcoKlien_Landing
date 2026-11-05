@@ -37,6 +37,16 @@ export interface CertificateItem {
   image: string;
 }
 
+export interface EventCategoryCollection {
+  id: string;
+  name: string;
+  category: "Events" | "Systems" | "Healthcare" | "Laboratories";
+  eyebrow: string;
+  photos: PhotoGalleryItem[];
+  videos?: EventVideoItem[];
+  certificates?: CertificateItem[];
+}
+
 export const productGalleryItems: ProductGalleryItem[] = [
   {
     id: "v1",
@@ -180,5 +190,50 @@ export const eventCertificates: CertificateItem[] = [
     title: "Nepal Medical & Healthcare Show 2025",
     eyebrow: "PARTICIPATION / NEPAL 2025",
     image: "/assests/images/events/certificate_3.png",
+  },
+];
+
+export const galleryCollections: EventCategoryCollection[] = [
+  {
+    id: "events",
+    name: "Events & Exhibitions",
+    category: "Events",
+    eyebrow: "EVENTS & EXHIBITIONS",
+    photos: eventExhibitionPhotos,
+    videos: eventVideos,
+    certificates: eventCertificates,
+  },
+  {
+    id: "systems",
+    name: "Systems",
+    category: "Systems",
+    eyebrow: "SYSTEMS / POINT OF SOURCE & EFFLUENT",
+    photos: [
+      photoGalleryItems[0],
+      photoGalleryItems[1],
+      photoGalleryItems[4],
+      photoGalleryItems[5],
+    ],
+    // Videos and certificates are optional
+    videos: [],
+    certificates: [],
+  },
+  {
+    id: "healthcare",
+    name: "Healthcare Environments",
+    category: "Healthcare",
+    eyebrow: "APPLICATION ENVIRONMENTS / HEALTHCARE",
+    photos: [photoGalleryItems[2]],
+    videos: [],
+    certificates: [],
+  },
+  {
+    id: "laboratories",
+    name: "Laboratory Environments",
+    category: "Laboratories",
+    eyebrow: "APPLICATION ENVIRONMENTS / LABORATORIES",
+    photos: [photoGalleryItems[3]],
+    videos: [],
+    certificates: [],
   },
 ];
