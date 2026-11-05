@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { LuX } from "react-icons/lu";
+import { LuX, LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
 
 interface VideoModalProps {
@@ -51,18 +51,31 @@ export default function VideoModal({
             className="relative w-full max-w-5xl rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top Bar with Title and Close Button */}
+            {/* Top Bar with Title and Actions */}
             <div className="flex items-center justify-between px-5 py-3.5 bg-[#0A1712] border-b border-white/10 text-white">
               <span className="text-[13px] font-medium tracking-tight truncate max-w-md text-white/90">
                 {title || "ECOKlien Video"}
               </span>
-              <button
-                onClick={onClose}
-                className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                aria-label="Close video"
-              >
-                <LuX className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-3">
+                {youtubeId && (
+                  <a
+                    href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11.5px] font-mono uppercase tracking-wider text-white/70 hover:text-[#00A859] transition-colors"
+                  >
+                    <span>YouTube</span>
+                    <LuArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                <button
+                  onClick={onClose}
+                  className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                  aria-label="Close video"
+                >
+                  <LuX className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* Responsive 16:9 YouTube iframe Container */}

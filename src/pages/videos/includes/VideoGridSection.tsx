@@ -111,16 +111,29 @@ export default function VideoGridSection({
                   </p>
                 </div>
 
-                {/* Watch Video Link with Diagonal Arrow */}
-                <div className="pt-4 mt-auto">
+                {/* Watch Video Link with Diagonal Arrow + Direct YouTube Link */}
+                <div className="pt-4 mt-auto flex items-center justify-between border-t border-[#F0F4F1]">
                   <button
                     type="button"
                     onClick={() => onPlayModal && onPlayModal(video)}
                     className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#18251E] group-hover:text-[#00A859] transition-colors cursor-pointer"
                   >
+                    <LuPlay className="w-3.5 h-3.5 fill-current" />
                     <span>Watch video</span>
-                    <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </button>
+
+                  {video.videoUrl && (
+                    <a
+                      href={video.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11.5px] font-mono uppercase tracking-wider text-[#738479] hover:text-[#00A859] transition-colors"
+                      title="Open on YouTube"
+                    >
+                      <span>YouTube</span>
+                      <LuArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}

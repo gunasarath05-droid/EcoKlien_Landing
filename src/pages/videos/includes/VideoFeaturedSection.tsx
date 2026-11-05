@@ -89,8 +89,7 @@ export default function VideoFeaturedSection({
               </span>
             </div>
             <h2 className="text-[26px] sm:text-[32px] font-semibold text-[#0E291E] tracking-tight leading-[1.15]">
-              Biomedical liquid waste treatment.<br />
-              At the source.
+              {video.title}
             </h2>
           </div>
 
@@ -99,15 +98,27 @@ export default function VideoFeaturedSection({
             <p className="text-[14px] sm:text-[15px] text-[#55645C] leading-relaxed">
               {video.description}
             </p>
-            <div>
+            <div className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={handlePlay}
                 className="inline-flex items-center gap-2 text-[13.5px] font-medium text-[#18251E] hover:text-[#00A859] transition-colors cursor-pointer group"
               >
-                <span>Watch overview</span>
+                <span>Watch video</span>
                 <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
+
+              {video.videoUrl && (
+                <a
+                  href={video.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[12.5px] text-[#738479] hover:text-[#00A859] transition-colors font-mono uppercase tracking-wider"
+                >
+                  <span>Open on YouTube</span>
+                  <LuArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              )}
             </div>
           </div>
         </div>

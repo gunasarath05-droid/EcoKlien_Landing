@@ -2,7 +2,7 @@ import React from "react";
 import PhotoGalleryHero from "./includes/PhotoGalleryHero";
 import PhotoGalleryGrid from "./includes/PhotoGalleryGrid";
 import BottomCtaBanner from "@/components/common/BottomCtaBanner";
-import { photoGalleryItems } from "@/data/gallery";
+import { galleryEvents } from "@/data/gallery";
 
 export default function PhotoGalleryPage() {
   return (
@@ -11,7 +11,7 @@ export default function PhotoGalleryPage() {
       <PhotoGalleryHero />
 
       {/* 2. Photo Gallery Grid with Filter */}
-      <PhotoGalleryGrid items={photoGalleryItems} />
+      <PhotoGalleryGrid events={galleryEvents} />
 
       {/* 3. Bottom CTA Banner */}
       <BottomCtaBanner
