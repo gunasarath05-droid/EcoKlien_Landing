@@ -344,7 +344,7 @@ export default function BiomedicalTreatmentFlowSection() {
               className="lg:col-span-7 pb-6 lg:pb-8"
             >
               <Link
-                href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
+                href="#configurations"
                 className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-[14px] shadow-2xl transition-all duration-300 group"
               >
                 <span>{t.viewConfigurations}</span>

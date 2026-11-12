@@ -1,6 +1,6 @@
 import type { GlossaryTerm } from "../../glossary";
 
-const BLW_SYSTEM = "https://ecoklien.com/biomedical-liquid-waste-treatment-system/";
+const BLW_SYSTEM = "/products/biomedical-liquid-waste-treatment-system";
 const CONTACT = "/contact";
 
 /** Arabic glossary translations: text fields only, keyed by `slug` (see src/i18n/README.md). */
@@ -68,7 +68,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
             title: "دور نفايات المستشفيات في مقاومة مضادات الميكروبات.",
             text: "هل تريد أن تعرف كيف تسهم نفايات المستشفيات والنفايات الطبية الحيوية السائلة غير المعالَجة في مقاومة مضادات الميكروبات؟",
             label: "اقرأ المقال",
-            href: "https://ecoklien.com/antimicrobial-resistance-biomedical-liquid-waste/",
+            href: "/blog",
           },
         ],
       },
@@ -639,7 +639,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
             title: "اعرف المزيد عن أنظمتنا.",
             text: "اطّلع على كيفية تعامل ECOKlien مع تحديات معالجة النفايات الطبية الحيوية السائلة.",
             label: "اعرف المزيد",
-            href: "https://ecoklien.com/challenges-of-biomedical-liquid-waste-treatment/",
+            href: "/products",
           },
         ],
       },
@@ -691,7 +691,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "تحدثنا بمزيد من التفصيل عن [انتشار الأمراض السارية عبر النفايات الطبية الحيوية السائلة](https://ecoklien.com/spread-communicable-diseases-biomedical-liquid-waste/) وعن [تأثر المجتمعات](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/) بذلك.",
+            text: "تحدثنا بمزيد من التفصيل عن [انتشار الأمراض السارية عبر النفايات الطبية الحيوية السائلة](/blog) وعن [تأثر المجتمعات](/blog) بذلك.",
           },
         ],
       },
@@ -811,7 +811,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
           },
           {
             type: "p",
-            text: "اقرأ المزيد عن [الآثار على البيئة](https://ecoklien.com/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment/) وعن [المجتمعات التي تعيش على الهامش](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/).",
+            text: "اقرأ المزيد عن [الآثار على البيئة](/blog) وعن [المجتمعات التي تعيش على الهامش](/blog).",
           },
         ],
       },
@@ -1016,7 +1016,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "تؤدي ECOKlien دورًا محوريًا في إدارة مياه الصرف، ولا سيما في معالجة النفايات الطبية الحيوية السائلة. فأنظمتها، مثل [BML](https://ecoklien.com/biomedical-liquid-waste-treatment/)، مصممة لتطهير النفايات السائلة الخطرة الناتجة في مرافق الرعاية الصحية ومعالجتها بكفاءة، بما يستوفي المعايير التنظيمية ويسهم في حماية البيئة والصحة العامة.",
+            text: "تؤدي ECOKlien دورًا محوريًا في إدارة مياه الصرف، ولا سيما في معالجة النفايات الطبية الحيوية السائلة. فأنظمتها، مثل [BML](/products/biomedical-liquid-waste-treatment-system)، مصممة لتطهير النفايات السائلة الخطرة الناتجة في مرافق الرعاية الصحية ومعالجتها بكفاءة، بما يستوفي المعايير التنظيمية ويسهم في حماية البيئة والصحة العامة.",
           },
         ],
       },

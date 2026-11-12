@@ -126,8 +126,7 @@ export default function Footer() {
 
           <div>
             <Link
-              href="https://ecoklien.com/privacy-policy/"
-              target="_blank"
+              href="/privacy-policy"
               className="hover:text-[#00A859] transition-colors"
             >
               {t.privacy}

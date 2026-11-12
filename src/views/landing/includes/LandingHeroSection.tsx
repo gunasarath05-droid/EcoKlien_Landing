@@ -108,7 +108,7 @@ export default function LandingHeroSection() {
           >
             {/* Buy now button with diagonal arrow */}
             <Link
-              href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
+              href="/products"
               className="inline-flex items-center justify-center gap-5 sm:gap-6 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-[#0a9a3a] hover:bg-[#088231] text-white font-medium text-[14px] transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
               <span>{hero.buyNow}</span>

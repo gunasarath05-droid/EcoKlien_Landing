@@ -6,7 +6,7 @@ import type { GlossaryTerm } from "../../glossary";
  * repeated here unchanged. Neutral international Spanish, formal "usted".
  */
 
-const BLW_SYSTEM = "https://ecoklien.com/biomedical-liquid-waste-treatment-system/";
+const BLW_SYSTEM = "/products/biomedical-liquid-waste-treatment-system";
 const CONTACT = "/contact";
 
 export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)[] = [
@@ -75,7 +75,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
             title: "El papel de los residuos hospitalarios en la AMR.",
             text: "¿Desea saber cómo contribuyen los residuos hospitalarios y los residuos líquidos biomédicos sin tratar a la resistencia a los antimicrobianos?",
             label: "Lea el artículo",
-            href: "https://ecoklien.com/antimicrobial-resistance-biomedical-liquid-waste/",
+            href: "/blog",
           },
         ],
       },
@@ -669,7 +669,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
             title: "Conozca más sobre nuestros sistemas.",
             text: "Vea cómo ECOKlien aborda los desafíos del tratamiento de los residuos líquidos biomédicos.",
             label: "Más información",
-            href: "https://ecoklien.com/challenges-of-biomedical-liquid-waste-treatment/",
+            href: "/products",
           },
         ],
       },
@@ -724,7 +724,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "Hemos hablado con más detalle sobre las [enfermedades transmisibles que se propagan a través de los residuos líquidos biomédicos](https://ecoklien.com/spread-communicable-diseases-biomedical-liquid-waste/) y sobre cómo [se ven afectadas las comunidades](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/) por ello.",
+            text: "Hemos hablado con más detalle sobre las [enfermedades transmisibles que se propagan a través de los residuos líquidos biomédicos](/blog) y sobre cómo [se ven afectadas las comunidades](/blog) por ello.",
           },
         ],
       },
@@ -847,7 +847,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
           },
           {
             type: "p",
-            text: "Lea más sobre los [efectos en el medio ambiente](https://ecoklien.com/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment/) y sobre las [comunidades que viven al límite](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/).",
+            text: "Lea más sobre los [efectos en el medio ambiente](/blog) y sobre las [comunidades que viven al límite](/blog).",
           },
         ],
       },
@@ -1073,7 +1073,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "ECOKlien desempeña un papel fundamental en la gestión de las aguas residuales, en particular en el tratamiento de los residuos líquidos biomédicos. Sus sistemas, como [BML](https://ecoklien.com/biomedical-liquid-waste-treatment/), están diseñados para desinfectar y tratar de forma eficiente los residuos líquidos peligrosos generados en los centros sanitarios, cumpliendo las normas reglamentarias y contribuyendo a la protección del medio ambiente y de la salud pública.",
+            text: "ECOKlien desempeña un papel fundamental en la gestión de las aguas residuales, en particular en el tratamiento de los residuos líquidos biomédicos. Sus sistemas, como [BML](/products/biomedical-liquid-waste-treatment-system), están diseñados para desinfectar y tratar de forma eficiente los residuos líquidos peligrosos generados en los centros sanitarios, cumpliendo las normas reglamentarias y contribuyendo a la protección del medio ambiente y de la salud pública.",
           },
         ],
       },

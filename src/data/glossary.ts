@@ -51,7 +51,7 @@ export interface GlossaryTerm {
   related: string[];
 }
 
-const BLW_SYSTEM = "https://ecoklien.com/biomedical-liquid-waste-treatment-system/";
+const BLW_SYSTEM = "/products/biomedical-liquid-waste-treatment-system";
 const CONTACT = "/contact";
 
 export const glossaryTerms: GlossaryTerm[] = [
@@ -118,7 +118,7 @@ export const glossaryTerms: GlossaryTerm[] = [
             title: "The role of hospital waste in AMR.",
             text: "Want to know how untreated hospital and biomedical liquid waste contributes to antimicrobial resistance?",
             label: "Read the article",
-            href: "https://ecoklien.com/antimicrobial-resistance-biomedical-liquid-waste/",
+            href: "/blog",
           },
         ],
       },
@@ -674,7 +674,7 @@ export const glossaryTerms: GlossaryTerm[] = [
             title: "Know more about our systems.",
             text: "See how ECOKlien addresses the challenges of biomedical liquid waste treatment.",
             label: "Know more",
-            href: "https://ecoklien.com/challenges-of-biomedical-liquid-waste-treatment/",
+            href: "/products",
           },
         ],
       },
@@ -723,7 +723,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         blocks: [
           {
             type: "p",
-            text: "We have talked more on communicable [diseases spreading through biomedical liquid waste](https://ecoklien.com/spread-communicable-diseases-biomedical-liquid-waste/) and how [communities are affected](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/) by the same.",
+            text: "We have talked more on communicable [diseases spreading through biomedical liquid waste](/blog) and how [communities are affected](/blog) by the same.",
           },
         ],
       },
@@ -837,7 +837,7 @@ export const glossaryTerms: GlossaryTerm[] = [
           },
           {
             type: "p",
-            text: "Read more about the [effects on the environment](https://ecoklien.com/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment/) and [communities living on the edge](https://ecoklien.com/biomedical-waste-and-communities-living-on-the-edge/).",
+            text: "Read more about the [effects on the environment](/blog) and [communities living on the edge](/blog).",
           },
         ],
       },
@@ -1041,7 +1041,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         blocks: [
           {
             type: "p",
-            text: "ECOKlien plays a pivotal role in wastewater management, particularly in treating biomedical liquid waste. Its systems, such as [BML](https://ecoklien.com/biomedical-liquid-waste-treatment/), are designed to efficiently disinfect and treat hazardous liquid waste generated in healthcare facilities, meeting regulatory standards and contributing to environmental protection and public health.",
+            text: "ECOKlien plays a pivotal role in wastewater management, particularly in treating biomedical liquid waste. Its systems, such as [BML](/products/biomedical-liquid-waste-treatment-system), are designed to efficiently disinfect and treat hazardous liquid waste generated in healthcare facilities, meeting regulatory standards and contributing to environmental protection and public health.",
           },
         ],
       },
