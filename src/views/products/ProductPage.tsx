@@ -25,12 +25,13 @@ export default function ProductPage({ product = defaultProduct }: ProductPagePro
         <ProductHeroSection hero={product.hero} />
         <WasteNotFromOnePlaceSection />
         <ProductTechnologySection technologySection={product.technologySection} />
+         <ProductConfigurationsSection configurationsSection={product.configurationsSection} />
         <ProductTreatmentFlowSection
           closerSection={product.closerSection}
           fluidsSection={product.fluidsSection}
         />
         <ApplicationsSection />
-        <ProductConfigurationsSection configurationsSection={product.configurationsSection} />
+       
       </main>
     </div>
   );

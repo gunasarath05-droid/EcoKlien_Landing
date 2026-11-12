@@ -282,8 +282,8 @@ export default function ProductTreatmentFlowSection({
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className={`absolute z-20 flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-[12.5px] sm:text-[14px] font-medium shadow-md transition-all cursor-default whitespace-nowrap ${
                   isDark
-                    ? "bg-black/40 backdrop-blur-md border border-white/20 text-white"
-                    : "bg-white/85 backdrop-blur-md border border-[#E3ECE6] text-[#18251E] shadow-sm"
+                    ? "bg-[#C2C2C2]/10 backdrop-blur-lg border border-white/15 text-white"
+                    : "bg-white/50 backdrop-blur-lg border border-white/15 text-[#18251E] shadow-sm"
                 } ${badge.position}`}
               >
                 <div>{badge.icon}</div>
