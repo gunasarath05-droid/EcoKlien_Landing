@@ -16,8 +16,13 @@ interface NavLinkItem {
   href: string;
 }
 
-/** A nav item is either a page link, or a dropdown parent that only opens its menu (no page of its own). */
-type NavItem = (NavLinkItem & { id: string; dropdown?: undefined }) | { id: string; title: string; dropdown: NavLinkItem[] };
+/**
+ * A nav item is either a page link, or a dropdown parent. A dropdown parent with an `href` is also a
+ * page link (click opens its page, hover/focus shows the menu); without one it only opens its menu.
+ */
+type NavItem =
+  | (NavLinkItem & { id: string; dropdown?: undefined })
+  | { id: string; title: string; href?: string; dropdown: NavLinkItem[] };
 
 const LANGUAGE_MENU = "language";
 
@@ -37,6 +42,7 @@ export default function Navbar() {
     {
       id: "products",
       title: t.products,
+      href: "/products",
       dropdown: [
         { title: t.productLinks.biomedical, href: "/products/biomedical-liquid-waste-treatment-system" },
         { title: t.productLinks.hospital, href: "/products/hospital-effluent-treatment-systems" },
@@ -143,9 +149,31 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-5 lg:gap-9">
           {navLinks.map((item) => {
             if (item.dropdown) {
-              const isParentActive = item.dropdown.some((sub) => isPathActive(sub.href));
+              const isParentActive =
+                (item.href !== undefined && isPathActive(item.href)) ||
+                item.dropdown.some((sub) => isPathActive(sub.href));
               const isOpen = openDesktopDropdown === item.id;
               const menuId = `nav-menu-${item.id}`;
+              const parentClassName = `flex items-center gap-1.5 text-[15px] font-medium transition-colors relative py-1 cursor-pointer whitespace-nowrap ${
+                isParentActive || isOpen
+                  ? "text-[#00B050]"
+                  : "text-[#123D30] hover:text-[#00B050]"
+              }`;
+              const parentContent = (
+                <>
+                  <span>{item.title}</span>
+                  <LuChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 group-hover:text-[#00B050] ${
+                      isOpen ? "rotate-180 text-[#00B050]" : isParentActive ? "text-[#00B050]" : "text-[#123D30]"
+                    }`}
+                  />
+                  <span
+                    className={`absolute bottom-0 start-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
+                      isParentActive || isOpen ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </>
+              );
 
               return (
                 <div
@@ -153,31 +181,29 @@ export default function Navbar() {
                   className="relative group py-2"
                   onMouseLeave={() => isOpen && setOpenDesktopDropdown(null)}
                 >
-                  {/* Dropdown parent: opens the menu only, it is not a page link */}
-                  <button
-                    type="button"
-                    aria-haspopup="true"
-                    aria-expanded={isOpen}
-                    aria-controls={menuId}
-                    onClick={() => setOpenDesktopDropdown(isOpen ? null : item.id)}
-                    className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors relative py-1 cursor-pointer whitespace-nowrap ${
-                      isParentActive || isOpen
-                        ? "text-[#00B050]"
-                        : "text-[#123D30] hover:text-[#00B050]"
-                    }`}
-                  >
-                    <span>{item.title}</span>
-                    <LuChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 group-hover:text-[#00B050] ${
-                        isOpen ? "rotate-180 text-[#00B050]" : isParentActive ? "text-[#00B050]" : "text-[#123D30]"
-                      }`}
-                    />
-                    <span
-                      className={`absolute bottom-0 start-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
-                        isParentActive || isOpen ? "w-full" : "w-0 group-hover:w-full"
-                      }`}
-                    />
-                  </button>
+                  {item.href ? (
+                    /* Dropdown parent with its own page: click navigates, hover/focus shows the menu */
+                    <Link
+                      href={item.href}
+                      aria-current={pathname === item.href ? "page" : undefined}
+                      onClick={() => setOpenDesktopDropdown(null)}
+                      className={parentClassName}
+                    >
+                      {parentContent}
+                    </Link>
+                  ) : (
+                    /* Dropdown parent without a page: opens the menu only */
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                      aria-controls={menuId}
+                      onClick={() => setOpenDesktopDropdown(isOpen ? null : item.id)}
+                      className={parentClassName}
+                    >
+                      {parentContent}
+                    </button>
+                  )}
 
                   {/* Dropdown menu (hover-bridge via pt-2); opens on hover, keyboard focus or click */}
                   <div
@@ -355,7 +381,9 @@ export default function Navbar() {
               {navLinks.map((item, idx) => {
                 if (item.dropdown) {
                   const isOpen = openMobileDropdown === item.id;
-                  const isParentActive = item.dropdown.some((sub) => isPathActive(sub.href));
+                  const isParentActive =
+                    (item.href !== undefined && isPathActive(item.href)) ||
+                    item.dropdown.some((sub) => isPathActive(sub.href));
 
                   return (
                     <motion.div
@@ -365,7 +393,35 @@ export default function Navbar() {
                       transition={{ delay: idx * 0.05, duration: 0.25 }}
                       className="border-b border-[#F0F5F2] pb-2"
                     >
-                      {/* Whole row toggles the submenu; only sub-items navigate */}
+                      {item.href ? (
+                        /* Title opens the parent page; the chevron toggles the submenu */
+                        <div className="w-full flex items-center justify-between py-1">
+                          <Link
+                            href={item.href}
+                            onClick={closeMobileMenu}
+                            aria-current={pathname === item.href ? "page" : undefined}
+                            className={`flex-1 text-[15.5px] font-medium transition-colors ${
+                              isParentActive ? "text-[#00B050] font-semibold" : "text-[#123D30] hover:text-[#00B050]"
+                            }`}
+                          >
+                            {item.title}
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={() => setOpenMobileDropdown(isOpen ? null : item.id)}
+                            aria-expanded={isOpen}
+                            aria-label={item.title}
+                            className="cursor-pointer"
+                          >
+                            <LuChevronDown
+                              className={`w-4 h-4 m-1.5 transition-transform duration-200 ${
+                                isOpen ? "rotate-180 text-[#00B050]" : "text-[#123D30]"
+                              }`}
+                            />
+                          </button>
+                        </div>
+                      ) : (
+                      /* Whole row toggles the submenu; only sub-items navigate */
                       <button
                         type="button"
                         onClick={() => setOpenMobileDropdown(isOpen ? null : item.id)}
@@ -383,6 +439,7 @@ export default function Navbar() {
                           }`}
                         />
                       </button>
+                      )}
 
                       <AnimatePresence>
                         {isOpen && (

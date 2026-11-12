@@ -16,19 +16,19 @@ export default function ConfigurationsSection() {
       version: "ECOKlien V1",
       ...t.items.v1,
       image: images.product.product3,
-      link: "https://ecoklien.com/biomedical-liquid-waste-treatment-system/",
+      link: "/products/biomedical-liquid-waste-treatment-system",
     },
     {
       version: "ECOKlien V2",
       ...t.items.v2,
       image: images.product.product1,
-      link: "https://ecoklien.com/hospital-effluent-treatment-systems/",
+      link: "/products/hospital-effluent-treatment-systems",
     },
     {
       version: "ECOKlien V3",
       ...t.items.v3,
       image: images.product.product2,
-      link: "https://ecoklien.com/biomedical-liquid-disinfection-system/",
+      link: "/products/biomedical-liquid-waste-disinfection-system",
     },
   ];
 

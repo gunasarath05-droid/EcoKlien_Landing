@@ -125,13 +125,13 @@ export const products: ProductTranslation[] = [
       ],
     },
     configurationsSection: {
-      eyebrow: "ESPECIFICACIONES Y CAPACIDADES",
+      eyebrow: "CONFIGURACIONES DEL SISTEMA",
       heading: "Elija el sistema en función de su aplicación.",
       subtitle:
-        "Configuraciones disponibles para diferentes departamentos hospitalarios, laboratorios, centros de diagnóstico y áreas quirúrgicas.",
-      ctaCard: { buttonText: "Solicite una cotización personalizada" },
+        "Los centros de salud difieren en el volumen, las características y los requisitos de tratamiento de sus aguas residuales. ECOKlien está disponible en múltiples configuraciones diseñadas para diferentes aplicaciones.",
+      ctaCard: { buttonText: "Descargar folleto" },
       footerNote:
-        "*Caudales y capacidades personalizados disponibles bajo pedido. Hable con nuestro equipo de ingeniería para evaluar los requisitos de su instalación.",
+        "Solicite el folleto y analice con el equipo técnico la instalación, los servicios, la composición de los residuos y los requisitos de operación.",
     },
   },
   {

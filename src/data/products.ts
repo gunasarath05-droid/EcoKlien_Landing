@@ -27,10 +27,21 @@ export interface CloserStep {
     | "reuse";
 }
 
-export interface CapacityRow {
+/** Model tier shown in the configurations table; the label is translated in src/i18n/messages/products.ts. */
+export type ModelType = "economy" | "mini" | "commercial";
+
+export interface ModelRow {
   model: string;
-  flowRate: string;
-  dailyCapacity: string;
+  /** Treatment capacity in litres per day (LPD), formatted for display. */
+  capacity: string;
+  type?: ModelType;
+}
+
+/** Treatment performance: a parameter's value in the incoming liquid waste vs. the treated water. */
+export interface ParameterRow {
+  parameter: string;
+  liquidWaste: string;
+  treatedWater: string;
 }
 
 export interface FacilityType {
@@ -105,8 +116,9 @@ export interface ProductDetail {
     eyebrow: string;
     heading: string;
     subtitle: string;
-    leftTable: CapacityRow[];
-    rightTable: CapacityRow[];
+    models: ModelRow[];
+    /** Optional performance table (COD, TSS, BOD…); hidden when absent. */
+    parameters?: ParameterRow[];
     ctaCard: {
       image: string;
       buttonText: string;
@@ -320,32 +332,33 @@ export const products: ProductDetail[] = [
       ],
     },
     configurationsSection: {
-      eyebrow: "SPECIFICATIONS & CAPACITIES",
+      eyebrow: "SYSTEM CONFIGURATIONS",
       heading: "Choose the system around your application.",
       subtitle:
-        "Configurations available for different hospital departments, laboratories, diagnostic centres and surgical areas.",
-      leftTable: [
-        { model: "ECOKlien 250", flowRate: "25 LPH", dailyCapacity: "250 LPD" },
-        { model: "ECOKlien 500", flowRate: "50 LPH", dailyCapacity: "500 LPD" },
-        { model: "ECOKlien 1000", flowRate: "100 LPH", dailyCapacity: "1,000 LPD" },
-        { model: "ECOKlien 2000", flowRate: "200 LPH", dailyCapacity: "2,000 LPD" },
-        { model: "ECOKlien 3000", flowRate: "300 LPH", dailyCapacity: "3,000 LPD" },
-        { model: "ECOKlien 5000", flowRate: "500 LPH", dailyCapacity: "5,000 LPD" },
-        { model: "ECOKlien 7500", flowRate: "750 LPH", dailyCapacity: "7,500 LPD" },
-        { model: "ECOKlien 10000", flowRate: "1000 LPH", dailyCapacity: "10,000 LPD" },
+        "Healthcare facilities differ in their wastewater volume, characteristics and treatment requirements. ECOKlien is available in multiple configurations designed for different applications.",
+      models: [
+        { model: "ECOKlien BML MINI", capacity: "50", type: "economy" },
+        { model: "ECOKlien BML MINI 1", capacity: "100", type: "economy" },
+        { model: "ECOKlien BML MINI 2", capacity: "200", type: "economy" },
+        { model: "ECOKlien BML 6", capacity: "600", type: "mini" },
+        { model: "ECOKlien BML 12", capacity: "1,200", type: "mini" },
+        { model: "ECOKlien BML 48", capacity: "4,800", type: "commercial" },
+        { model: "ECOKlien BML 72", capacity: "7,200", type: "commercial" },
+        { model: "ECOKlien BML 120", capacity: "12,000", type: "commercial" },
+        { model: "ECOKlien BML 240", capacity: "24,000", type: "commercial" },
       ],
-      rightTable: [
-        { model: "ECOKlien 15000", flowRate: "1500 LPH", dailyCapacity: "15,000 LPD" },
-        { model: "ECOKlien 20000", flowRate: "2000 LPH", dailyCapacity: "20,000 LPD" },
-        { model: "ECOKlien 25000", flowRate: "2500 LPH", dailyCapacity: "25,000 LPD" },
+      parameters: [
+        { parameter: "COD (mg/l)", liquidWaste: "600", treatedWater: "250" },
+        { parameter: "TSS (mg/l)", liquidWaste: "300", treatedWater: "50" },
+        { parameter: "BOD (mg/l)", liquidWaste: "250", treatedWater: "30" },
       ],
       ctaCard: {
-        image: images.bloodToWater || "/assests/images/blood to water.png",
-        buttonText: "Get a custom quote",
+        image: images.landingHero,
+        buttonText: "Download Brochure",
         buttonLink: "/contact",
       },
       footerNote:
-        "*Custom flow rates and capacities available on request. Talk to our engineering team to evaluate your facility's requirements.",
+        "Request the brochure and discuss installation, utilities, waste composition and operating requirements with the technical team.",
     },
   },
   {
@@ -493,18 +506,16 @@ export const products: ProductDetail[] = [
       eyebrow: "CAPACITIES",
       heading: "Scalable capacities for facility demands.",
       subtitle: "Tailored to daily effluent generation volume.",
-      leftTable: [
-        { model: "ECOKlien H-5K", flowRate: "500 LPH", dailyCapacity: "5,000 LPD" },
-        { model: "ECOKlien H-10K", flowRate: "1,000 LPH", dailyCapacity: "10,000 LPD" },
-        { model: "ECOKlien H-25K", flowRate: "2,500 LPH", dailyCapacity: "25,000 LPD" },
-        { model: "ECOKlien H-50K", flowRate: "5,000 LPH", dailyCapacity: "50,000 LPD" },
-      ],
-      rightTable: [
-        { model: "ECOKlien H-75K", flowRate: "7,500 LPH", dailyCapacity: "75,000 LPD" },
-        { model: "ECOKlien H-100K", flowRate: "10,000 LPH", dailyCapacity: "100,000 LPD" },
+      models: [
+        { model: "ECOKlien H-5K", capacity: "5,000" },
+        { model: "ECOKlien H-10K", capacity: "10,000" },
+        { model: "ECOKlien H-25K", capacity: "25,000" },
+        { model: "ECOKlien H-50K", capacity: "50,000" },
+        { model: "ECOKlien H-75K", capacity: "75,000" },
+        { model: "ECOKlien H-100K", capacity: "100,000" },
       ],
       ctaCard: {
-        image: images.bloodToWater || "/assests/images/blood to water.png",
+        image: images.landingHero,
         buttonText: "Schedule Facility Audit",
         buttonLink: "/contact",
       },
@@ -650,17 +661,15 @@ export const products: ProductDetail[] = [
       eyebrow: "CAPACITIES",
       heading: "Compact plug-and-play disinfection units.",
       subtitle: "Wall-mount and under-counter models available.",
-      leftTable: [
-        { model: "ECOKlien D-100", flowRate: "10 LPH", dailyCapacity: "100 LPD" },
-        { model: "ECOKlien D-250", flowRate: "25 LPH", dailyCapacity: "250 LPD" },
-        { model: "ECOKlien D-500", flowRate: "50 LPH", dailyCapacity: "500 LPD" },
-      ],
-      rightTable: [
-        { model: "ECOKlien D-1000", flowRate: "100 LPH", dailyCapacity: "1,000 LPD" },
-        { model: "ECOKlien D-2000", flowRate: "200 LPH", dailyCapacity: "2,000 LPD" },
+      models: [
+        { model: "ECOKlien D-100", capacity: "100" },
+        { model: "ECOKlien D-250", capacity: "250" },
+        { model: "ECOKlien D-500", capacity: "500" },
+        { model: "ECOKlien D-1000", capacity: "1,000" },
+        { model: "ECOKlien D-2000", capacity: "2,000" },
       ],
       ctaCard: {
-        image: images.bloodToWater || "/assests/images/blood to water.png",
+        image: images.landingHero,
         buttonText: "Request Disinfection Demo",
         buttonLink: "/contact",
       },
@@ -679,7 +688,8 @@ export const defaultProduct = products[0];
  * over its English counterpart, and lists of objects (stages, steps, streams, facilities) are
  * merged item-by-item by position — images, links, icons and layout values are kept from English.
  * (A deeper merge than localizeList's shallow one, so no image/link has to be repeated per language.)
- * Capacity tables (model names, LPH/LPD figures) are not translated.
+ * Model and parameter tables (model names, LPD figures, COD/TSS/BOD values) are not translated;
+ * model types are translated in src/i18n/messages/products.ts.
  * ---------------------------------------------------------------------------------------------- */
 
 type Text<T, K extends keyof T> = Partial<Pick<T, K>>;
