@@ -7,7 +7,8 @@ import Link from "next/link";
  */
 const TOKEN = /\[((?:\[[^\]]+\])|[^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g;
 
-export default function GlossaryRichText({ text }: { text: string }) {
+export default function GlossaryRichText({ text = "" }: { text?: string }) {
+  if (!text) return null;
   const nodes: React.ReactNode[] = [];
   let last = 0;
   let key = 0;
@@ -28,7 +29,7 @@ export default function GlossaryRichText({ text }: { text: string }) {
       const isCitation = label.startsWith("[") && label.endsWith("]");
       const isInternal = href.startsWith("/");
       const className = isCitation
-        ? "inline-flex items-center align-middle px-1.5 py-0.5 rounded-md bg-[#EEF6F1] border border-[#D9EADF] text-[10.5px] font-mono uppercase tracking-wider text-[#00A859] hover:bg-[#00A859] hover:text-white transition-colors no-underline"
+        ? "inline-flex items-center align-middle px-1.5 py-0.5 rounded-md bg-[#EEF6F1] border border-[#D9EADF] text-[11px] font-mono uppercase tracking-wider text-[#00A859] hover:bg-[#00A859] hover:text-white transition-colors no-underline"
         : "text-[#00A859] font-medium underline decoration-[#00A859]/30 underline-offset-[3px] hover:decoration-[#00A859] transition-colors";
       const content = isCitation ? label.slice(1, -1) : label;
 

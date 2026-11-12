@@ -44,7 +44,7 @@ export interface GlossaryTerm {
 }
 
 const BLW_SYSTEM = "https://ecoklien.com/biomedical-liquid-waste-treatment-system/";
-const CONTACT = "https://ecoklien.com/contact/";
+const CONTACT = "/contact";
 
 export const glossaryTerms: GlossaryTerm[] = [
   /* ------------------------------------------------------------------ */
@@ -1137,3 +1137,4 @@ export function getRelatedTerms(term: GlossaryTerm) {
 }
 
 export const termLetter = (term: GlossaryTerm) => term.title.charAt(0).toUpperCase();
+

@@ -1,11 +1,15 @@
 import React from "react";
-import { GlossaryTerm } from "@/data/glossary";
+import { GlossaryTerm, sortedGlossaryTerms } from "@/data/glossary";
 import GlossaryTermHero from "./includes/GlossaryTermHero";
 import GlossaryTermBody from "./includes/GlossaryTermBody";
 import GlossaryRelatedSection from "./includes/GlossaryRelatedSection";
 import BottomCtaBanner from "@/components/common/BottomCtaBanner";
 
-export default function GlossaryTermPage({ term }: { term: GlossaryTerm }) {
+export default function GlossaryTermPage({
+  term = sortedGlossaryTerms[0],
+}: {
+  term?: GlossaryTerm;
+}) {
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero + "In simple terms" */}
@@ -18,7 +22,13 @@ export default function GlossaryTermPage({ term }: { term: GlossaryTerm }) {
       <GlossaryRelatedSection term={term} />
 
       {/* 4. Bottom CTA Banner */}
-      <BottomCtaBanner />
+      <BottomCtaBanner
+        eyebrow="LET'S TALK TREATMENT"
+        title="Bring your questions. We'll bring the engineering."
+        subtitle="Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility."
+        buttonText="Talk to an engineer"
+        buttonLink="/contact"
+      />
     </div>
   );
 }

@@ -33,6 +33,15 @@ export default function Footer() {
             <p className="text-[13.5px] sm:text-[14px] text-[#4F5E55] leading-relaxed max-w-lg font-normal">
               Advanced hybrid reactor based effluent treatment systems manufacturer and supplier. ECO Safe wastewater effluent treatment system
             </p>
+
+            {/* Dealer Button */}
+            <Link
+              href="/contact#dealer"
+              className="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-[#133A2E] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
+            >
+              <span>Want To be a Dealer ?</span>
+              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
 
           {/* Right Column: Socials Label -> Outline Icons -> Contact Us Button */}
@@ -84,7 +93,7 @@ export default function Footer() {
             {/* Contact Us Button */}
             <div className="pt-2">
               <Link
-                href="https://ecoklien.com/contact/"
+                href="/contact"
                 className="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-[#133A2E] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
               >
                 <span>Contact Us</span>
