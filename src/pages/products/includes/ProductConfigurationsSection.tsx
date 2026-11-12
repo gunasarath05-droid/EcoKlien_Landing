@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ProductDetail, defaultProduct } from "@/data/products";
 import { LuArrowRight } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { productMessages } from "@/i18n/messages/products";
 
 interface ProductConfigurationsSectionProps {
   configurationsSection?: ProductDetail["configurationsSection"];
@@ -14,6 +16,7 @@ interface ProductConfigurationsSectionProps {
 export default function ProductConfigurationsSection({
   configurationsSection = defaultProduct.configurationsSection,
 }: ProductConfigurationsSectionProps) {
+  const t = useMessages(productMessages).configurations;
   return (
     <section id="configurations" className="py-16 md:py-24 bg-white border-t border-[#e3e7e5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,12 +60,12 @@ export default function ProductConfigurationsSection({
           {/* Left Table (8 Rows) */}
           <div className="lg:col-span-7 overflow-hidden rounded-[16px] border border-[#DCE6E0] shadow-sm">
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-start border-collapse">
                 <thead>
                   <tr className="bg-[#123D30] text-white text-[13px] font-mono uppercase tracking-wider">
-                    <th className="py-3.5 px-5 font-medium">Model</th>
-                    <th className="py-3.5 px-5 font-medium text-center">Flow rate</th>
-                    <th className="py-3.5 px-5 font-medium text-right">Daily capacity</th>
+                    <th className="py-3.5 px-5 font-medium">{t.model}</th>
+                    <th className="py-3.5 px-5 font-medium text-center">{t.flowRate}</th>
+                    <th className="py-3.5 px-5 font-medium text-end">{t.dailyCapacity}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E7EFEA] text-[13.5px] text-[#2C3E35]">
@@ -81,7 +84,7 @@ export default function ProductConfigurationsSection({
                       <td className="py-3 px-5 text-center text-[#55645C] font-mono">
                         {row.flowRate}
                       </td>
-                      <td className="py-3 px-5 text-right font-medium text-[#00A859] font-mono">
+                      <td className="py-3 px-5 text-end font-medium text-[#00A859] font-mono">
                         {row.dailyCapacity}
                       </td>
                     </tr>
@@ -96,12 +99,12 @@ export default function ProductConfigurationsSection({
             {/* Right Table */}
             <div className="overflow-hidden rounded-[16px] border border-[#DCE6E0] shadow-sm">
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-start border-collapse">
                   <thead>
                     <tr className="bg-[#123D30] text-white text-[13px] font-mono uppercase tracking-wider">
-                      <th className="py-3.5 px-5 font-medium">Model</th>
-                      <th className="py-3.5 px-5 font-medium text-center">Flow rate</th>
-                      <th className="py-3.5 px-5 font-medium text-right">Daily capacity</th>
+                      <th className="py-3.5 px-5 font-medium">{t.model}</th>
+                      <th className="py-3.5 px-5 font-medium text-center">{t.flowRate}</th>
+                      <th className="py-3.5 px-5 font-medium text-end">{t.dailyCapacity}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#E7EFEA] text-[13.5px] text-[#2C3E35]">
@@ -120,7 +123,7 @@ export default function ProductConfigurationsSection({
                         <td className="py-3 px-5 text-center text-[#55645C] font-mono">
                           {row.flowRate}
                         </td>
-                        <td className="py-3 px-5 text-right font-medium text-[#00A859] font-mono">
+                        <td className="py-3 px-5 text-end font-medium text-[#00A859] font-mono">
                           {row.dailyCapacity}
                         </td>
                       </tr>
@@ -134,21 +137,21 @@ export default function ProductConfigurationsSection({
             <div className="relative rounded-[20px] overflow-hidden aspect-[16/9] border border-[#DCE6E0] shadow-sm group">
               <Image
                 src={configurationsSection.ctaCard.image}
-                alt="ECOKlien Custom Application"
+                alt={t.ctaImageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
 
-              {/* Bottom Right CTA */}
-              <div className="absolute bottom-4 right-4 z-10">
+              {/* Bottom End CTA */}
+              <div className="absolute bottom-4 end-4 z-10">
                 <Link
                   href={configurationsSection.ctaCard.buttonLink}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-[13px] font-medium transition-all duration-300 shadow-md hover:scale-[1.02] group"
                 >
                   <span>{configurationsSection.ctaCard.buttonText}</span>
-                  <LuArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  <LuArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
                 </Link>
               </div>
             </div>

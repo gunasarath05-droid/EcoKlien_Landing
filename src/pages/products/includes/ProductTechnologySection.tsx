@@ -12,6 +12,8 @@ import {
   LuArrowUpRight,
 } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { productMessages } from "@/i18n/messages/products";
 
 interface ProductTechnologySectionProps {
   technologySection?: ProductDetail["technologySection"];
@@ -20,6 +22,7 @@ interface ProductTechnologySectionProps {
 export default function ProductTechnologySection({
   technologySection = defaultProduct.technologySection,
 }: ProductTechnologySectionProps) {
+  const t = useMessages(productMessages).technology;
   const getStageIcon = (iconType: string) => {
     switch (iconType) {
       case "coagulation":
@@ -52,8 +55,8 @@ export default function ProductTechnologySection({
               className="space-y-4 mb-8 sm:mb-10"
             >
               <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-semibold text-[#0E291E] tracking-tight leading-[1.12]">
-                Meet ECOKlien&apos;s BML — One system.<br />
-                Multiple treatment stages.
+                {t.headingLines[0]}<br />
+                {t.headingLines[1]}
               </h2>
               <p className="text-[13.5px] sm:text-[14px] text-[#55645C] leading-relaxed max-w-xl font-normal">
                 {technologySection.description}
@@ -66,14 +69,14 @@ export default function ProductTechnologySection({
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[520px] aspect-[16/11] sm:aspect-[4/3] -ml-2 sm:-ml-4 mt-auto"
+              className="relative w-full max-w-[520px] aspect-[16/11] sm:aspect-[4/3] -ms-2 sm:-ms-4 mt-auto"
             >
               <Image
                 src={technologySection.image}
                 alt={technologySection.heading}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-contain object-left-bottom drop-shadow-md"
+                className="object-contain object-left-bottom rtl:object-right-bottom drop-shadow-md"
                 priority
               />
             </motion.div>
@@ -97,7 +100,7 @@ export default function ProductTechnologySection({
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group whitespace-nowrap"
                 >
                   <span>{technologySection.ctaText}</span>
-                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                 </Link>
               </motion.div>
             )}

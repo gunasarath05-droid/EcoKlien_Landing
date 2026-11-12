@@ -18,6 +18,8 @@ import {
   LuDroplet,
 } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { productMessages } from "@/i18n/messages/products";
 
 interface ProductTreatmentFlowSectionProps {
   closerSection?: ProductDetail["closerSection"];
@@ -28,6 +30,8 @@ export default function ProductTreatmentFlowSection({
   closerSection = defaultProduct.closerSection,
   fluidsSection = defaultProduct.fluidsSection,
 }: ProductTreatmentFlowSectionProps) {
+  const t = useMessages(productMessages).flow;
+
   // Step icons for Part 1: The Approach
   const getStepIcon = (iconType?: string) => {
     switch (iconType) {
@@ -54,42 +58,42 @@ export default function ProductTreatmentFlowSection({
   const streamBadges = [
     {
       id: "lab",
-      title: "Laboratory processes",
+      title: t.streams.lab,
       icon: <LuMicroscope className="w-4 h-4 text-white" />,
       theme: "dark",
       position: "top-8 left-4 sm:top-12 sm:left-10 lg:top-14 lg:left-16",
     },
     {
       id: "dialysis",
-      title: "Dialysis waste",
+      title: t.streams.dialysis,
       icon: <LuFlaskConical className="w-4 h-4 text-white" />,
       theme: "dark",
       position: "top-14 right-4 sm:top-20 sm:right-8 lg:top-20 lg:right-16",
     },
     {
       id: "sputum",
-      title: "Sputum",
+      title: t.streams.sputum,
       icon: <LuPipette className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
       position: "top-[54%] left-2 sm:left-8 lg:left-12",
     },
     {
       id: "urine",
-      title: "Urine",
+      title: t.streams.urine,
       icon: <LuTestTube className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
       position: "top-[52%] right-4 sm:right-10 lg:right-14",
     },
     {
       id: "blood",
-      title: "Blood",
+      title: t.streams.blood,
       icon: <LuDroplet className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
       position: "bottom-14 left-[24%] sm:bottom-16 sm:left-[30%] lg:bottom-16 lg:left-[32%]",
     },
     {
       id: "fluids",
-      title: "Body fluids",
+      title: t.streams.fluids,
       icon: <LuFlaskConical className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
       position: "bottom-20 right-6 sm:bottom-22 sm:right-16 lg:bottom-24 lg:right-24",
@@ -104,7 +108,7 @@ export default function ProductTreatmentFlowSection({
       <div className="absolute top-0 left-0 right-0 h-[72%] sm:h-[75%] lg:h-[78%] z-0 pointer-events-none">
         <Image
           src={images.enquiry}
-          alt="Fluid ripple treatment background"
+          alt={t.backgroundAlt}
           fill
           sizes="100vw"
           priority
@@ -237,8 +241,8 @@ export default function ProductTreatmentFlowSection({
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-[32px] sm:text-[44px] lg:text-[48px] font-semibold text-white tracking-tight leading-[1.08] mb-4"
         >
-          From blood to body<br />
-          fluids.
+          {t.fluidsHeadingLines[0]}<br />
+          {t.fluidsHeadingLines[1]}
         </motion.h2>
 
         {/* Central Fluid Splash with Floating Frosted Badges */}
@@ -253,7 +257,7 @@ export default function ProductTreatmentFlowSection({
           >
             <Image
               src={fluidsSection.fluidImage || images.liquid1}
-              alt="Bio-waste fluid splash"
+              alt={t.fluidAlt}
               fill
               sizes="(max-width: 768px) 100vw, 650px"
               priority

@@ -3,33 +3,43 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { LuSearch, LuX } from "react-icons/lu";
-import { sortedGlossaryTerms, termLetter } from "@/data/glossary";
+import { getGlossaryTerms, termLetter } from "@/data/glossary";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 import GlossaryTermCard from "./GlossaryTermCard";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const TOTAL = sortedGlossaryTerms.length;
+
+/** Lower-case and strip accents / diacritics so "biomedico" finds "biomédico". */
+const normalize = (text: string) => text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
 
 export default function GlossaryIndexSection() {
+  const { locale } = useLocale();
+  const { index: t } = useMessages(glossaryMessages);
   const [query, setQuery] = useState("");
   const [letter, setLetter] = useState<string | null>(null);
 
-  const availableLetters = useMemo(
-    () => new Set(sortedGlossaryTerms.map(termLetter)),
-    []
-  );
+  const terms = useMemo(() => getGlossaryTerms(locale), [locale]);
+  const total = terms.length;
+
+  // The A–Z filter only applies to Latin-script languages; Arabic uses search only.
+  const showLetters = locale !== "ar";
+  const activeLetter = showLetters ? letter : null;
+
+  const availableLetters = useMemo(() => new Set(terms.map(termLetter)), [terms]);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return sortedGlossaryTerms.filter((t) => {
-      if (letter && termLetter(t) !== letter) return false;
+    const q = normalize(query.trim());
+    return terms.filter((term) => {
+      if (activeLetter && termLetter(term) !== activeLetter) return false;
       if (!q) return true;
       return (
-        t.title.toLowerCase().includes(q) ||
-        t.cardSummary.toLowerCase().includes(q) ||
-        t.intro.toLowerCase().includes(q)
+        normalize(term.title).includes(q) ||
+        normalize(term.cardSummary).includes(q) ||
+        normalize(term.intro).includes(q)
       );
     });
-  }, [query, letter]);
+  }, [terms, query, activeLetter]);
 
   const reset = () => {
     setQuery("");
@@ -41,80 +51,82 @@ export default function GlossaryIndexSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Search Input Bar */}
         <div className="relative">
-          <LuSearch className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
+          <LuSearch className="absolute start-4 sm:start-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search the glossary..."
-            aria-label="Search the glossary"
-            className="w-full h-[52px] pl-12 pr-28 rounded-[10px] bg-white border border-[#E3ECE6] text-[14px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:ring-1 focus:ring-[#00A859] transition-all shadow-2xs"
+            placeholder={t.searchPlaceholder}
+            aria-label={t.searchLabel}
+            className="w-full h-[52px] ps-12 pe-28 rounded-[10px] bg-white border border-[#E3ECE6] text-[14px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:ring-1 focus:ring-[#00A859] transition-all shadow-2xs"
           />
-          <div className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-3">
+          <div className="absolute end-4 sm:end-5 top-1/2 -translate-y-1/2 flex items-center gap-3">
             {query && (
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                aria-label="Clear search"
+                aria-label={t.clearSearch}
                 className="w-6 h-6 rounded-full flex items-center justify-center text-[#738479] hover:text-[#18251E] cursor-pointer"
               >
                 <LuX className="w-3.5 h-3.5" />
               </button>
             )}
             <span className="text-[11px] font-mono uppercase tracking-wider text-[#738479]">
-              {filtered.length} TERMS
+              {t.termCount(filtered.length)}
             </span>
           </div>
         </div>
 
-        {/* Alphabet Filter Pills */}
-        <nav
-          aria-label="Filter by letter"
-          className="mt-6 flex flex-wrap items-center gap-1 sm:gap-1.5"
-        >
-          <button
-            type="button"
-            onClick={() => setLetter(null)}
-            className={`px-4 py-1.5 mr-2 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer ${
-              letter === null
-                ? "bg-[#0E291E] text-white shadow-xs font-semibold"
-                : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
-            }`}
+        {/* Alphabet Filter Pills (Latin-script languages only) */}
+        {showLetters && (
+          <nav
+            aria-label={t.letterFilterLabel}
+            className="mt-6 flex flex-wrap items-center gap-1 sm:gap-1.5"
           >
-            All terms
-          </button>
+            <button
+              type="button"
+              onClick={() => setLetter(null)}
+              className={`px-4 py-1.5 me-2 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer ${
+                activeLetter === null
+                  ? "bg-[#0E291E] text-white shadow-xs font-semibold"
+                  : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
+              }`}
+            >
+              {t.allTerms}
+            </button>
 
-          {ALPHABET.map((l) => {
-            const enabled = availableLetters.has(l);
-            const active = letter === l;
-            return (
-              <button
-                key={l}
-                type="button"
-                disabled={!enabled}
-                onClick={() => setLetter(active ? null : l)}
-                aria-pressed={active}
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full text-[12px] font-mono flex items-center justify-center transition-all ${
-                  active
-                    ? "bg-[#0E291E] text-white font-semibold shadow-xs"
-                    : enabled
-                    ? "text-[#0E291E] hover:bg-[#EBF1ED] hover:text-[#00A859] cursor-pointer font-medium"
-                    : "text-[#C4CFC7] cursor-default"
-                }`}
-              >
-                {l}
-              </button>
-            );
-          })}
-        </nav>
+            {ALPHABET.map((l) => {
+              const enabled = availableLetters.has(l);
+              const active = activeLetter === l;
+              return (
+                <button
+                  key={l}
+                  type="button"
+                  disabled={!enabled}
+                  onClick={() => setLetter(active ? null : l)}
+                  aria-pressed={active}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full text-[12px] font-mono flex items-center justify-center transition-all ${
+                    active
+                      ? "bg-[#0E291E] text-white font-semibold shadow-xs"
+                      : enabled
+                      ? "text-[#0E291E] hover:bg-[#EBF1ED] hover:text-[#00A859] cursor-pointer font-medium"
+                      : "text-[#C4CFC7] cursor-default"
+                  }`}
+                >
+                  {l}
+                </button>
+              );
+            })}
+          </nav>
+        )}
 
         {/* Section Heading & Definition Counter */}
         <div className="mt-12 sm:mt-14 mb-6 flex items-end justify-between gap-4 border-b border-[#EAEFEA] pb-4">
           <h2 className="text-[26px] sm:text-[32px] font-semibold text-[#0E291E] tracking-tight">
-            Explore the terms.
+            {t.title}
           </h2>
           <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479]">
-            A–Z / {TOTAL} DEFINITIONS
+            {t.definitionCount(total)}
           </span>
         </div>
 
@@ -122,17 +134,17 @@ export default function GlossaryIndexSection() {
         {filtered.length === 0 ? (
           <div className="py-20 text-center space-y-3 rounded-2xl border border-dashed border-[#E3ECE6] bg-[#FAFBFA]">
             <p className="text-[16px] font-semibold text-[#0E291E]">
-              No terms match your search &ldquo;{query}&rdquo;.
+              {t.emptyTitle(query)}
             </p>
             <p className="text-[13px] text-[#738479]">
-              Try a different keyword or reset the letter filter.
+              {t.emptyHint}
             </p>
             <button
               type="button"
               onClick={reset}
               className="mt-2 px-5 py-2 rounded-full bg-[#0E291E] text-white text-[12px] font-medium hover:bg-[#00A859] transition-colors cursor-pointer"
             >
-              Show all terms
+              {t.showAll}
             </button>
           </div>
         ) : (
@@ -163,9 +175,7 @@ export default function GlossaryIndexSection() {
 
         {/* Bottom Footnote */}
         <p className="mt-12 text-center text-[11px] font-mono uppercase tracking-wider text-[#738479]">
-          {filtered.length === TOTAL
-            ? `Showing all ${TOTAL} terms from the ECOKlien biomedical glossary.`
-            : `Showing ${filtered.length} of ${TOTAL} terms from the ECOKlien biomedical glossary.`}
+          {filtered.length === total ? t.footnoteAll(total) : t.footnoteSome(filtered.length, total)}
         </p>
       </div>
     </section>

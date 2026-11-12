@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { VideoItem, featuredVideo as defaultFeatured } from "@/data/videos";
+import { VideoItem, getFeaturedVideo } from "@/data/videos";
 import { LuPlay, LuArrowUpRight } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { videosMessages } from "@/i18n/messages/videos";
 
 interface VideoFeaturedSectionProps {
   video?: VideoItem;
@@ -12,9 +14,12 @@ interface VideoFeaturedSectionProps {
 }
 
 export default function VideoFeaturedSection({
-  video = defaultFeatured,
+  video: videoProp,
   onPlayModal,
 }: VideoFeaturedSectionProps) {
+  const { locale } = useLocale();
+  const { featured } = useMessages(videosMessages);
+  const video = videoProp ?? getFeaturedVideo(locale);
   const [isPlayingInline, setIsPlayingInline] = useState(false);
 
   const handlePlay = () => {
@@ -63,7 +68,7 @@ export default function VideoFeaturedSection({
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
                   type="button"
-                  aria-label="Play video"
+                  aria-label={featured.playAria}
                   className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/95 text-[#0E291E] flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-white transition-all duration-300 cursor-pointer pl-0.5"
                 >
                   <LuPlay className="w-6 h-6 fill-current text-[#0E291E]" />
@@ -71,7 +76,7 @@ export default function VideoFeaturedSection({
               </div>
 
               {/* Bottom Left Badge */}
-              <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10.5px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
+              <div className="absolute bottom-5 start-5 sm:bottom-6 sm:start-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10.5px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
                 {video.tag}
               </div>
             </div>
@@ -85,7 +90,7 @@ export default function VideoFeaturedSection({
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
               <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#00A859] font-medium">
-                START HERE
+                {featured.startHere}
               </span>
             </div>
             <h2 className="text-[26px] sm:text-[32px] font-semibold text-[#0E291E] tracking-tight leading-[1.15]">
@@ -104,8 +109,8 @@ export default function VideoFeaturedSection({
                 onClick={handlePlay}
                 className="inline-flex items-center gap-2 text-[13.5px] font-medium text-[#18251E] hover:text-[#00A859] transition-colors cursor-pointer group"
               >
-                <span>Watch video</span>
-                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span>{featured.watchVideo}</span>
+                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </button>
 
               {video.videoUrl && (
@@ -115,8 +120,8 @@ export default function VideoFeaturedSection({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-[12.5px] text-[#738479] hover:text-[#00A859] transition-colors font-mono uppercase tracking-wider"
                 >
-                  <span>Open on YouTube</span>
-                  <LuArrowUpRight className="w-3.5 h-3.5" />
+                  <span>{featured.openOnYouTube}</span>
+                  <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                 </a>
               )}
             </div>

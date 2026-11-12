@@ -1,12 +1,11 @@
+"use client";
+
 import React from "react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { homeMessages } from "@/i18n/messages/home";
 
 export default function TickerSection() {
-  const features = [
-    "Advanced electrochemical treatment",
-    "Chemical-free treatment",
-    "On-site treatment",
-    "Healthcare & laboratory use",
-  ];
+  const features = useMessages(homeMessages).ticker;
 
   return (
     <section className="border-y border-[#D7DED5] bg-white py-6">

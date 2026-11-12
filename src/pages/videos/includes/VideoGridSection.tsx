@@ -2,25 +2,32 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { VideoItem, gridVideos as defaultGridVideos } from "@/data/videos";
+import { VideoItem, getGridVideos } from "@/data/videos";
 import { LuPlay, LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { videosMessages } from "@/i18n/messages/videos";
 
 interface VideoGridSectionProps {
   videos?: VideoItem[];
   onPlayModal?: (video: VideoItem) => void;
 }
 
-const filterCategories = ["All videos", "Technology", "Systems", "Applications"] as const;
+/** Filter keys: "all" or a VideoItem category (English values; labels are translated). */
+const filterCategories = ["all", "Technology", "Systems", "Applications"] as const;
+type FilterCategory = (typeof filterCategories)[number];
 
 export default function VideoGridSection({
-  videos = defaultGridVideos,
+  videos: videosProp,
   onPlayModal,
 }: VideoGridSectionProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("All videos");
+  const { locale } = useLocale();
+  const { grid } = useMessages(videosMessages);
+  const videos = videosProp ?? getGridVideos(locale);
+  const [activeCategory, setActiveCategory] = useState<FilterCategory>("all");
 
   const filteredVideos =
-    activeCategory === "All videos"
+    activeCategory === "all"
       ? videos
       : videos.filter((v) => v.category === activeCategory);
 
@@ -42,14 +49,14 @@ export default function VideoGridSection({
                       : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
                   }`}
                 >
-                  {cat}
+                  {grid.filters[cat]}
                 </button>
               );
             })}
           </div>
 
           <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] shrink-0">
-            {String(filteredVideos.length).padStart(2, "0")} VIDEOS
+            {grid.count(String(filteredVideos.length).padStart(2, "0"))}
           </div>
         </div>
 
@@ -92,7 +99,7 @@ export default function VideoGridSection({
                     </div>
 
                     {/* Bottom-left Pill Badge */}
-                    <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
+                    <div className="absolute bottom-4 start-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
                       {video.tag}
                     </div>
                   </div>
@@ -119,7 +126,7 @@ export default function VideoGridSection({
                     className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#18251E] group-hover:text-[#00A859] transition-colors cursor-pointer"
                   >
                     <LuPlay className="w-3.5 h-3.5 fill-current" />
-                    <span>Watch video</span>
+                    <span>{grid.watchVideo}</span>
                   </button>
 
                   {video.videoUrl && (
@@ -128,10 +135,10 @@ export default function VideoGridSection({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-[11.5px] font-mono uppercase tracking-wider text-[#738479] hover:text-[#00A859] transition-colors"
-                      title="Open on YouTube"
+                      title={grid.openOnYouTube}
                     >
-                      <span>YouTube</span>
-                      <LuArrowUpRight className="w-3.5 h-3.5" />
+                      <span>{grid.youtube}</span>
+                      <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                     </a>
                   )}
                 </div>
@@ -143,7 +150,7 @@ export default function VideoGridSection({
         {/* Centered Ticker / Footer Strip */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] text-center">
           <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#738479]">
-            SHOWING ALL {String(filteredVideos.length).padStart(2, "0")} VIDEOS
+            {grid.showingAll(String(filteredVideos.length).padStart(2, "0"))}
           </span>
         </div>
       </div>

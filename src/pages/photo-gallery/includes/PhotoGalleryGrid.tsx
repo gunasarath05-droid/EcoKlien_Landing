@@ -2,14 +2,12 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import {
-  EventItem,
-  galleryEvents,
-  PhotoGalleryItem,
-} from "@/data/gallery";
+import { EventItem, galleryEvents } from "@/data/gallery";
 import { LuArrowUpRight, LuSearch, LuPlay, LuX } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
 import PhotoLightboxModal from "./PhotoLightboxModal";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { photoGalleryMessages, formatCount } from "@/i18n/messages/gallery";
 
 interface PhotoGalleryGridProps {
   events?: EventItem[];
@@ -18,6 +16,7 @@ interface PhotoGalleryGridProps {
 export default function PhotoGalleryGrid({
   events = galleryEvents,
 }: PhotoGalleryGridProps) {
+  const { grid: t } = useMessages(photoGalleryMessages);
   // Selected filter: 'all' or specific event ID
   const [selectedEventId, setSelectedEventId] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -124,7 +123,7 @@ export default function PhotoGalleryGrid({
                   : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
               }`}
             >
-              All events
+              {t.allEvents}
             </button>
 
             {events.map((ev) => {
@@ -152,19 +151,19 @@ export default function PhotoGalleryGrid({
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 lg:gap-6 justify-between lg:justify-end">
             {/* Search Input Field */}
             <div className="relative min-w-[210px] sm:min-w-[240px]">
-              <LuSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
+              <LuSearch className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search events, photos..."
-                className="w-full pl-9 pr-8 py-2 rounded-full bg-[#F5F7F5] border border-[#E3ECE6] text-[12.5px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:bg-white transition-all"
+                placeholder={t.searchPlaceholder}
+                className="w-full ps-9 pe-8 py-2 rounded-full bg-[#F5F7F5] border border-[#E3ECE6] text-[12.5px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:bg-white transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#738479] hover:text-[#18251E] cursor-pointer"
-                  aria-label="Clear search"
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-[#738479] hover:text-[#18251E] cursor-pointer"
+                  aria-label={t.clearSearch}
                 >
                   <LuX className="w-3.5 h-3.5" />
                 </button>
@@ -172,10 +171,10 @@ export default function PhotoGalleryGrid({
             </div>
 
             {/* Counts Badge */}
-            <div className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#738479] text-right shrink-0">
-              <div>{String(totalPhotos).padStart(2, "0")} PHOTOGRAPHS</div>
+            <div className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#738479] text-end shrink-0">
+              <div>{formatCount(t.photosCount, totalPhotos)}</div>
               <div className="text-[10px] text-[#8F9E94]">
-                {String(totalCerts).padStart(2, "0")} CERTIFICATES · {String(totalVids).padStart(2, "0")} VIDEO
+                {formatCount(t.certificatesCount, totalCerts)} · {formatCount(t.videoCount, totalVids)}
               </div>
             </div>
           </div>
@@ -202,7 +201,7 @@ export default function PhotoGalleryGrid({
                         </span>
                       </div>
                       <div className="text-[10.5px] font-mono uppercase tracking-wider text-[#738479]">
-                        {String(event.photos.length).padStart(2, "0")} PHOTOGRAPHS
+                        {formatCount(t.photosCount, event.photos.length)}
                       </div>
                     </div>
 
@@ -241,7 +240,7 @@ export default function PhotoGalleryGrid({
                               </div>
                               <div className="flex items-center justify-between text-[16px] sm:text-[17px] font-semibold text-[#0E291E] tracking-tight group-hover:text-[#00A859] transition-colors">
                                 <span>{photo.title}</span>
-                                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#18251E] group-hover:text-[#00A859]" />
+                                <LuArrowUpRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5 text-[#18251E] group-hover:text-[#00A859]" />
                               </div>
                             </div>
                           </motion.div>
@@ -260,11 +259,11 @@ export default function PhotoGalleryGrid({
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                         <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#5D6B62] font-medium">
-                          VIDEOS
+                          {t.videos}
                         </span>
                       </div>
                       <div className="text-[10.5px] font-mono uppercase tracking-wider text-[#738479]">
-                        01 RELATED VIDEO
+                        {formatCount(t.relatedVideoCount, 1)}
                       </div>
                     </div>
 
@@ -297,7 +296,7 @@ export default function PhotoGalleryGrid({
                             <div className="absolute inset-0 flex items-center justify-center">
                               <button
                                 type="button"
-                                aria-label="Play video"
+                                aria-label={t.playVideo}
                                 className="w-14 h-10 rounded-[12px] bg-[#FF0000] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200 cursor-pointer"
                               >
                                 <LuPlay className="w-5 h-5 fill-current ml-0.5" />
@@ -313,10 +312,10 @@ export default function PhotoGalleryGrid({
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-[11px] font-medium backdrop-blur-md transition-all shadow-md hover:scale-105"
+                              className="absolute bottom-3 start-3 sm:bottom-4 sm:start-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-[11px] font-medium backdrop-blur-md transition-all shadow-md hover:scale-105"
                             >
-                              <span>Watch on YouTube</span>
-                              <LuArrowUpRight className="w-3.5 h-3.5" />
+                              <span>{t.watchOnYoutube}</span>
+                              <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                             </a>
                           </div>
                         )}
@@ -340,7 +339,7 @@ export default function PhotoGalleryGrid({
                           className="inline-flex items-center gap-1.5 text-[18px] sm:text-[19px] font-semibold text-[#0E291E] tracking-tight hover:text-[#00A859] transition-colors group/title"
                         >
                           <span>{event.video.title}</span>
-                          <LuArrowUpRight className="w-4 h-4 text-[#738479] group-hover/title:text-[#00A859] group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-transform" />
+                          <LuArrowUpRight className="w-4 h-4 text-[#738479] group-hover/title:text-[#00A859] group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover/title:-translate-x-0.5 transition-transform" />
                         </a>
                         <p className="text-[13px] text-[#55645C] leading-relaxed">
                           {event.video.description}
@@ -359,11 +358,11 @@ export default function PhotoGalleryGrid({
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                         <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#5D6B62] font-medium">
-                          PARTICIPATION CERTIFICATES
+                          {t.participationCertificates}
                         </span>
                       </div>
                       <div className="text-[10.5px] font-mono uppercase tracking-wider text-[#738479]">
-                        {String(event.certificates.length).padStart(2, "0")} CERTIFICATES
+                        {formatCount(t.certificatesCount, event.certificates.length)}
                       </div>
                     </div>
 
@@ -417,10 +416,10 @@ export default function PhotoGalleryGrid({
           /* Empty Search State */
           <div className="py-20 text-center space-y-3">
             <p className="text-[16px] text-[#0E291E] font-medium">
-              No matching events found for &ldquo;{searchQuery}&rdquo;.
+              {t.noResults.replace("{query}", searchQuery)}
             </p>
             <p className="text-[13px] text-[#738479]">
-              Try a different keyword or reset the event filter.
+              {t.noResultsHint}
             </p>
             <button
               onClick={() => {
@@ -429,7 +428,7 @@ export default function PhotoGalleryGrid({
               }}
               className="mt-3 px-5 py-2 rounded-full bg-[#0E291E] text-white text-[12.5px] font-medium hover:bg-[#00A859] transition-colors"
             >
-              Reset filters
+              {t.resetFilters}
             </button>
           </div>
         )}
@@ -439,10 +438,11 @@ export default function PhotoGalleryGrid({
         {/* ========================================================= */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-[12px] text-[#738479] leading-relaxed max-w-2xl font-normal">
-            Exhibition photographs, participation certificates and media are documented from ECOKlien&apos;s global event attendances and industry showcases.
+            {t.footerNote}
           </p>
           <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] whitespace-nowrap">
-            {String(totalPhotos).padStart(2, "0")} PHOTOGRAPHS · {String(totalCerts).padStart(2, "0")} CERTIFICATES · {String(totalVids).padStart(2, "0")} RELATED VIDEO
+            {formatCount(t.photosCount, totalPhotos)} · {formatCount(t.certificatesCount, totalCerts)} ·{" "}
+            {formatCount(t.relatedVideoCount, totalVids)}
           </div>
         </div>
       </div>

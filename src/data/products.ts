@@ -1,4 +1,8 @@
 import { images } from "./images";
+import type { Locale } from "@/i18n/config";
+import type { TranslatedLocale } from "@/i18n/localize";
+import { products as productsEs } from "./i18n/es/products";
+import { products as productsAr } from "./i18n/ar/products";
 
 export interface TreatmentStage {
   id: string;
@@ -125,7 +129,7 @@ export const products: ProductDetail[] = [
       description:
         "An electrochemical treatment system designed to address biomedical liquid waste containing blood, body fluids, urine, sputum and other potentially contaminated streams, in a compact, automated treatment system.",
       ctaText: "Enquire",
-      ctaLink: "https://ecoklien.com/contact/",
+      ctaLink: "/contact",
       secondaryCtaText: "View Brochure + Datasheet",
       secondaryCtaLink: "#configurations",
       image: images.productBML,
@@ -338,7 +342,7 @@ export const products: ProductDetail[] = [
       ctaCard: {
         image: images.bloodToWater || "/assests/images/blood to water.png",
         buttonText: "Get a custom quote",
-        buttonLink: "https://ecoklien.com/contact/",
+        buttonLink: "/contact",
       },
       footerNote:
         "*Custom flow rates and capacities available on request. Talk to our engineering team to evaluate your facility's requirements.",
@@ -502,7 +506,7 @@ export const products: ProductDetail[] = [
       ctaCard: {
         image: images.bloodToWater || "/assests/images/blood to water.png",
         buttonText: "Schedule Facility Audit",
-        buttonLink: "https://ecoklien.com/contact/",
+        buttonLink: "/contact",
       },
       footerNote:
         "*Full turnkey civil, electrical, and automation packages provided upon request.",
@@ -658,7 +662,7 @@ export const products: ProductDetail[] = [
       ctaCard: {
         image: images.bloodToWater || "/assests/images/blood to water.png",
         buttonText: "Request Disinfection Demo",
-        buttonLink: "https://ecoklien.com/contact/",
+        buttonLink: "/contact",
       },
       footerNote:
         "*Available in IP65 splash-proof medical grade stainless steel enclosures.",
@@ -667,3 +671,107 @@ export const products: ProductDetail[] = [
 ];
 
 export const defaultProduct = products[0];
+
+/* ------------------------------------------------------------------------------------------------
+ * Translations (see src/i18n/README.md)
+ * English above is the source of truth. src/data/i18n/{es,ar}/products.ts hold only the text of
+ * each product, keyed by `slug`. Sections mix text with images/links, so each section is merged
+ * over its English counterpart, and lists of objects (stages, steps, streams, facilities) are
+ * merged item-by-item by position — images, links, icons and layout values are kept from English.
+ * (A deeper merge than localizeList's shallow one, so no image/link has to be repeated per language.)
+ * Capacity tables (model names, LPH/LPD figures) are not translated.
+ * ---------------------------------------------------------------------------------------------- */
+
+type Text<T, K extends keyof T> = Partial<Pick<T, K>>;
+type S = ProductDetail;
+
+/** The translatable text of one product. Every field is optional; missing text stays English. */
+export interface ProductTranslation {
+  slug: string;
+  productname?: string;
+  eyebrow?: string;
+  hero?: Text<S["hero"], "eyebrow" | "title" | "subtitle" | "description" | "ctaText" | "secondaryCtaText">;
+  sourcesSection?: Text<S["sourcesSection"], "eyebrow" | "heading" | "subtitle" | "sources" | "description">;
+  technologySection?: Text<S["technologySection"], "eyebrow" | "heading" | "description" | "ctaText" | "imageBadge"> & {
+    stages?: Pick<TreatmentStage, "title" | "description">[];
+  };
+  closerSection?: Text<S["closerSection"], "eyebrow" | "headingLeft" | "headingRight" | "footerNote"> & {
+    steps?: Pick<CloserStep, "tag" | "title" | "subtitle" | "description">[];
+  };
+  fluidsSection?: Text<S["fluidsSection"], "eyebrow" | "heading" | "footerText"> & {
+    streams?: Pick<FluidStream, "title">[];
+  };
+  applicationsSection?: Text<S["applicationsSection"], "eyebrow" | "heading" | "subtitle" | "image1Title" | "image2Title"> & {
+    facilities?: FacilityType[];
+  };
+  configurationsSection?: Text<S["configurationsSection"], "eyebrow" | "heading" | "subtitle" | "footerNote"> & {
+    ctaCard?: Pick<S["configurationsSection"]["ctaCard"], "buttonText">;
+  };
+}
+
+const productTranslations: Record<TranslatedLocale, readonly ProductTranslation[]> = {
+  es: productsEs,
+  ar: productsAr,
+};
+
+/** Merge translated list items over the English ones by position (English order and fields win for anything missing). */
+function mergeItems<T extends object>(english: readonly T[], translated?: readonly Partial<T>[]): T[] {
+  return english.map((item, i) => ({ ...item, ...(translated?.[i] ?? {}) }));
+}
+
+function translateProduct(en: ProductDetail, tr: ProductTranslation): ProductDetail {
+  const { technologySection: tech, closerSection: closer, fluidsSection: fluids } = tr;
+  const { applicationsSection: apps, configurationsSection: config } = tr;
+  return {
+    ...en,
+    productname: tr.productname ?? en.productname,
+    eyebrow: tr.eyebrow ?? en.eyebrow,
+    hero: { ...en.hero, ...tr.hero },
+    sourcesSection: { ...en.sourcesSection, ...tr.sourcesSection },
+    technologySection: {
+      ...en.technologySection,
+      ...tech,
+      stages: mergeItems(en.technologySection.stages, tech?.stages),
+    },
+    closerSection: {
+      ...en.closerSection,
+      ...closer,
+      steps: mergeItems(en.closerSection.steps, closer?.steps),
+    },
+    fluidsSection: {
+      ...en.fluidsSection,
+      ...fluids,
+      streams: mergeItems(en.fluidsSection.streams, fluids?.streams),
+    },
+    applicationsSection: {
+      ...en.applicationsSection,
+      ...apps,
+      facilities: mergeItems(en.applicationsSection.facilities, apps?.facilities),
+    },
+    configurationsSection: {
+      ...en.configurationsSection,
+      ...config,
+      ctaCard: { ...en.configurationsSection.ctaCard, ...config?.ctaCard },
+    },
+  };
+}
+
+/** All products in the given language (untranslated products/fields fall back to English). */
+export function getProducts(locale: Locale): ProductDetail[] {
+  if (locale === "en") return [...products];
+  const bySlug = new Map(productTranslations[locale].map((t) => [t.slug, t]));
+  return products.map((product) => {
+    const tr = bySlug.get(product.slug);
+    return tr ? translateProduct(product, tr) : product;
+  });
+}
+
+/** One product by slug in the given language, or undefined if the slug does not exist. */
+export function getProduct(slug: string, locale: Locale): ProductDetail | undefined {
+  return getProducts(locale).find((p) => p.slug === slug);
+}
+
+/** The default product (shown on /products) in the given language. */
+export function getDefaultProduct(locale: Locale): ProductDetail {
+  return getProduct(defaultProduct.slug, locale) ?? defaultProduct;
+}

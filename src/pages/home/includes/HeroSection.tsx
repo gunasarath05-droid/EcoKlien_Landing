@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { homeMessages } from "@/i18n/messages/home";
 
 export default function HeroSection() {
+  const { hero: t, discussFacility } = useMessages(homeMessages);
   return (
     <section id="overview" className="relative py-12 overflow-hidden bg-white min-h-[90vh]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +19,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-[1.5px] bg-[#00B050] shrink-0" />
               <span className="text-xs font-mono font-medium tracking-[0.14em] uppercase text-[#647069]">
-                ADVANCED BIOMEDICAL LIQUID WASTE TREATMENT
+                {t.eyebrow}
               </span>
             </div>
             
@@ -22,17 +27,17 @@ export default function HeroSection() {
             <div className="mt-auto">
               {/* Main Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.02em] text-[#123D30] leading-[1.08]">
-                Treat biomedical liquid
-                <br />
-                waste before it leaves
-                <br />
-                your facility
+                {t.titleLines.map((line, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <br />}
+                    {line}
+                  </React.Fragment>
+                ))}
               </h1>
 
               {/* Subtitle */}
               <p className="text-base sm:text-[17px] text-[#647069] leading-relaxed max-w-xl font-normal pt-1">
-                Advanced electrochemical treatment. Compact, on-site engineering
-                for healthcare facilities and laboratories.
+                {t.subtitle}
               </p>
 
               {/* Action Buttons */}
@@ -42,9 +47,9 @@ export default function HeroSection() {
                   href="#contact"
                   className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[#00B050] hover:bg-[#009933] text-white font-medium text-sm transition-all duration-300 shadow-sm hover:shadow group"
                 >
-                  <span>Discuss your facility</span>
+                  <span>{discussFacility}</span>
                   <svg
-                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -63,7 +68,7 @@ export default function HeroSection() {
                   href="#technology"
                   className="inline-flex items-center text-sm font-medium text-[#123D30] hover:text-[#00B050] underline underline-offset-4 decoration-[#647069]/40 hover:decoration-[#00B050] transition-colors"
                 >
-                  Explore the technology
+                  {t.exploreTechnology}
                 </Link>
               </div>
             </div>
@@ -71,11 +76,12 @@ export default function HeroSection() {
             {/* Bottom Technical Tag Footer */}
             <div className="mt-auto">
               <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-xs font-mono font-medium tracking-[0.16em] uppercase text-[#839088]">
-                <span>ENGINEERING</span>
-                <span className="text-[#839088]/70">+</span>
-                <span>HEALTHCARE</span>
-                <span className="text-[#839088]/70">+</span>
-                <span>ENVIRONMENTAL TECHNOLOGY</span>
+                {t.tags.map((tag, i) => (
+                  <React.Fragment key={tag}>
+                    {i > 0 && <span className="text-[#839088]/70">+</span>}
+                    <span>{tag}</span>
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
@@ -84,16 +90,16 @@ export default function HeroSection() {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-[32px] overflow-hidden bg-[#123D30] shadow-2xl border border-[#D7DED5]/40 group">
               {/* Top Card Badge: Square green bullet + ECOKlien / ON-SITE SYSTEM */}
-              <div className="absolute top-6 left-6 z-20 flex items-center gap-2.5 text-white text-xs font-mono tracking-wide">
+              <div className="absolute top-6 start-6 z-20 flex items-center gap-2.5 text-white text-xs font-mono tracking-wide">
                 <span className="w-2 h-2 rounded-[1.5px] bg-[#00B050]" />
-                <span className="text-white/95">ECOKlien / ON-SITE SYSTEM</span>
+                <span className="text-white/95">{t.badge}</span>
               </div>
 
               {/* Machine Image Container */}
               <div className="relative w-full h-[440px] sm:h-[540px] md:h-[580px] lg:h-[720px] overflow-hidden">
                 <Image
                   src={images.hero}
-                  alt="ECOKlien On-site System Unit"
+                  alt={t.imageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 640px"
                   priority
@@ -101,10 +107,10 @@ export default function HeroSection() {
                 />
 
                 {/* Bottom Spec Overlay Card */}
-                <div className="absolute bottom-6 left-6 z-20 bg-[#123D30]/85 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 text-white max-w-[280px] sm:max-w-[320px] shadow-lg">
+                <div className="absolute bottom-6 start-6 z-20 bg-[#123D30]/85 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 text-white max-w-[280px] sm:max-w-[320px] shadow-lg">
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
-                      Treatment at the source.
+                      {t.cardTitle}
                     </h3>
                     <div className="shrink-0 text-[#38C978]">
                       <svg
@@ -125,7 +131,7 @@ export default function HeroSection() {
                     </div>
                   </div>
                   <p className="text-xs text-[#D7DED5]/85 mt-1 font-normal">
-                    Compact. Modular. Plug-and-play.
+                    {t.cardText}
                   </p>
                 </div>
               </div>

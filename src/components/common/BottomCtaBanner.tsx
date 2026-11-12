@@ -6,7 +6,10 @@ import Link from "next/link";
 import { images } from "@/data/images";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { ctaBannerMessages } from "@/i18n/messages/common";
 
+/** Text props are optional: when omitted, the translated default banner text is used. */
 interface BottomCtaBannerProps {
   eyebrow?: string;
   title?: string;
@@ -16,12 +19,18 @@ interface BottomCtaBannerProps {
 }
 
 export default function BottomCtaBanner({
-  eyebrow = "LET'S TALK TREATMENT",
-  title = "Bring your questions. We'll bring the engineering.",
-  subtitle = "Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility.",
-  buttonText = "Talk to an engineer",
-  buttonLink = "https://ecoklien.com/contact/",
+  eyebrow,
+  title,
+  subtitle,
+  buttonText,
+  buttonLink = "/contact",
 }: BottomCtaBannerProps) {
+  const t = useMessages(ctaBannerMessages);
+  eyebrow ??= t.eyebrow;
+  title ??= t.title;
+  subtitle ??= t.subtitle;
+  buttonText ??= t.buttonText;
+
   return (
     <section className="py-12 sm:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +81,7 @@ export default function BottomCtaBanner({
                 className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#00A859] hover:bg-[#00924c] text-white font-medium text-[14px] transition-all duration-300 shadow-md hover:shadow-xl hover:scale-[1.02] group whitespace-nowrap"
               >
                 <span>{buttonText}</span>
-                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </Link>
             </div>
           </div>

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import GlossaryTermPage from "@/pages/glossary/GlossaryTermPage";
 import { glossaryTerms, getGlossaryTerm } from "@/data/glossary";
+import { getLocale } from "@/i18n/server";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -13,11 +15,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const term = getGlossaryTerm(slug);
+  const locale = await getLocale();
+  const term = getGlossaryTerm(slug, locale);
   if (!term) return {};
 
   return {
-    title: `${term.title} - EcoKlien Glossary`,
+    title: glossaryMessages[locale].meta.termTitle(term.title),
     description: term.cardSummary,
     alternates: { canonical: `/glossary/${term.slug}` },
   };
@@ -25,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GlossaryTermRoute({ params }: PageProps) {
   const { slug } = await params;
-  const term = getGlossaryTerm(slug);
+  const term = getGlossaryTerm(slug, await getLocale());
 
   if (!term) {
     notFound();

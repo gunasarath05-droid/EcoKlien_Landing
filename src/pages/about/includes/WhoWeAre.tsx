@@ -1,6 +1,12 @@
+"use client";
+
 import React from "react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { aboutMessages } from "@/i18n/messages/about";
 
 export default function WhoWeAre() {
+  const { whoWeAre } = useMessages(aboutMessages);
+
   return (
     <div className="bg-white text-[#18251E]">
       {/* <section className="w-full border-y border-[#E5EBE7] py-6 sm:py-7 bg-white">
@@ -25,22 +31,23 @@ export default function WhoWeAre() {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-[#00A859] inline-block" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.08em] text-[#5D6B62]">
-                  WHO WE ARE
+                  {whoWeAre.eyebrow}
                 </span>
               </div>
               <div className="space-y-1 text-[14px] md:text-[15px] text-[#5D6B62] font-normal leading-relaxed pt-1">
-                <p>Green technology.</p>
-                <p>A resource worth protecting.</p>
+                {whoWeAre.lines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
               </div>
             </div>
 
             {/* Right Column: Large Impactful Statement */}
             <div className="lg:col-span-8 space-y-6">
               <h2 className="text-[16px] sm:text-[24px] lg:text-[28px] font-normal text-[#0E291E] tracking-tight leading-[1.2]">
-                ECOKlien is an initiative to promote the implementation of green technology around the world to protect one of the most important and rapidly declining resource of the world.
+                {whoWeAre.statement}
               </h2>
               <p className="text-[14px] sm:text-[15px] text-[#5D6B62] font-normal leading-relaxed max-w-2xl">
-                ECOKlien&apos;s advanced electro-chemical wastewater (effluent) treatment systems for hospitals, laboratories, or pharmaceuticals.
+                {whoWeAre.description}
               </p>
             </div>
           </div>

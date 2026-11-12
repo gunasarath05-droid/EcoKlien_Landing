@@ -1,31 +1,55 @@
 import { images } from "./images";
+import type { Locale } from "@/i18n/config";
+import { localizeList } from "@/i18n/localize";
+import { blogPostsEs } from "./i18n/es/blog";
+import { blogPostsAr } from "./i18n/ar/blog";
+
+export interface BlogSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+}
+
+export interface BlogMiddleImage {
+  src: string;
+  alt: string;
+  badge: string;
+}
+
+export interface BlogPostContent {
+  leadParagraph: string;
+  sections: BlogSection[];
+  calloutText?: string;
+  middleImage?: BlogMiddleImage;
+  checklist?: {
+    title: string;
+    description: string;
+  }[];
+}
 
 export interface BlogPost {
   slug: string;
   title: string;
   readTime: string;
   category: string;
+  /** Filter value used by the blog grid (not shown directly; labels are translated in messages). */
   filterCategory: "Technology" | "Applications" | "Facility planning";
   excerpt: string;
   image: string;
   isFeatured?: boolean;
-  content?: {
-    leadParagraph: string;
-    sections: {
-      id: string;
-      title: string;
-      paragraphs: string[];
-    }[];
-    calloutText?: string;
-    middleImage?: {
-      src: string;
-      alt: string;
-      badge: string;
-    };
-    checklist?: {
-      title: string;
-      description: string;
-    }[];
+  content?: BlogPostContent;
+}
+
+/**
+ * Translated text of a post (src/data/i18n/{es,ar}/blog.ts): only text fields plus the slug.
+ * A translated `content` replaces the English one wholesale, except that the middle image's
+ * `src` is always taken from the English post (so images are maintained once, here).
+ */
+export interface BlogPostTranslation
+  extends Pick<BlogPost, "slug">,
+    Partial<Pick<BlogPost, "title" | "readTime" | "category" | "excerpt">> {
+  content?: Omit<BlogPostContent, "middleImage"> & {
+    middleImage?: Omit<BlogMiddleImage, "src">;
   };
 }
 
@@ -160,3 +184,34 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+/** Turn a text-only translation into a full post override, keeping English images. */
+function withEnglishImages(translations: readonly BlogPostTranslation[]): (Partial<BlogPost> & Pick<BlogPost, "slug">)[] {
+  return translations.map(({ content, ...rest }) => {
+    if (!content) return rest;
+    const englishContent = blogPosts.find((p) => p.slug === rest.slug)?.content;
+    const { middleImage, ...textContent } = content;
+    const englishImage = englishContent?.middleImage;
+    return {
+      ...rest,
+      content: {
+        ...textContent,
+        middleImage: middleImage && englishImage ? { ...middleImage, src: englishImage.src } : englishImage,
+      },
+    };
+  });
+}
+
+const blogTranslations = {
+  es: withEnglishImages(blogPostsEs),
+  ar: withEnglishImages(blogPostsAr),
+};
+
+/** All posts in the given language (English order; untranslated posts stay in English). */
+export function getBlogPosts(locale: Locale): BlogPost[] {
+  return localizeList(locale, blogPosts, blogTranslations, "slug");
+}
+
+/** One post in the given language, or undefined if the slug does not exist. */
+export function getBlogPost(slug: string, locale: Locale): BlogPost | undefined {
+  return getBlogPosts(locale).find((p) => p.slug === slug);
+}

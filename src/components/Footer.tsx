@@ -1,10 +1,16 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
 import { LuInstagram, LuFacebook, LuYoutube, LuLinkedin, LuArrowUpRight } from "react-icons/lu";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { footerMessages } from "@/i18n/messages/common";
 
 export default function Footer() {
+  const t = useMessages(footerMessages);
+
   return (
     <footer id="contact" className="bg-white text-[#18251E] pt-14 pb-8 border-t border-[#EDEDED]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +37,7 @@ export default function Footer() {
 
             {/* Description */}
             <p className="text-[13.5px] sm:text-[14px] text-[#4F5E55] leading-relaxed max-w-lg font-normal">
-              Advanced hybrid reactor based effluent treatment systems manufacturer and supplier. ECO Safe wastewater effluent treatment system
+              {t.description}
             </p>
 
             {/* Dealer Button */}
@@ -39,15 +45,15 @@ export default function Footer() {
               href="/contact#dealer"
               className="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-[#133A2E] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
             >
-              <span>Want To be a Dealer ?</span>
-              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>{t.dealer}</span>
+              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
             </Link>
           </div>
 
           {/* Right Column: Socials Label -> Outline Icons -> Contact Us Button */}
           <div className="flex flex-col items-start space-y-4 shrink-0">
             <span className="text-[12px] font-mono tracking-wider text-[#78887F] uppercase">
-              Socials
+              {t.socials}
             </span>
 
             {/* Outline Social Icons */}
@@ -96,8 +102,8 @@ export default function Footer() {
                 href="/contact"
                 className="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-[#133A2E] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
               >
-                <span>Contact Us</span>
-                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span>{t.contactUs}</span>
+                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </Link>
             </div>
           </div>
@@ -106,7 +112,7 @@ export default function Footer() {
         {/* Bottom Line: Copyright, Credits & Policy */}
         <div className="pt-6 border-t border-[#EAEAEA] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#78887F]">
           <p>
-            Copyright © 2026 EcoKlien
+            {t.copyright}
           </p>
 
           <a
@@ -115,7 +121,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="hover:text-[#00B050] transition-colors"
           >
-            Developed by <span className="font-semibold text-[#3D4C43] hover:text-[#00B050]">EC4You</span>
+            {t.developedBy} <span className="font-semibold text-[#3D4C43] hover:text-[#00B050]">EC4You</span>
           </a>
 
           <div>
@@ -124,7 +130,7 @@ export default function Footer() {
               target="_blank"
               className="hover:text-[#00A859] transition-colors"
             >
-              Privacy Policy
+              {t.privacy}
             </Link>
           </div>
         </div>

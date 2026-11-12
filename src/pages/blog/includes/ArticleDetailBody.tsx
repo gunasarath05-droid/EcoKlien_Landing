@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BlogPost, blogPosts } from "@/data/blog";
+import { BlogPost, blogPosts, getBlogPosts } from "@/data/blog";
 import { LuArrowUpRight, LuCheck, LuCopy } from "react-icons/lu";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { blogMessages } from "@/i18n/messages/blog";
 
 interface ArticleDetailBodyProps {
   post?: BlogPost;
@@ -13,10 +15,12 @@ interface ArticleDetailBodyProps {
 export default function ArticleDetailBody({
   post = blogPosts[0],
 }: ArticleDetailBodyProps) {
+  const t = useMessages(blogMessages);
+  const { locale } = useLocale();
   const [copied, setCopied] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("point-of-generation");
 
-  const content = post?.content || blogPosts[0].content!;
+  const content = post?.content || getBlogPosts(locale)[0].content!;
   const sections = content.sections || [];
 
   const handleCopy = () => {
@@ -48,18 +52,18 @@ export default function ArticleDetailBody({
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#5D6B62]">
-                  ON THIS PAGE
+                  {t.article.onThisPage}
                 </span>
               </div>
 
-              <nav className="space-y-2 border-l border-[#E5EBE6] pl-4">
+              <nav className="space-y-2 border-s border-[#E5EBE6] ps-4">
                 {sections.map((sec) => {
                   const isActive = activeSection === sec.id;
                   return (
                     <button
                       key={sec.id}
                       onClick={() => scrollTo(sec.id)}
-                      className={`block text-left text-[13.5px] transition-colors py-1 cursor-pointer ${
+                      className={`block text-start text-[13.5px] transition-colors py-1 cursor-pointer ${
                         isActive
                           ? "text-[#00A859] font-medium"
                           : "text-[#55645C] hover:text-[#18251E]"
@@ -80,7 +84,7 @@ export default function ArticleDetailBody({
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#5D6B62]">
-                  SHARE THIS INSIGHT
+                  {t.article.share}
                 </span>
               </div>
 
@@ -92,22 +96,22 @@ export default function ArticleDetailBody({
                   className="inline-flex items-center gap-2 text-[13px] text-[#55645C] hover:text-[#00A859] transition-colors"
                 >
                   <span>LinkedIn</span>
-                  <LuArrowUpRight className="w-3.5 h-3.5" />
+                  <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                 </a>
 
                 <button
                   onClick={handleCopy}
-                  className="inline-flex items-center gap-2 text-[13px] text-[#55645C] hover:text-[#00A859] transition-colors cursor-pointer text-left"
+                  className="inline-flex items-center gap-2 text-[13px] text-[#55645C] hover:text-[#00A859] transition-colors cursor-pointer text-start"
                 >
                   {copied ? (
                     <>
                       <LuCheck className="w-3.5 h-3.5 text-[#00A859]" />
-                      <span className="text-[#00A859]">Link copied!</span>
+                      <span className="text-[#00A859]">{t.article.linkCopied}</span>
                     </>
                   ) : (
                     <>
                       <LuCopy className="w-3.5 h-3.5" />
-                      <span>Copy link</span>
+                      <span>{t.article.copyLink}</span>
                     </>
                   )}
                 </button>
@@ -142,11 +146,11 @@ export default function ArticleDetailBody({
 
             {/* Callout Box */}
             {content.calloutText && (
-              <div className="bg-[#F2F7F4] border-l-4 border-[#00A859] rounded-r-[20px] rounded-l-[4px] p-6 sm:p-8 space-y-2">
+              <div className="bg-[#F2F7F4] border-s-4 border-[#00A859] rounded-e-[20px] rounded-s-[4px] p-6 sm:p-8 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                   <span className="text-[10.5px] font-mono uppercase tracking-[0.14em] text-[#00A859] font-medium">
-                    PERSPECTIVE / IN-SITU
+                    {t.article.calloutLabel}
                   </span>
                 </div>
                 <p className="text-[20px] sm:text-[23px] font-semibold text-[#0E291E] tracking-tight leading-snug">
@@ -180,7 +184,7 @@ export default function ArticleDetailBody({
                     sizes="(max-width: 1024px) 100vw, 65vw"
                     className="object-cover object-center"
                   />
-                  <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10.5px] font-mono uppercase tracking-wider text-[#18251E] shadow-sm">
+                  <div className="absolute bottom-4 start-4 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10.5px] font-mono uppercase tracking-wider text-[#18251E] shadow-sm">
                     {content.middleImage.badge}
                   </div>
                 </div>
@@ -240,13 +244,19 @@ export default function ArticleDetailBody({
             {/* Bottom Meta & Back Link */}
             <div className="pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="text-[11px] font-mono uppercase tracking-wider text-[#738479]">
-                TAGS: <span className="text-[#18251E]">ON-SITE TREATMENT</span> / <span className="text-[#18251E]">ELECTROCHEMICAL</span> / <span className="text-[#18251E]">HOSPITALS</span>
+                {t.article.tagsLabel}{" "}
+                {t.article.tags.map((tag, i) => (
+                  <React.Fragment key={tag}>
+                    {i > 0 && " / "}
+                    <span className="text-[#18251E]">{tag}</span>
+                  </React.Fragment>
+                ))}
               </div>
               <Link
                 href="/blog"
                 className="text-[12px] font-mono uppercase tracking-wider text-[#00A859] hover:underline"
               >
-                ← Back to Blog
+                <span className="inline-block rtl:-scale-x-100">←</span> {t.article.backToBlog}
               </Link>
             </div>
           </div>

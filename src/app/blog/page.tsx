@@ -1,17 +1,22 @@
 import { Metadata } from "next";
 import BlogPage from "@/pages/blog/BlogPage";
+import { getLocale } from "@/i18n/server";
+import { blogMessages } from "@/i18n/messages/blog";
+import { getBlogPosts } from "@/data/blog";
 
-export const metadata: Metadata = {
-  title: "Blog & Insights - EcoKlien | Clearer Thinking. Better Treatment.",
-  description:
-    "Ideas and practical perspectives on biomedical liquid waste, electrochemical technology and treatment at the source.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = blogMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+  };
+}
 
-export default function Blog() {
+export default async function Blog() {
+  const posts = getBlogPosts(await getLocale());
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <BlogPage />
+      <BlogPage posts={posts} />
     </div>
   );
 }
-

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,34 +11,33 @@ import {
   LuCross,
   LuArrowUpRight,
 } from "react-icons/lu";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { landingMessages } from "@/i18n/messages/landing";
 
 export default function ReimaginedSection() {
+  const { treatmentFlow: t } = useMessages(landingMessages);
   const cards = [
     {
-      title: "Electrochemical technology",
-      description:
-        "Contaminants are destabilised and aggregated into larger flocs, making them easier to separate from the liquid.",
+      title: t.cards.electrochemical.title,
+      description: t.cards.electrochemical.description,
       icon: <LuMoveDiagonal2 size={22} strokeWidth={1.8} className="text-white mb-4" />,
       theme: "dark",
     },
     {
-      title: "On-site treatment",
-      description:
-        "Having an attached sink, the system treats the BML right at it's source, reducing the need to store hazardous liquid waste.",
+      title: t.cards.onSite.title,
+      description: t.cards.onSite.description,
       icon: <LuLayoutGrid size={22} strokeWidth={1.8} className="text-white mb-4" />,
       theme: "dark",
     },
     {
-      title: "No added chemicals",
-      description:
-        "ECOKlien ensures safe treatment process without the need to handle any hazardous substances.",
+      title: t.cards.noChemicals.title,
+      description: t.cards.noChemicals.description,
       icon: <LuPlug size={22} strokeWidth={1.8} className="text-[#18251E] mb-4" />,
       theme: "light",
     },
     {
-      title: "No odor. No noise",
-      description:
-        "Further electrochemical treatment acts on remaining organic contaminants and microorganisms.",
+      title: t.cards.noOdor.title,
+      description: t.cards.noOdor.description,
       icon: <LuCross size={22} strokeWidth={1.8} className="text-[#18251E] mb-4" />,
       theme: "light",
     },
@@ -48,7 +49,7 @@ export default function ReimaginedSection() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src={images.fluidbg2}
-          alt="Fluids background"
+          alt={t.fluidsBgAlt}
           fill
           sizes="100vw"
           priority
@@ -60,7 +61,7 @@ export default function ReimaginedSection() {
       <div className="absolute inset-0 z-10 pointer-events-none">
         <Image
           src={images.liquid2}
-          alt="Transformation liquid stream"
+          alt={t.streamAlt}
           fill
           sizes="100vw"
           priority
@@ -79,21 +80,24 @@ export default function ReimaginedSection() {
             <div className="flex items-center gap-2 mb-3.5">
               <span className="w-2 h-2 bg-[#00A859] inline-block" />
               <span className="text-xs font-mono font-medium tracking-wider uppercase text-[#809187]">
-                THE ECOKLIEN APPROACH
+                {t.approachEyebrow}
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-[1.15]">
-              Biomedical liquid waste
-              <br />
-              treatment, re-imagined
+              {t.approachTitleLines.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </h2>
           </div>
 
           {/* Right Column: Paragraph */}
           <div className="lg:col-span-7 lg:pt-3">
             <p className="text-xs sm:text-[14px] text-[#CBDCD1] leading-relaxed max-w-2xl font-normal">
-              ECOKlien uses advanced electrochemical technology to treat and disinfect potentially contaminated liquid waste on site, bringing treatment closer to where the waste is generated, with a compact, modular system designed to reduce dependence on conventional chemical treatment and large, complex infrastructure.
+              {t.approachText}
             </p>
           </div>
         </div>
@@ -106,8 +110,8 @@ export default function ReimaginedSection() {
               href="#configurations"
               className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-xs sm:text-[13px] shadow-2xl transition-all duration-300 group"
             >
-              <span>View Configurations</span>
-              <LuArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>{t.viewConfigurations}</span>
+              <LuArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
             </Link>
           </div>
 

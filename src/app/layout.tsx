@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { getLocale } from "@/i18n/server";
+import { localeMeta } from "@/i18n/config";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Arabic glyphs (Inter / JetBrains Mono have none); used as a fallback in the font stacks
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-arabic",
   display: "swap",
 });
 
@@ -61,26 +72,32 @@ export const metadata: Metadata = {
 
 import SmoothScroll from "@/components/SmoothScroll";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
+  const { htmlLang, dir } = localeMeta[locale];
+
   return (
     <html
-      lang="en"
+      lang={htmlLang}
+      dir={dir}
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${notoArabic.variable} h-full antialiased`}
     >
       <body
         suppressHydrationWarning
         className="min-h-full flex flex-col font-sans bg-white text-[#647069] antialiased"
       >
-        <SmoothScroll>
-          <Navbar />
-          {children}
-          <Footer />
-        </SmoothScroll>
+        <LocaleProvider locale={locale}>
+          <SmoothScroll>
+            <Navbar />
+            {children}
+            <Footer />
+          </SmoothScroll>
+        </LocaleProvider>
       </body>
     </html>
   );

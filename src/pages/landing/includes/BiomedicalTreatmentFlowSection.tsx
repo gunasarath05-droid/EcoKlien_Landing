@@ -17,11 +17,16 @@ import {
   LuArrowUpRight,
 } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { landingMessages } from "@/i18n/messages/landing";
+import { wasteStreamMessages } from "@/i18n/messages/home";
 
 export default function BiomedicalTreatmentFlowSection() {
+  const { treatmentFlow: t } = useMessages(landingMessages);
+  const streamNames = useMessages(wasteStreamMessages);
   const streams = [
     {
-      title: "Laboratory processes",
+      title: streamNames.laboratory,
       icon: (
         <LuMicroscope
           size={18}
@@ -33,7 +38,7 @@ export default function BiomedicalTreatmentFlowSection() {
       position: "top-4 left-4 sm:top-8 sm:left-12 lg:top-8 lg:left-16",
     },
     {
-      title: "Dialysis waste",
+      title: streamNames.dialysis,
       icon: (
         <LuFlaskConical
           size={18}
@@ -45,7 +50,7 @@ export default function BiomedicalTreatmentFlowSection() {
       position: "top-18 right-4 sm:top-20 sm:right-10 lg:top-20 lg:right-14",
     },
     {
-      title: "Sputum",
+      title: streamNames.sputum,
       icon: (
         <LuPipette
           size={18}
@@ -57,7 +62,7 @@ export default function BiomedicalTreatmentFlowSection() {
       position: "top-[52%] left-2 sm:left-8 lg:left-12",
     },
     {
-      title: "Urine",
+      title: streamNames.urine,
       icon: (
         <LuTestTube
           size={18}
@@ -69,7 +74,7 @@ export default function BiomedicalTreatmentFlowSection() {
       position: "top-[48%] right-4 sm:right-10 lg:right-16",
     },
     {
-      title: "Body fluids",
+      title: streamNames.bodyFluids,
       icon: (
         <LuFlaskConical
           size={18}
@@ -82,7 +87,7 @@ export default function BiomedicalTreatmentFlowSection() {
         "bottom-24 right-8 sm:bottom-28 sm:right-20 lg:bottom-28 lg:right-28",
     },
     {
-      title: "Blood",
+      title: streamNames.blood,
       icon: (
         <LuDroplet
           size={18}
@@ -98,9 +103,8 @@ export default function BiomedicalTreatmentFlowSection() {
 
   const cards = [
     {
-      title: "Electrochemical technology",
-      description:
-        "Contaminants are destabilised and aggregated into larger flocs, making them easier to separate from the liquid.",
+      title: t.cards.electrochemical.title,
+      description: t.cards.electrochemical.description,
       icon: (
         <LuMoveDiagonal2
           size={22}
@@ -111,27 +115,24 @@ export default function BiomedicalTreatmentFlowSection() {
       theme: "dark",
     },
     {
-      title: "On-site treatment",
-      description:
-        "Having an attached sink, the system treats the BML right at it's source, reducing the need to store hazardous liquid waste.",
+      title: t.cards.onSite.title,
+      description: t.cards.onSite.description,
       icon: (
         <LuLayoutGrid size={22} strokeWidth={1.8} className="text-white mb-4" />
       ),
       theme: "dark",
     },
     {
-      title: "No added chemicals",
-      description:
-        "ECOKlien ensures safe treatment process without the need to handle any hazardous substances.",
+      title: t.cards.noChemicals.title,
+      description: t.cards.noChemicals.description,
       icon: (
         <LuPlug size={22} strokeWidth={1.8} className="text-[#18251E] mb-4" />
       ),
       theme: "light",
     },
     {
-      title: "No odor. No noise",
-      description:
-        "Further electrochemical treatment acts on remaining organic contaminants and microorganisms.",
+      title: t.cards.noOdor.title,
+      description: t.cards.noOdor.description,
       icon: (
         <LuCross size={22} strokeWidth={1.8} className="text-[#18251E] mb-4" />
       ),
@@ -153,7 +154,7 @@ export default function BiomedicalTreatmentFlowSection() {
       >
         <Image
           src={images.bioMedicalBg}
-          alt="Biomedical dark fluid background"
+          alt={t.bandAlt}
           fill
           sizes="100vw"
           priority
@@ -175,7 +176,7 @@ export default function BiomedicalTreatmentFlowSection() {
         >
           <span className="w-2 h-2 bg-[#00A859] inline-block" />
           <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
-            WHAT IT TREAT:
+            {t.eyebrow}
           </span>
         </motion.div>
 
@@ -187,9 +188,12 @@ export default function BiomedicalTreatmentFlowSection() {
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-[28px] sm:text-[34px] lg:text-[38px] font-normal text-[#0e2a1e] tracking-[-0.01em] leading-[1.05]"
         >
-          From blood to
-          <br />
-          body fluids.
+          {t.titleLines.map((line, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <br />}
+              {line}
+            </React.Fragment>
+          ))}
         </motion.h2>
 
         {/* Central Fluid Splash with Floating Badges */}
@@ -204,7 +208,7 @@ export default function BiomedicalTreatmentFlowSection() {
           >
             <Image
               src={images.liquid1}
-              alt="Bio-waste fluid splash"
+              alt={t.splashAlt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 700px"
               priority
@@ -249,10 +253,8 @@ export default function BiomedicalTreatmentFlowSection() {
           className="relative z-10 max-w-3xl mx-auto px-4 pt-4 pb-12 sm:pb-16 text-center"
         >
           <p className="text-xs sm:text-base text-[#CBDCD1] font-normal leading-relaxed">
-            Treatment can be configured according to the characteristics of the
-            incoming
-            <br className="hidden sm:inline" /> wastewater and the requirements
-            of the application.
+            {t.configurableNote[0]}
+            <br className="hidden sm:inline" /> {t.configurableNote[1]}
           </p>
         </motion.div>
       </div>
@@ -268,7 +270,7 @@ export default function BiomedicalTreatmentFlowSection() {
             {/* Desktop: natural ratio, full visible */}
             <Image
               src={images.liquid2}
-              alt="Transformation liquid stream"
+              alt={t.streamAlt}
               width={1920}
               height={1080}
               sizes="100vw"
@@ -278,7 +280,7 @@ export default function BiomedicalTreatmentFlowSection() {
             {/* Mobile/tablet: cover, anchored to the splash side */}
             <Image
               src={images.liquid2}
-              alt="Transformation liquid stream"
+              alt={t.streamAlt}
               fill
               sizes="100vw"
               className="lg:hidden object-cover object-[35%_bottom]"
@@ -299,14 +301,17 @@ export default function BiomedicalTreatmentFlowSection() {
               <div className="flex items-center gap-2.5 mb-4">
                 <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
-                  THE ECOKLIEN APPROACH
+                  {t.approachEyebrow}
                 </span>
               </div>
 
               <h2 className="text-[28px] sm:text-[32px] lg:text-[36px] font-normal text-white tracking-tight leading-[1.05]">
-                Biomedical liquid waste
-                <br />
-                treatment, re-imagined
+                {t.approachTitleLines.map((line, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <br />}
+                    {line}
+                  </React.Fragment>
+                ))}
               </h2>
             </motion.div>
 
@@ -323,12 +328,7 @@ export default function BiomedicalTreatmentFlowSection() {
               className="lg:col-span-7 lg:pt-3"
             >
               <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] max-w-2xl font-normal">
-                ECOKlien uses advanced electrochemical technology to treat and
-                disinfect potentially contaminated liquid waste on site,
-                bringing treatment closer to where the waste is generated, with
-                a compact, modular system designed to reduce dependence on
-                conventional chemical treatment and large, complex
-                infrastructure.
+                {t.approachText}
               </p>
             </motion.div>
           </div>
@@ -347,10 +347,10 @@ export default function BiomedicalTreatmentFlowSection() {
                 href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
                 className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-[14px] shadow-2xl transition-all duration-300 group"
               >
-                <span>View Configurations</span>
+                <span>{t.viewConfigurations}</span>
                 <LuArrowUpRight
                   size={16}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
                 />
               </Link>
             </motion.div>

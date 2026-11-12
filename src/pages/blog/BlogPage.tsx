@@ -3,10 +3,15 @@ import BlogHeroSection from "./includes/BlogHeroSection";
 import BlogFeaturedSection from "./includes/BlogFeaturedSection";
 import BlogGridSection from "./includes/BlogGridSection";
 import BottomCtaBanner from "@/components/common/BottomCtaBanner";
-import { blogPosts } from "@/data/blog";
+import { BlogPost, blogPosts } from "@/data/blog";
 
-export default function BlogPage() {
-  const featuredPost = blogPosts.find((p) => p.isFeatured) || blogPosts[0];
+interface BlogPageProps {
+  /** Posts in the visitor's language (see getBlogPosts); defaults to English. */
+  posts?: BlogPost[];
+}
+
+export default function BlogPage({ posts = blogPosts }: BlogPageProps) {
+  const featuredPost = posts.find((p) => p.isFeatured) || posts[0];
 
   return (
     <div className="min-h-screen bg-white">
@@ -17,17 +22,10 @@ export default function BlogPage() {
       <BlogFeaturedSection post={featuredPost} />
 
       {/* 3. Journal Grid Section */}
-      <BlogGridSection posts={blogPosts} />
+      <BlogGridSection posts={posts} />
 
-      {/* 4. Bottom CTA Banner */}
-      <BottomCtaBanner
-        eyebrow="LET'S TALK TREATMENT"
-        title="Bring your questions. We'll bring the engineering."
-        subtitle="Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility."
-        buttonText="Talk to an engineer"
-        buttonLink="https://ecoklien.com/contact/"
-      />
+      {/* 4. Bottom CTA Banner (default, translated text) */}
+      <BottomCtaBanner buttonLink="/contact" />
     </div>
   );
 }
-

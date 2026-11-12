@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductPage from "@/pages/products/ProductPage";
-import { products } from "@/data/products";
+import { products, getProduct } from "@/data/products";
+import { getLocale } from "@/i18n/server";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -17,7 +18,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = getProduct(slug, await getLocale());
   if (!product) return {};
 
   return {
@@ -28,7 +29,7 @@ export async function generateMetadata({
 
 export default async function ProductDetailsRoute({ params }: PageProps) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = getProduct(slug, await getLocale());
 
   if (!product) {
     notFound();
@@ -36,4 +37,3 @@ export default async function ProductDetailsRoute({ params }: PageProps) {
 
   return <ProductPage product={product} />;
 }
-

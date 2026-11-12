@@ -7,10 +7,13 @@ import { BlogPost, blogPosts } from "@/data/blog";
 
 interface ArticleDetailPageProps {
   post?: BlogPost;
+  /** All posts in the visitor's language (see getBlogPosts); defaults to English. */
+  posts?: BlogPost[];
 }
 
 export default function ArticleDetailPage({
   post = blogPosts[0],
+  posts = blogPosts,
 }: ArticleDetailPageProps) {
   return (
     <div className="min-h-screen bg-white">
@@ -21,17 +24,10 @@ export default function ArticleDetailPage({
       <ArticleDetailBody post={post} />
 
       {/* 3. Continue the conversation (Related) */}
-      <ArticleRelatedSection currentSlug={post?.slug} />
+      <ArticleRelatedSection currentSlug={post?.slug} posts={posts} />
 
-      {/* 4. Bottom CTA Banner */}
-      <BottomCtaBanner
-        eyebrow="LET'S TALK TREATMENT"
-        title="Bring your questions. We'll bring the engineering."
-        subtitle="Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility."
-        buttonText="Talk to an engineer"
-        buttonLink="https://ecoklien.com/contact/"
-      />
+      {/* 4. Bottom CTA Banner (default, translated text) */}
+      <BottomCtaBanner buttonLink="/contact" />
     </div>
   );
 }
-

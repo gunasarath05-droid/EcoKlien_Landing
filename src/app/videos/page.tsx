@@ -1,11 +1,15 @@
 import { Metadata } from "next";
 import VideosPage from "@/pages/videos/VideosPage";
+import { getLocale } from "@/i18n/server";
+import { videosMessages } from "@/i18n/messages/videos";
 
-export const metadata: Metadata = {
-  title: "Videos & Explainers - EcoKlien | See the Approach. Understand the System.",
-  description:
-    "Explore visual explainers on ECOKlien's treatment technology, system configurations and on-site applications.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = videosMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+  };
+}
 
 export default function VideosRoute() {
   return (
@@ -14,4 +18,3 @@ export default function VideosRoute() {
     </div>
   );
 }
-

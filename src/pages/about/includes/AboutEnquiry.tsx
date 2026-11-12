@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { LuArrowUpRight } from "react-icons/lu";
 import Image from "next/image";
 import { images } from "@/data/images";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { aboutMessages } from "@/i18n/messages/about";
 
 export default function AboutEnquiryForm() {
+  const { enquiry: t } = useMessages(aboutMessages);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +31,7 @@ export default function AboutEnquiryForm() {
                 {/* Background Fluid Texture */}
                 <Image
                   src={images.enquiry}
-                  alt="Environmental Fluid Texture"
+                  alt={t.imageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
@@ -40,23 +43,25 @@ export default function AboutEnquiryForm() {
                 <div className="relative z-10 flex items-center gap-2">
                   <span className="w-2 h-2 bg-[#00A859] inline-block" />
                   <span className="text-[11px] font-mono uppercase tracking-[0.08em] text-white/80">
-                    LET&apos;S CONNECT
+                    {t.cardEyebrow}
                   </span>
                 </div>
 
                 {/* Card Middle Headings */}
                 <div className="relative z-10 space-y-4 my-auto py-8">
                   <h3 className="text-[32px] sm:text-[40px] font-normal text-white tracking-tight leading-[1.1]">
-                    Contact Us To<br />Know More
+                    {t.cardTitleLines[0]}
+                    <br />
+                    {t.cardTitleLines[1]}
                   </h3>
                   <p className="text-[14px] text-white/85 leading-relaxed max-w-sm font-normal">
-                    ECO safe Hospital Wastewater Treatment (HWTP) using electrochemical technologies.
+                    {t.cardDescription}
                   </p>
                 </div>
 
                 {/* Card Bottom Tag */}
                 <div className="relative z-10 text-[10.5px] font-mono text-white/70 tracking-widest uppercase">
-                  ECOKlien / ENVIRONMENTAL TECHNOLOGY
+                  {t.cardFooterTag}
                 </div>
               </div>
             </div>
@@ -65,7 +70,7 @@ export default function AboutEnquiryForm() {
       <div className="flex items-center gap-2 mb-6">
         <span className="w-2 h-2 bg-[#00A859] inline-block" />
         <span className="text-[11px] font-mono uppercase tracking-[0.08em] text-[#5D6B62]">
-          ENQUIRY
+          {t.eyebrow}
         </span>
       </div>
 
@@ -75,10 +80,10 @@ export default function AboutEnquiryForm() {
             ✓
           </div>
           <h4 className="text-lg font-semibold text-[#18251E]">
-            Thank you for your enquiry!
+            {t.successTitle}
           </h4>
           <p className="text-sm text-[#5D6B62]">
-            Our environmental technology specialists will get in touch with you shortly.
+            {t.successMessage}
           </p>
           <button
             type="button"
@@ -88,7 +93,7 @@ export default function AboutEnquiryForm() {
             }}
             className="text-xs text-[#00A859] underline hover:text-[#008f4c] cursor-pointer pt-2 inline-block"
           >
-            Submit another enquiry
+            {t.successReset}
           </button>
         </div>
       ) : (
@@ -96,14 +101,14 @@ export default function AboutEnquiryForm() {
           {/* Name */}
           <div>
             <label className="block text-[13px] font-medium text-[#18251E] mb-2">
-              Name*
+              {t.name}*
             </label>
             <input
               type="text"
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              placeholder="Your name"
+              placeholder={t.namePlaceholder}
               className="w-full h-12 px-4 rounded-xl border border-[#DCE4DF] bg-white focus:outline-none focus:border-[#00B050] focus:ring-1 focus:ring-[#00B050] transition-all text-[14px] text-[#18251E]"
             />
           </div>
@@ -111,43 +116,45 @@ export default function AboutEnquiryForm() {
           {/* Email */}
           <div>
             <label className="block text-[13px] font-medium text-[#18251E] mb-2">
-              Email*
+              {t.email}*
             </label>
             <input
               type="email"
+              dir="ltr"
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="Your email address"
-              className="w-full h-12 px-4 rounded-xl border border-[#DCE4DF] bg-white focus:outline-none focus:border-[#00B050] focus:ring-1 focus:ring-[#00B050] transition-all text-[14px] text-[#18251E]"
+              placeholder={t.emailPlaceholder}
+              className="w-full h-12 px-4 rounded-xl border border-[#DCE4DF] bg-white focus:outline-none focus:border-[#00B050] focus:ring-1 focus:ring-[#00B050] transition-all text-[14px] text-[#18251E] rtl:text-right"
             />
           </div>
 
           {/* Phone Number */}
           <div>
             <label className="block text-[13px] font-medium text-[#18251E] mb-2">
-              Phone Number
+              {t.phone}
             </label>
             <input
               type="tel"
+              dir="ltr"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              placeholder="Your contact number"
-              className="w-full h-12 px-4 rounded-xl border border-[#DCE4DF] bg-white focus:outline-none focus:border-[#00B050] focus:ring-1 focus:ring-[#00B050] transition-all text-[14px] text-[#18251E]"
+              placeholder={t.phonePlaceholder}
+              className="w-full h-12 px-4 rounded-xl border border-[#DCE4DF] bg-white focus:outline-none focus:border-[#00B050] focus:ring-1 focus:ring-[#00B050] transition-all text-[14px] text-[#18251E] rtl:text-right"
             />
           </div>
 
           {/* Submit Row */}
           <div className="flex items-center justify-between pt-2">
             <span className="text-[12px] text-[#78887F] font-normal">
-              * Required fields
+              {t.requiredFields}
             </span>
             <button
               type="submit"
               className="inline-flex items-center gap-2.5 px-8 py-3 rounded-full bg-[#00A859] hover:bg-[#008f4c] text-white font-medium text-[14px] transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] cursor-pointer group"
             >
-              <span>Submit</span>
-              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>{t.submit}</span>
+              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
             </button>
           </div>
         </form>

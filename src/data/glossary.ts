@@ -6,7 +6,15 @@
  * Inline text supports a small markdown subset:
  *   [label](href)  -> link (internal "/glossary/..." links stay in-app)
  *   **bold**
+ *
+ * English is the source of truth. Translations live in src/data/i18n/{es,ar}/glossary.ts
+ * and are read through getGlossaryTerms(locale) / getGlossaryTerm(slug, locale).
  */
+
+import type { Locale } from "@/i18n/config";
+import { localizeList } from "@/i18n/localize";
+import { glossaryTerms as glossaryTermsEs } from "./i18n/es/glossary";
+import { glossaryTerms as glossaryTermsAr } from "./i18n/ar/glossary";
 
 export type GlossaryBlock =
   | { type: "p"; text: string }
@@ -1101,8 +1109,22 @@ export const glossaryTerms: GlossaryTerm[] = [
   },
 ];
 
-/** Terms sorted A–Z (the order used on the glossary index). */
-export const sortedGlossaryTerms = [...glossaryTerms].sort((a, b) => a.title.localeCompare(b.title));
+/* ------------------------------------------------------------------ */
+/* Translations (see src/i18n/README.md)                              */
+/* ------------------------------------------------------------------ */
+
+/** All terms in the given language (untranslated terms stay in English), in English list order. */
+function localizedTerms(locale: Locale): GlossaryTerm[] {
+  return localizeList(locale, glossaryTerms, { es: glossaryTermsEs, ar: glossaryTermsAr }, "slug");
+}
+
+/** Terms sorted A–Z by their title in the given language (the order used on the glossary index). */
+export function getGlossaryTerms(locale: Locale = "en"): GlossaryTerm[] {
+  return localizedTerms(locale).sort((a, b) => a.title.localeCompare(b.title, locale));
+}
+
+/** Terms sorted A–Z (English). */
+export const sortedGlossaryTerms = getGlossaryTerms("en");
 
 /** Previous / next order, as linked on ecoklien.com term pages. */
 const TERM_CHAIN = [
@@ -1120,21 +1142,25 @@ const TERM_CHAIN = [
   "bod-biochemical-oxygen-demand",
 ];
 
-export function getGlossaryTerm(slug: string) {
-  return glossaryTerms.find((t) => t.slug === slug);
+export function getGlossaryTerm(slug: string, locale: Locale = "en") {
+  return localizedTerms(locale).find((t) => t.slug === slug);
 }
 
-export function getAdjacentTerms(slug: string) {
+export function getAdjacentTerms(slug: string, locale: Locale = "en") {
   const idx = TERM_CHAIN.indexOf(slug);
   return {
-    prev: idx > 0 ? getGlossaryTerm(TERM_CHAIN[idx - 1]) : undefined,
-    next: idx >= 0 && idx < TERM_CHAIN.length - 1 ? getGlossaryTerm(TERM_CHAIN[idx + 1]) : undefined,
+    prev: idx > 0 ? getGlossaryTerm(TERM_CHAIN[idx - 1], locale) : undefined,
+    next: idx >= 0 && idx < TERM_CHAIN.length - 1 ? getGlossaryTerm(TERM_CHAIN[idx + 1], locale) : undefined,
   };
 }
 
-export function getRelatedTerms(term: GlossaryTerm) {
-  return term.related.map(getGlossaryTerm).filter((t): t is GlossaryTerm => Boolean(t));
+export function getRelatedTerms(term: GlossaryTerm, locale: Locale = "en") {
+  return term.related
+    .map((slug) => getGlossaryTerm(slug, locale))
+    .filter((t): t is GlossaryTerm => Boolean(t));
 }
 
-export const termLetter = (term: GlossaryTerm) => term.title.charAt(0).toUpperCase();
+/** First letter of the title, without accents (so "Á" files under "A"). */
+export const termLetter = (term: GlossaryTerm) =>
+  term.title.charAt(0).normalize("NFD").replace(/\p{M}/gu, "").toUpperCase();
 

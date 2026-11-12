@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { LuX } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { galleryLightboxMessages } from "@/i18n/messages/gallery";
 
 interface PhotoLightboxModalProps {
   isOpen: boolean;
@@ -20,6 +22,8 @@ export default function PhotoLightboxModal({
   title,
   eyebrow,
 }: PhotoLightboxModalProps) {
+  const t = useMessages(galleryLightboxMessages);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -65,13 +69,13 @@ export default function PhotoLightboxModal({
                   </div>
                 )}
                 <div className="text-[13.5px] font-medium tracking-tight text-white/90">
-                  {title || "Gallery Preview"}
+                  {title || t.fallbackTitle}
                 </div>
               </div>
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                aria-label="Close image"
+                aria-label={t.close}
               >
                 <LuX className="w-5 h-5" />
               </button>
@@ -81,7 +85,7 @@ export default function PhotoLightboxModal({
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#050D0A]">
               <Image
                 src={imageSrc}
-                alt={title || "Gallery preview"}
+                alt={title || t.fallbackAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 80vw"
                 className="object-contain p-2"

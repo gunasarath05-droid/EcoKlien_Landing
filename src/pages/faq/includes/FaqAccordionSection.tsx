@@ -2,17 +2,23 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { faqCategories, FaqCategory } from "@/data/faq";
+import { getFaqCategories, FaqCategory } from "@/data/faq";
 import { LuArrowUpRight, LuPlus, LuMinus } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { faqMessages } from "@/i18n/messages/faq";
 
 interface FaqAccordionSectionProps {
   categories?: FaqCategory[];
 }
 
 export default function FaqAccordionSection({
-  categories = faqCategories,
+  categories: categoriesProp,
 }: FaqAccordionSectionProps) {
+  const { locale } = useLocale();
+  const { sidebar } = useMessages(faqMessages);
+  const categories = categoriesProp ?? getFaqCategories(locale);
+
   // Track open accordion items by unique key (catId-index)
   // Default first items of Category 0 and 1 open, matching screenshot
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({
@@ -50,7 +56,7 @@ export default function FaqAccordionSection({
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#5D6B62]">
-                  BROWSE BY TOPIC
+                  {sidebar.browseByTopic}
                 </span>
               </div>
 
@@ -62,7 +68,7 @@ export default function FaqAccordionSection({
                       key={cat.id}
                       type="button"
                       onClick={() => scrollToCategory(cat.id)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-[14px] transition-all text-left cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-[14px] transition-all text-start cursor-pointer ${
                         isActive
                           ? "bg-[#EAF5EE] text-[#00A859] font-medium border border-[#00A859]/30"
                           : "text-[#55645C] hover:text-[#0E291E] hover:bg-[#F6FAF7]"
@@ -81,18 +87,18 @@ export default function FaqAccordionSection({
             {/* Specific Question Prompt Card */}
             <div className="pt-6 border-t border-[#EAEFEA] space-y-4">
               <h3 className="text-lg font-semibold text-[#0E291E] leading-snug">
-                Your question is specific.<br />So is your facility.
+                {sidebar.promptTitleLines[0]}<br />{sidebar.promptTitleLines[1]}
               </h3>
               <p className="text-[13.5px] text-[#55645C] leading-relaxed font-normal">
-                For advice on a particular waste stream or operating requirement, speak with our technical team.
+                {sidebar.promptText}
               </p>
               <div className="pt-2">
                 <Link
-                  href="https://ecoklien.com/contact/"
+                  href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-[13.5px] font-medium transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
                 >
-                  <span>Contact Us</span>
-                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span>{sidebar.contactButton}</span>
+                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                 </Link>
               </div>
             </div>
@@ -137,7 +143,7 @@ export default function FaqAccordionSection({
                         <button
                           type="button"
                           onClick={() => toggleItem(itemKey)}
-                          className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer group gap-4"
+                          className="w-full flex items-center justify-between py-4 sm:py-5 text-start cursor-pointer group gap-4"
                         >
                           <span
                             className={`text-[15px] sm:text-[16px] transition-colors ${

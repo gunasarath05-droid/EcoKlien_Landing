@@ -1,14 +1,18 @@
 import { Metadata } from "next";
 import ContactPage from "@/pages/contact/ContactPage";
+import { getLocale } from "@/i18n/server";
+import { contactMessages } from "@/i18n/messages/contact";
 
-export const metadata: Metadata = {
-  title: "Contact - EcoKlien | Talk to Our Team or Become a Dealer",
-  description:
-    "Contact ECOKlien for hospital effluent and biomedical liquid waste treatment systems. Call, email, visit our Singapore office or apply to become a dealer.",
-  alternates: {
-    canonical: "https://ecoklien.com/contact/",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = contactMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: "https://ecoklien.com/contact/",
+    },
+  };
+}
 
 export default function Contact() {
   return (

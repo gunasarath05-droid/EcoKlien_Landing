@@ -1,11 +1,15 @@
 import { Metadata } from "next";
 import FaqPage from "@/pages/faq/FaqPage";
+import { getLocale } from "@/i18n/server";
+import { faqMessages } from "@/i18n/messages/faq";
 
-export const metadata: Metadata = {
-  title: "FAQ - EcoKlien | Useful Answers & Practical Guidance",
-  description:
-    "Useful answers on ECOKlien, its electrochemical treatment approach and practical questions around your facility.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = faqMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+  };
+}
 
 export default function FAQ() {
   return (
@@ -14,4 +18,3 @@ export default function FAQ() {
     </div>
   );
 }
-
