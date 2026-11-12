@@ -8,7 +8,9 @@ import { defineMessages } from "../messages";
 export const productMessages = defineMessages(
   {
     technology: {
+      eyebrow: "THE PRODUCT",
       headingLines: ["Meet ECOKlien's BML — One system.", "Multiple treatment stages."],
+      imageTag: "ECOKlien / Biomedical liquid waste treatment system",
     },
     flow: {
       backgroundAlt: "Fluid ripple treatment background",
@@ -36,7 +38,9 @@ export const productMessages = defineMessages(
   },
   {
     technology: {
+      eyebrow: "EL PRODUCTO",
       headingLines: ["Conozca el BML de ECOKlien: un sistema.", "Múltiples etapas de tratamiento."],
+      imageTag: "ECOKlien / Sistema de tratamiento de residuos líquidos biomédicos",
     },
     flow: {
       backgroundAlt: "Fondo de ondas de fluido para el tratamiento",
@@ -64,7 +68,9 @@ export const productMessages = defineMessages(
   },
   {
     technology: {
+      eyebrow: "المنتج",
       headingLines: ["تعرّف على نظام BML من ECOKlien — نظام واحد.", "مراحل معالجة متعددة."],
+      imageTag: "ECOKlien / نظام معالجة النفايات الطبية الحيوية السائلة",
     },
     flow: {
       backgroundAlt: "خلفية تموجات سائلة للمعالجة",

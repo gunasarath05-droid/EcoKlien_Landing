@@ -27,18 +27,18 @@ export default function ProductHeroSection({
           className="object-cover object-right lg:object-center"
         />
         {/* Dark Gradient Overlay for optimal text readability */}
-        <div className="absolute inset-0 w-[45%] bg-white/15 backdrop-blur-md pointer-events-none" />
+        <div className="absolute inset-0 w-full lg:w-[45%] bg-[#0e2a1e]/35 lg:bg-white/15 backdrop-blur-md pointer-events-none" />
       </div>
 
       {/* Main Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 w-full flex-1 flex flex-col justify-center">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl lg:ps-6">
           {/* Eyebrow Tag */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-2.5 mb-7 sm:mb-10"
+            className="flex items-center gap-2.5 mb-8 sm:mb-12 lg:mb-20"
           >
             <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
             <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-white/75">
@@ -51,7 +51,7 @@ export default function ProductHeroSection({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[34px] sm:text-[44px] lg:text-[50px] font-semibold text-white tracking-[-0.01em] leading-[1.08] sm:leading-[0.98] max-w-[460px] mb-5 sm:mb-6"
+            className="text-[34px] sm:text-[42px] lg:text-[46px] font-semibold text-white tracking-[-0.01em] leading-[1.05] max-w-[420px] mb-3 sm:mb-4"
           >
             {hero.title}
           </motion.h1>
@@ -61,7 +61,7 @@ export default function ProductHeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[17px] sm:text-[19px] font-normal text-white mb-6 sm:mb-8"
+            className="text-[16px] sm:text-[18px] font-medium text-white leading-snug max-w-[340px] mb-8 sm:mb-12"
           >
             {hero.subtitle}
           </motion.p>
@@ -71,7 +71,7 @@ export default function ProductHeroSection({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[14px] sm:text-[15px] text-white/90 leading-[1.6] max-w-[460px] font-normal mb-8 sm:mb-10"
+            className="text-[13.5px] sm:text-[14px] text-white/85 leading-[1.6] max-w-[400px] font-normal mb-8 sm:mb-12"
           >
             {hero.description}
           </motion.p>

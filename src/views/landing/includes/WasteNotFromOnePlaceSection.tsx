@@ -19,7 +19,7 @@ export default function WasteNotFromOnePlaceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5"
+            className="lg:col-span-4"
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-2">
@@ -30,12 +30,12 @@ export default function WasteNotFromOnePlaceSection() {
             </div>
 
             {/* Subtitle */}
-            <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[250px] my-6 font-normal">
+            <p className="text-[13.5px] sm:text-[14px] text-[#5d6762] leading-[1.55] max-w-[250px] mt-4 mb-8 font-normal">
               {t.subtitle}
             </p>
 
             {/* List of generation locations */}
-            <div className="space-y-5 sm:space-y-6">
+            <div className="space-y-3.5 sm:space-y-4">
               {sources.map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -48,7 +48,7 @@ export default function WasteNotFromOnePlaceSection() {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
-                  <span className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] block hover:text-[#00B050] transition-colors cursor-default">
+                  <span className="text-[16px] sm:text-[17px] font-medium text-[#0e2a1e] block hover:text-[#00B050] transition-colors cursor-default">
                     {item}
                   </span>
                 </motion.div>
@@ -62,13 +62,13 @@ export default function WasteNotFromOnePlaceSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 lg:pt-1"
+            className="lg:col-span-8 lg:pt-1"
           >
-            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-medium text-[#0f3d2a] leading-[1.05] tracking-[-0.005em] mb-6 sm:mb-8">
+            <h2 className="text-[26px] sm:text-[32px] lg:text-[34px] font-medium text-[#0f3d2a] leading-[1.1] tracking-[-0.005em] mb-6 sm:mb-8 max-w-[760px]">
               {t.title}
             </h2>
 
-            <div className="space-y-5 sm:space-y-6 text-[14px] sm:text-[15px] leading-[1.55] font-normal">
+            <div className="space-y-4 text-[13.5px] sm:text-[14px] leading-[1.6] font-normal max-w-[720px]">
               {t.paragraphs.map((paragraph, i) => (
                 <p key={i} className="text-[#5d6762]">
                   {paragraph}

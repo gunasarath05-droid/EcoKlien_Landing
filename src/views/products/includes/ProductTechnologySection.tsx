@@ -26,39 +26,43 @@ export default function ProductTechnologySection({
   const getStageIcon = (iconType: string) => {
     switch (iconType) {
       case "coagulation":
-        return <LuSparkles className="w-4 h-4 text-[#00A859]" />;
+        return <LuSparkles className="w-[18px] h-[18px]" />;
       case "disinfection":
-        return <LuShieldCheck className="w-4 h-4 text-[#00A859]" />;
+        return <LuShieldCheck className="w-[18px] h-[18px]" />;
       case "oxidation":
-        return <LuFlame className="w-4 h-4 text-[#00A859]" />;
+        return <LuFlame className="w-[18px] h-[18px]" />;
       case "residual":
-        return <LuCircleCheck className="w-4 h-4 text-[#00A859]" />;
+        return <LuCircleCheck className="w-[18px] h-[18px]" />;
       default:
-        return <LuSparkles className="w-4 h-4 text-[#00A859]" />;
+        return <LuSparkles className="w-[18px] h-[18px]" />;
     }
   };
 
   return (
     <section id="technology" className="py-16 md:py-20 lg:py-24 bg-[#F2F5F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* ========================================================= */}
           {/* LEFT COLUMN: TITLE + DESCRIPTION + MACHINE IMAGE          */}
           {/* ========================================================= */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
+          <div className="lg:col-span-7 flex flex-col justify-between">
             {/* Heading & Description */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-4 mb-8 sm:mb-10"
+              className="mb-6 sm:mb-8"
             >
-              <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-semibold text-[#0E291E] tracking-tight leading-[1.12]">
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
+                <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">{t.eyebrow}</span>
+              </div>
+              <h2 className="text-[28px] sm:text-[32px] lg:text-[34px] font-medium text-[#0E291E] tracking-[-0.01em] leading-[1.12]">
                 {t.headingLines[0]}<br />
                 {t.headingLines[1]}
               </h2>
-              <p className="text-[13.5px] sm:text-[14px] text-[#55645C] leading-relaxed max-w-xl font-normal">
+              <p className="mt-5 text-[13.5px] sm:text-[14px] text-[#55645C] leading-relaxed max-w-[540px] font-normal">
                 {technologySection.description}
               </p>
             </motion.div>
@@ -69,23 +73,26 @@ export default function ProductTechnologySection({
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[520px] aspect-[16/11] sm:aspect-[4/3] -ms-2 sm:-ms-4 mt-auto"
+              className="relative w-full max-w-[460px] aspect-square mt-auto lg:ms-4"
             >
               <Image
                 src={technologySection.image}
                 alt={technologySection.heading}
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-contain object-left-bottom rtl:object-right-bottom drop-shadow-md"
+                sizes="(max-width: 1024px) 100vw, 460px"
+                className="object-contain object-bottom drop-shadow-[0_24px_30px_rgba(14,42,30,0.12)]"
                 priority
               />
+              <span className="absolute bottom-4 start-0 sm:-start-4 z-10 px-3 py-1.5 rounded-full bg-white/95 shadow-sm text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.04em] text-[#2C3E35]">
+                {t.imageTag}
+              </span>
             </motion.div>
           </div>
 
           {/* ========================================================= */}
           {/* RIGHT COLUMN: CTA BUTTON AT TOP + 2x2 COMPACT CARDS GRID  */}
           {/* ========================================================= */}
-          <div className="lg:col-span-6 flex flex-col items-end">
+          <div className="lg:col-span-5 flex flex-col items-end">
             {/* View Configurations CTA Button aligned to the right */}
             {technologySection.ctaText && (
               <motion.div
@@ -106,7 +113,7 @@ export default function ProductTechnologySection({
             )}
 
             {/* 2x2 Compact Feature Cards Grid */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-start">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-stretch">
               {technologySection.stages.map((stage, idx) => (
                 <motion.div
                   key={stage.id}
@@ -118,15 +125,15 @@ export default function ProductTechnologySection({
                     duration: 0.45,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="p-6 sm:p-7 rounded-[22px] bg-white border border-[#E3ECE6] hover:border-[#00A859]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-start"
+                  className="h-full p-6 rounded-[14px] bg-white border border-transparent hover:border-[#00A859]/30 hover:shadow-sm transition-all duration-300 flex flex-col justify-start"
                 >
                   {/* Small Rounded Icon Badge */}
-                  <div className="w-9 h-9 rounded-xl bg-[#E8F6EE] flex items-center justify-center mb-4 text-[#00A859]">
+                  <div className="mb-4 text-[#123D30]">
                     {getStageIcon(stage.iconType)}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[17px] sm:text-[18px] font-semibold text-[#0E291E] tracking-tight mb-2.5">
+                  <h3 className="text-[16px] sm:text-[17px] font-medium text-[#0E291E] tracking-tight mb-3">
                     {stage.title}
                   </h3>
 
