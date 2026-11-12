@@ -19,6 +19,7 @@ export {
   FaqSection,
 };
 
+/** The /home page (the site root "/" renders the landing page). */
 export default function HomePage() {
   return (
     <main className="flex-1 w-full">
@@ -28,7 +29,7 @@ export default function HomePage() {
       <SourcesSection />
       <CloserToCareSection />
       <TechnologySection />
-      <ApplicationsSection />
+      <ApplicationsSection variant="home" />
       <FaqSection />
     </main>
   );

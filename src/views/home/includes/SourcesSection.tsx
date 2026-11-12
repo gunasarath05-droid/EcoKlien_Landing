@@ -2,9 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { images } from "@/data/images";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { homeMessages, wasteStreamMessages } from "@/i18n/messages/home";
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function SourcesSection() {
   const { sources: t } = useMessages(homeMessages);
@@ -181,69 +184,69 @@ export default function SourcesSection() {
   ];
 
   return (
-    <section id="sources" className="py-24 md:py-32 bg-white overflow-visible">
+    <section id="sources" className="py-16 md:py-24 bg-white overflow-hidden lg:overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Outer wrapper: provides room on the left for the splash image to overflow outside the card */}
-        <div className="relative ps-0 lg:ps-28 xl:ps-36">
-          {/* Splash Image: positioned so its left side sits outside the box on the white background */}
-          <div className="lg:absolute lg:-start-28 xl:-start-36 lg:top-1/2 lg:-translate-y-1/2 z-20 flex items-center justify-center mb-8 lg:mb-0">
-            <div className="relative w-64 sm:w-72 md:w-80 lg:w-[350px] xl:w-[380px] aspect-square">
-              {/* Soft subtle green ground reflection under the splash */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-[#38C978]/25 rounded-full blur-2xl pointer-events-none" />
-              <Image
-                src={images.source}
-                alt={t.splashAlt}
-                fill
-                sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 380px"
-                priority
-                className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
-              />
+        <div className="relative lg:ps-[150px] xl:ps-[180px]">
+          {/* Liquid splash: sits half outside the panel, overlapping its start edge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease }}
+            className="relative mx-auto -mb-16 sm:-mb-20 lg:mb-0 lg:mx-0 z-20 w-56 sm:w-64 lg:absolute lg:start-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[300px] xl:w-[340px] aspect-square pointer-events-none"
+          >
+            <Image
+              src={images.source}
+              alt={t.splashAlt}
+              fill
+              sizes="(max-width: 1024px) 256px, 340px"
+              className="object-contain drop-shadow-[0_24px_30px_rgba(60,10,10,0.18)]"
+            />
+          </motion.div>
+
+          {/* Sage panel */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+            className="relative rounded-[20px] bg-[#eef1ec] px-6 pt-20 pb-8 sm:px-10 sm:pt-24 sm:pb-10 lg:py-12 lg:pe-12 lg:ps-[170px] xl:ps-[190px]"
+          >
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
+              <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">{t.eyebrow}</span>
             </div>
-          </div>
 
-          {/* Light-green rounded card: starts behind the splash and extends to the right */}
-          <div className="relative bg-[#EEF2EB] rounded-[32px] sm:rounded-[36px] p-8 sm:p-12 lg:p-14 lg:ps-56 xl:ps-64 border border-[#D7DED5]/50 shadow-sm">
-            <div className="space-y-8">
-              {/* Tag: square dot + WHAT IT TREATS */}
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-[1.5px] bg-[#123D30] shrink-0" />
-                <span className="text-xs font-mono font-medium tracking-[0.16em] uppercase text-[#839088]">
-                  {t.eyebrow}
-                </span>
-              </div>
-
-              {/* Title & Description side by side */}
-              <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-                <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#123D30] tracking-tight leading-[1.12]">
-                  {t.titleLines.map((line, i) => (
-                    <React.Fragment key={i}>
-                      {i > 0 && <br />}
-                      {line}
-                    </React.Fragment>
-                  ))}
-                </h2>
-
-                <p className="text-sm sm:text-[15px] text-[#647069] leading-relaxed max-w-sm lg:pb-1">
-                  {t.description}
-                </p>
-              </div>
-
-              {/* 3x2 Grid of White Source Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
-                {sources.map((src, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between px-6 py-4.5 rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md transition-all duration-200"
-                  >
-                    <div className="shrink-0">{src.icon}</div>
-                    <span className="text-sm font-medium text-[#123D30] text-end">
-                      {src.title}
-                    </span>
-                  </div>
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 lg:gap-10">
+              <h2 className="text-[26px] sm:text-[32px] lg:text-[36px] font-normal text-[#0e2a1e] tracking-[-0.01em] leading-[1.1]">
+                {t.titleLines.map((line, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <br />}
+                    {line}
+                  </React.Fragment>
                 ))}
-              </div>
+              </h2>
+              <p className="text-[13px] sm:text-[14px] text-[#5d6762] leading-[1.6] max-w-[340px] lg:pb-1">
+                {t.description}
+              </p>
             </div>
-          </div>
+
+            <ul className="mt-8 lg:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {sources.map((src, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.45, delay: 0.15 + idx * 0.05, ease }}
+                  className="flex items-center justify-between gap-4 rounded-full bg-white px-5 py-3 border border-[#e3e7e5] hover:border-[#00B050]/40 transition-colors"
+                >
+                  <span className="shrink-0">{src.icon}</span>
+                  <span className="text-[13px] sm:text-[14px] text-[#0e2a1e] text-end">{src.title}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>

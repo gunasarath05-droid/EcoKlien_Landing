@@ -7,9 +7,10 @@ import { motion } from "motion/react";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { homeMessages } from "@/i18n/messages/home";
 
-export default function ApplicationsSection() {
-  const { applications: t } = useMessages(homeMessages);
-  const facilities = t.facilities;
+/** `variant="home"` shows the six-item facility list used on /home; the landing page keeps the full list. */
+export default function ApplicationsSection({ variant = "landing" }: { variant?: "landing" | "home" }) {
+  const { applications: t, homeFacilities } = useMessages(homeMessages);
+  const facilities = variant === "home" ? homeFacilities : t.facilities;
 
   return (
     <section id="applications" className="py-16 md:py-24 max-w-7xl mx-auto bg-white border-t border-[#e3e7e5]">
@@ -109,10 +110,10 @@ export default function ApplicationsSection() {
           </motion.div>
         </div>
 
-        {/* 9 Category Items Grid with dividers */}
+        {/* Facility items grid with dividers */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 lg:gap-x-10">
           {facilities.map((fac, idx) => {
-            const isLastRow = idx >= 6;
+            const isLastRow = idx >= facilities.length - 3;
             const isLastItemMobile = idx === facilities.length - 1;
             return (
               <motion.div

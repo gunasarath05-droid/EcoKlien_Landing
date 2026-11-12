@@ -1,50 +1,52 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { homeMessages } from "@/i18n/messages/home";
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export default function ClinicalApproachSection() {
   const { clinical: t, purposeBuilt } = useMessages(homeMessages);
-  const points = t.points;
 
   return (
-    <section id="approach" className="py-20 md:py-28 bg-white border-b border-[#D7DED5]/80">
+    <section id="approach" className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Proposition & Key Pillars */}
-          <div className="lg:col-span-5 space-y-12">
-            {/* Eyebrow and Subtitle */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-[1.5px] bg-[#00B050] shrink-0" />
-                <span className="text-xs font-mono font-medium tracking-[0.14em] uppercase text-[#839088]">
-                  {t.eyebrow}
-                </span>
-              </div>
-              <p className="text-[15px] sm:text-base text-[#647069] leading-relaxed max-w-sm">
-                {purposeBuilt}
-              </p>
+        <div className="py-16 md:py-24 border-b border-[#e3e7e5] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left: proposition */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease }}
+            className="lg:col-span-4"
+          >
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
+              <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">{t.eyebrow}</span>
             </div>
+            <p className="text-[14px] text-[#5d6762] leading-[1.6] max-w-[280px]">{purposeBuilt}</p>
 
-            {/* Pillar Points without boxes */}
-            <div className="space-y-8 sm:space-y-10">
-              {points.map((item, idx) => (
-                <div key={idx} className="space-y-1">
-                  <h3 className="text-xl sm:text-[22px] font-semibold text-[#123D30] tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm sm:text-[15px] text-[#647069]">
-                    {item.description}
-                  </p>
+            <div className="mt-12 lg:mt-16 space-y-7">
+              {t.points.map((item, idx) => (
+                <div key={idx}>
+                  <h3 className="text-[16px] sm:text-[17px] font-normal text-[#0e2a1e] leading-snug">{item.title}</h3>
+                  <p className="text-[13px] sm:text-[14px] text-[#5d6762] leading-[1.55] mt-1">{item.description}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Narrative / Approach */}
-          <div className="lg:col-span-7 space-y-7 lg:pt-1">
-            <h2 className="text-4xl sm:text-[44px] lg:text-[50px] font-bold text-[#123D30] tracking-tight leading-[1.12]">
+          {/* Right: narrative */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.12, ease }}
+            className="lg:col-span-8 lg:ps-6"
+          >
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-normal text-[#0e2a1e] tracking-[-0.01em] leading-[1.1]">
               {t.titleLines.map((line, i) => (
                 <React.Fragment key={i}>
                   {i > 0 && <br />}
@@ -53,19 +55,15 @@ export default function ClinicalApproachSection() {
               ))}
             </h2>
 
-            <div className="space-y-5 text-[15px] sm:text-base text-[#647069] leading-relaxed pt-2">
+            <div className="mt-8 space-y-5 text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.65] max-w-[640px]">
               <p>{t.paragraphs[0]}</p>
-
-              <p className="font-semibold text-[#123D30]">{t.paragraphs[1]}</p>
-
+              <p className="font-medium text-[#0e2a1e]">{t.paragraphs[1]}</p>
               <p>{t.paragraphs[2]}</p>
-
               <p>{t.paragraphs[3]}</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

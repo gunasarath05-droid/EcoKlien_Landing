@@ -37,7 +37,7 @@ export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
 
   const navLinks: NavItem[] = [
-    { id: "home", title: t.home, href: "/" },
+    { id: "home", title: t.home, href: "/home" },
     { id: "about", title: t.about, href: "/about" },
     {
       id: "products",

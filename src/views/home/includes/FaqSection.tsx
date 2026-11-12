@@ -1,82 +1,95 @@
 "use client";
 
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { homeMessages } from "@/i18n/messages/home";
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   const { faq: t } = useMessages(homeMessages);
-  const faqs = t.items;
-
-  const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white border-t border-[#D7DED5]">
+    <section id="faq" className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Heading & Intro */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAF7F0] border border-[#D7DED5]">
-              <span className="w-2 h-2 rounded-full bg-[#00B050]" />
-              <span className="text-xs font-mono font-medium uppercase text-[#123D30]">
-                {t.eyebrow}
-              </span>
+        <div className="py-16 md:py-24 border-t border-[#e3e7e5] grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease }}
+            className="lg:col-span-4"
+          >
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
+              <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">{t.eyebrow}</span>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#123D30] tracking-tight leading-[1.15]">
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[36px] font-normal text-[#0e2a1e] tracking-[-0.01em] leading-[1.1]">
               {t.title}
             </h2>
+            <p className="mt-5 text-[14px] text-[#5d6762] leading-[1.6] max-w-[300px]">{t.intro}</p>
+          </motion.div>
 
-            <p className="text-base text-[#647069] leading-relaxed">
-              {t.intro}
-            </p>
-          </div>
-
-          {/* Right Column: Accordion */}
-          <div className="lg:col-span-7 space-y-3.5">
-            {faqs.map((faq, index) => {
+          {/* Accordion */}
+          <motion.ul
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.12, ease }}
+            className="lg:col-span-8"
+          >
+            {t.items.map((faq, index) => {
               const isOpen = openIndex === index;
+              const panelId = `home-faq-${index}`;
               return (
-                <div
+                <li
                   key={index}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isOpen
-                      ? "bg-[#F0F3ED] border-[#00B050]/40 shadow-sm"
-                      : "bg-white border-[#D7DED5] hover:border-[#00B050]/30"
+                  className={`transition-colors duration-300 ${
+                    isOpen ? "rounded-[14px] bg-[#eef1ec] mb-2" : "border-b border-[#e3e7e5]"
                   }`}
                 >
                   <button
                     type="button"
-                    onClick={() => toggleFaq(index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-start gap-4"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className={`w-full flex items-center justify-between gap-6 text-start py-5 ${isOpen ? "px-5 sm:px-6" : "px-1"}`}
                   >
-                    <span className="text-base font-semibold text-[#123D30]">
+                    <span className={`text-[14px] sm:text-[15px] text-[#0e2a1e] ${isOpen ? "font-medium" : "font-normal"}`}>
                       {faq.question}
                     </span>
                     <span
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 font-mono text-sm transition-transform duration-200 ${
-                        isOpen
-                          ? "bg-[#123D30] text-white rotate-45"
-                          : "bg-[#F0F3ED] text-[#123D30]"
+                      aria-hidden
+                      className={`shrink-0 text-[18px] leading-none font-light text-[#5d6762] transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
                       }`}
                     >
                       +
                     </span>
                   </button>
-
-                  {isOpen && (
-                    <div className="px-6 pb-6 pt-1 text-sm text-[#647069] leading-relaxed border-t border-[#D7DED5]/60">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={panelId}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-5 sm:px-6 pb-6 text-[13px] sm:text-[14px] text-[#5d6762] leading-[1.65] max-w-[620px]">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
               );
             })}
-          </div>
+          </motion.ul>
         </div>
       </div>
     </section>
