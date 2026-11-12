@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogPost, blogPosts } from "@/data/blog";
 import { LuArrowUpRight } from "react-icons/lu";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { blogMessages } from "@/i18n/messages/blog";
 
 interface ArticleRelatedSectionProps {
   currentSlug?: string;
@@ -15,6 +17,7 @@ export default function ArticleRelatedSection({
   currentSlug = "why-treatment-belongs-closer-to-the-source",
   posts = blogPosts,
 }: ArticleRelatedSectionProps) {
+  const t = useMessages(blogMessages);
   // Show 3 posts excluding current
   const related = posts.filter((p) => p.slug !== currentSlug).slice(0, 3);
 
@@ -24,10 +27,10 @@ export default function ArticleRelatedSection({
         {/* Section Header */}
         <div className="flex items-end justify-between gap-4 pb-6 border-b border-[#EAEFEA] mb-8">
           <h2 className="text-[26px] sm:text-[30px] font-semibold text-[#0E291E] tracking-tight">
-            Continue the conversation.
+            {t.related.title}
           </h2>
           <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479]">
-            {String(related.length).padStart(2, "0")} INSIGHTS
+            {t.related.insightCount(String(related.length).padStart(2, "0"))}
           </div>
         </div>
 
@@ -78,8 +81,8 @@ export default function ArticleRelatedSection({
                   href={`/blog/${post.slug}`}
                   className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#18251E] group-hover:text-[#00A859] transition-colors"
                 >
-                  <span>Read article</span>
-                  <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span>{t.readArticle}</span>
+                  <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </article>

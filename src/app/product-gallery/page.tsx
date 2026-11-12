@@ -1,11 +1,15 @@
 import { Metadata } from "next";
 import ProductGalleryPage from "@/views/product-gallery/ProductGalleryPage";
+import { getLocale } from "@/i18n/server";
+import { productGalleryMessages } from "@/i18n/messages/gallery";
 
-export const metadata: Metadata = {
-  title: "Product Gallery - EcoKlien | System Configurations & Models",
-  description:
-    "Explore ECOKlien's electrochemical systems, from point-of-source biomedical liquid waste treatment to hospital effluent treatment.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = productGalleryMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+  };
+}
 
 export default function ProductGallery() {
   return (
@@ -14,4 +18,3 @@ export default function ProductGallery() {
     </div>
   );
 }
-

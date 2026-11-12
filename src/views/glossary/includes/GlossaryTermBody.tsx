@@ -4,6 +4,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { LuArrowLeft, LuArrowRight, LuArrowUpRight } from "react-icons/lu";
 import { GlossaryBlock, GlossaryTerm, getAdjacentTerms, sortedGlossaryTerms } from "@/data/glossary";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 import GlossaryRichText from "./GlossaryRichText";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -100,7 +102,7 @@ function Block({ block }: { block: GlossaryBlock }) {
               className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#00A859] hover:text-[#0E291E] transition-colors group"
             >
               <span>{block.label}</span>
-              <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
             </Link>
           </div>
         </div>
@@ -133,16 +135,18 @@ export default function GlossaryTermBody({
 }: {
   term?: GlossaryTerm;
 }) {
-  const { prev, next } = getAdjacentTerms(term?.slug || "");
+  const { locale } = useLocale();
+  const { term: t } = useMessages(glossaryMessages);
+  const { prev, next } = getAdjacentTerms(term?.slug || "", locale);
 
   const sections = useMemo(() => {
     if (!term) return [];
     const list = term.sections.map((s) => ({ id: s.id, title: s.title, navTitle: s.navTitle ?? s.title }));
     if (term.sources.length) {
-      list.push({ id: "sources", title: "Sources & further reading", navTitle: "Sources" });
+      list.push({ id: "sources", title: t.sourcesTitle, navTitle: t.sourcesNav });
     }
     return list;
-  }, [term]);
+  }, [term, t]);
 
   const [active, setActive] = useState(sections[0]?.id);
 
@@ -191,7 +195,7 @@ export default function GlossaryTermBody({
           {/* LEFT: sticky guide nav + contact card */}
           <aside className="hidden lg:block lg:col-span-3 lg:sticky lg:top-28 space-y-8">
             <div className="space-y-4">
-              <div className={MONO_LABEL_CLASS}>IN THIS GUIDE</div>
+              <div className={MONO_LABEL_CLASS}>{t.inThisGuide}</div>
               <nav className="space-y-3">
                 {sections.map((s, i) => {
                   const isActive = active === s.id;
@@ -201,7 +205,7 @@ export default function GlossaryTermBody({
                       type="button"
                       onClick={() => scrollTo(s.id)}
                       aria-current={isActive ? "true" : undefined}
-                      className={`flex items-start gap-2.5 text-left text-[13.5px] leading-snug transition-colors cursor-pointer w-full ${
+                      className={`flex items-start gap-2.5 text-start text-[13.5px] leading-snug transition-colors cursor-pointer w-full ${
                         isActive ? "text-[#00A859] font-medium" : "text-[#55645C] hover:text-[#0E291E]"
                       }`}
                     >
@@ -215,20 +219,20 @@ export default function GlossaryTermBody({
 
             <div className="pt-8 border-t border-[#EAEFEA] space-y-3.5">
               <h3 className="text-[20px] font-semibold text-[#0E291E] leading-tight tracking-tight">
-                Clarity for your
+                {t.sidebarTitleLines[0]}
                 <br />
-                facility.
+                {t.sidebarTitleLines[1]}
               </h3>
               <p className="text-[13px] text-[#55645C] leading-relaxed max-w-[240px]">
-                Have a question about your waste stream or treatment requirements? Speak with our team.
+                {t.sidebarText}
               </p>
               <div className="pt-1">
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-[13px] font-medium transition-all shadow-xs group"
                 >
-                  <span>Contact Us</span>
-                  <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span>{t.contactUs}</span>
+                  <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                 </Link>
               </div>
             </div>
@@ -239,7 +243,9 @@ export default function GlossaryTermBody({
             {term.sections.map((section, i) => (
               <div key={section.id} id={section.id} className="scroll-mt-28 space-y-5">
                 <div className="space-y-2">
-                  <div className={MONO_LABEL_CLASS}>{pad(i + 1)} / TERM GUIDE</div>
+                  <div className={MONO_LABEL_CLASS}>
+                    {pad(i + 1)} / {t.termGuide}
+                  </div>
                   <h2 className={H2_CLASS}>{section.title}</h2>
                 </div>
                 {section.blocks.map((block, j) => (
@@ -251,8 +257,10 @@ export default function GlossaryTermBody({
             {term.sources.length > 0 && (
               <div id="sources" className="scroll-mt-28 space-y-5">
                 <div className="space-y-2">
-                  <div className={MONO_LABEL_CLASS}>{pad(term.sections.length + 1)} / TERM GUIDE</div>
-                  <h2 className={H2_CLASS}>Sources &amp; further reading</h2>
+                  <div className={MONO_LABEL_CLASS}>
+                    {pad(term.sections.length + 1)} / {t.termGuide}
+                  </div>
+                  <h2 className={H2_CLASS}>{t.sourcesTitle}</h2>
                 </div>
                 <ul className="space-y-3">
                   {term.sources.map((s) => (
@@ -265,7 +273,7 @@ export default function GlossaryTermBody({
                           className="inline-flex items-center gap-1.5 text-[13.5px] text-[#55645C] hover:text-[#00A859] transition-colors"
                         >
                           <span>{s.label}</span>
-                          <LuArrowUpRight className="w-3.5 h-3.5 shrink-0" />
+                          <LuArrowUpRight className="w-3.5 h-3.5 shrink-0 rtl:-scale-x-100" />
                         </a>
                       ) : (
                         <span className="text-[13.5px] text-[#55645C]">{s.label}</span>
@@ -274,8 +282,7 @@ export default function GlossaryTermBody({
                   ))}
                 </ul>
                 <p className="text-[12.5px] text-[#738479] leading-relaxed max-w-2xl pt-2">
-                  This glossary is for general awareness. Treatment, discharge and reuse must meet applicable local
-                  regulations and facility-specific requirements.
+                  {t.disclaimer}
                 </p>
               </div>
             )}
@@ -284,9 +291,9 @@ export default function GlossaryTermBody({
             <div className="pt-6 flex items-center justify-between gap-6">
               {prev ? (
                 <Link href={`/glossary/${prev.slug}`} className="group space-y-1.5">
-                  <span className={`block ${MONO_LABEL_CLASS}`}>PREVIOUS TERM</span>
+                  <span className={`block ${MONO_LABEL_CLASS}`}>{t.previousTerm}</span>
                   <span className="flex items-center gap-1.5 text-[15px] sm:text-[16px] font-semibold text-[#0E291E] group-hover:text-[#00A859] transition-colors">
-                    <LuArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                    <LuArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:translate-x-0.5" />
                     <span>{prev.title}</span>
                   </span>
                 </Link>
@@ -294,11 +301,11 @@ export default function GlossaryTermBody({
                 <span />
               )}
               {next && (
-                <Link href={`/glossary/${next.slug}`} className="group space-y-1.5 text-right">
-                  <span className={`block ${MONO_LABEL_CLASS}`}>NEXT TERM</span>
+                <Link href={`/glossary/${next.slug}`} className="group space-y-1.5 text-end">
+                  <span className={`block ${MONO_LABEL_CLASS}`}>{t.nextTerm}</span>
                   <span className="flex items-center justify-end gap-1.5 text-[15px] sm:text-[16px] font-semibold text-[#0E291E] group-hover:text-[#00A859] transition-colors">
                     <span>{next.title}</span>
-                    <LuArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    <LuArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                   </span>
                 </Link>
               )}

@@ -2,14 +2,12 @@
 
 import React from "react";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { landingMessages } from "@/i18n/messages/landing";
 
 export default function WasteNotFromOnePlaceSection() {
-  const sources = [
-    "Laboratories",
-    "Diagnostic Areas",
-    "Procedure Rooms",
-    "Clinical Facilities",
-  ];
+  const { wasteSources: t } = useMessages(landingMessages);
+  const sources = t.places;
 
   return (
     <section className="py-16 md:py-24 max-w-7xl mx-auto bg-white border-t border-[#e3e7e5]">
@@ -27,13 +25,13 @@ export default function WasteNotFromOnePlaceSection() {
             <div className="flex items-center gap-2.5 mb-2">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
               <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
-                The problem
+                {t.eyebrow}
               </span>
             </div>
 
             {/* Subtitle */}
             <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[250px] my-6 font-normal">
-              Purpose-built for the places where care and science happen.
+              {t.subtitle}
             </p>
 
             {/* List of generation locations */}
@@ -67,20 +65,18 @@ export default function WasteNotFromOnePlaceSection() {
             className="lg:col-span-7 lg:pt-1"
           >
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-medium text-[#0f3d2a] leading-[1.05] tracking-[-0.005em] mb-6 sm:mb-8">
-              Biomedical liquid waste doesn&apos;t come from one place.
+              {t.title}
             </h2>
 
             <div className="space-y-5 sm:space-y-6 text-[14px] sm:text-[15px] leading-[1.55] font-normal">
-              <p className="text-[#5d6762]">
-                Hospitals and healthcare facilities generate liquid waste across laboratories, diagnostic areas, operation theatres, dialysis centres and other clinical environments. These streams can contain biological contaminants, organic pollutants and other substances that require appropriate treatment before discharge or reuse.
-              </p>
-
-              <p className="text-[#5d6762]">
-                The challenge isn&apos;t simply collecting the waste.
-              </p>
+              {t.paragraphs.map((paragraph, i) => (
+                <p key={i} className="text-[#5d6762]">
+                  {paragraph}
+                </p>
+              ))}
 
               <p className="font-semibold text-[#0e2a1e] pt-2">
-                It&apos;s treating it safely, effectively and practically.
+                {t.conclusion}
               </p>
             </div>
           </motion.div>

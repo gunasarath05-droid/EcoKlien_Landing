@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { homeMessages } from "@/i18n/messages/home";
 
 export default function CloserToCareSection() {
+  const { closerToCare: t, discussFacility } = useMessages(homeMessages);
   return (
     <section
       id="architecture"
@@ -13,7 +18,7 @@ export default function CloserToCareSection() {
       <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none">
         <Image
           src={images.treatment}
-          alt="Treatment process backdrop"
+          alt={t.backdropAlt}
           fill
           sizes="100vw"
           className="object-cover object-center scale-105"
@@ -32,19 +37,23 @@ export default function CloserToCareSection() {
             <div className="flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-[1.5px] bg-[#00B050] shrink-0" />
               <span className="text-xs font-mono font-medium uppercase tracking-[0.16em] text-[#839088]">
-                TREATMENT AT THE SOURCE
+                {t.eyebrow}
               </span>
             </div>
 
             {/* Main Headline */}
             <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-white tracking-tight leading-[1.08]">
-              Bring treatment closer<br />
-              to care.
+              {t.titleLines.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </h2>
 
             {/* Description */}
             <p className="text-[15px] sm:text-base text-[#D7DED5]/90 leading-relaxed max-w-lg font-normal pt-1">
-              ECOKlien enables on-site treatment closer to waste generation. Its compact design offers a practical approach that reduces dependence on large, complex treatment infrastructure.
+              {t.description}
             </p>
 
             {/* Action Button: Discuss your facility with diagonal arrow ↗ */}
@@ -53,9 +62,9 @@ export default function CloserToCareSection() {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[#00B050] hover:bg-[#009933] text-white font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl group"
               >
-                <span>Discuss your facility</span>
+                <span>{discussFacility}</span>
                 <svg
-                  className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -77,7 +86,7 @@ export default function CloserToCareSection() {
               {/* Header row: WITHIN YOUR FACILITY + Hospital icon */}
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-medium tracking-[0.16em] uppercase text-[#839088]">
-                  WITHIN YOUR FACILITY
+                  {t.withinFacility}
                 </span>
                 <svg
                   className="w-5 h-5 text-[#38C978]"
@@ -113,10 +122,10 @@ export default function CloserToCareSection() {
                   </svg>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                      Healthcare
+                      {t.healthcareTitle}
                     </h3>
                     <p className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#839088] mt-1">
-                      CARE &amp; CLINICAL ACTIVITIES
+                      {t.healthcareText}
                     </p>
                   </div>
                 </div>
@@ -138,10 +147,10 @@ export default function CloserToCareSection() {
                   </svg>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                      Laboratory
+                      {t.laboratoryTitle}
                     </h3>
                     <p className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#839088] mt-1">
-                      TESTING &amp; RESEARCH
+                      {t.laboratoryText}
                     </p>
                   </div>
                 </div>
@@ -183,17 +192,17 @@ export default function CloserToCareSection() {
                 </svg>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                    ECOKlien on-site treatment
+                    {t.onSiteTitle}
                   </h3>
                   <p className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-[#839088] mt-1">
-                    TREATMENT &amp; DISINFECTION / CLOSER TO GENERATION
+                    {t.onSiteText}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Note */}
               <p className="text-xs text-[#839088] leading-relaxed pt-1">
-                Conceptual placement. The appropriate configuration is a facility-specific discussion.
+                {t.note}
               </p>
             </div>
           </div>

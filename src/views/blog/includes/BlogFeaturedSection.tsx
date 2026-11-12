@@ -6,6 +6,8 @@ import Link from "next/link";
 import { BlogPost, blogPosts } from "@/data/blog";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { blogMessages } from "@/i18n/messages/blog";
 
 interface BlogFeaturedSectionProps {
   post?: BlogPost;
@@ -14,6 +16,7 @@ interface BlogFeaturedSectionProps {
 export default function BlogFeaturedSection({
   post = blogPosts[0],
 }: BlogFeaturedSectionProps) {
+  const t = useMessages(blogMessages);
   if (!post) return null;
 
   return (
@@ -45,13 +48,13 @@ export default function BlogFeaturedSection({
           </div>
 
           {/* Right: Featured Info */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-5 lg:pr-4">
+          <div className="lg:col-span-5 flex flex-col justify-center space-y-5 lg:pe-4">
             {/* Tag & Meta */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#00A859] font-medium">
-                  FEATURED INSIGHT
+                  {t.featured.eyebrow}
                 </span>
               </div>
 
@@ -78,8 +81,8 @@ export default function BlogFeaturedSection({
                 href={`/blog/${post.slug}`}
                 className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#00924c] text-white font-medium text-[13.5px] transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] group"
               >
-                <span>Read article</span>
-                <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span>{t.readArticle}</span>
+                <LuArrowUpRight className="w-4 h-4 rtl:-scale-x-100 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </div>

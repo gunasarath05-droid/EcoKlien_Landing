@@ -7,6 +7,8 @@ import { ProductGalleryItem, productGalleryItems } from "@/data/gallery";
 import { LuArrowUpRight, LuSearch, LuX, LuMaximize2 } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
 import PhotoLightboxModal from "@/views/photo-gallery/includes/PhotoLightboxModal";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { productGalleryMessages, formatCount } from "@/i18n/messages/gallery";
 
 interface ProductGalleryGridProps {
   items?: ProductGalleryItem[];
@@ -15,6 +17,7 @@ interface ProductGalleryGridProps {
 export default function ProductGalleryGrid({
   items = productGalleryItems,
 }: ProductGalleryGridProps) {
+  const { grid: t } = useMessages(productGalleryMessages);
   const [selectedProductId, setSelectedProductId] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -98,7 +101,7 @@ export default function ProductGalleryGrid({
                   : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
               }`}
             >
-              All products
+              {t.allProducts}
             </button>
 
             {items.map((prod) => {
@@ -123,19 +126,19 @@ export default function ProductGalleryGrid({
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 lg:gap-6 justify-between lg:justify-end">
             {/* Search Input Field */}
             <div className="relative min-w-[210px] sm:min-w-[240px]">
-              <LuSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
+              <LuSearch className="absolute start-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#738479]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search views, angles..."
-                className="w-full pl-9 pr-8 py-2 rounded-full bg-[#F5F7F5] border border-[#E3ECE6] text-[12.5px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:bg-white transition-all"
+                placeholder={t.searchPlaceholder}
+                className="w-full ps-9 pe-8 py-2 rounded-full bg-[#F5F7F5] border border-[#E3ECE6] text-[12.5px] text-[#18251E] placeholder-[#738479] focus:outline-none focus:border-[#00A859] focus:bg-white transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#738479] hover:text-[#18251E] cursor-pointer"
-                  aria-label="Clear search"
+                  className="absolute end-3 top-1/2 -translate-y-1/2 text-[#738479] hover:text-[#18251E] cursor-pointer"
+                  aria-label={t.clearSearch}
                 >
                   <LuX className="w-3.5 h-3.5" />
                 </button>
@@ -143,10 +146,10 @@ export default function ProductGalleryGrid({
             </div>
 
             {/* Counts Badge */}
-            <div className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#738479] text-right shrink-0">
-              <div>{String(totalViews).padStart(2, "0")} SYSTEM VIEWS</div>
+            <div className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#738479] text-end shrink-0">
+              <div>{formatCount(t.systemViewsCount, totalViews)}</div>
               <div className="text-[10px] text-[#8F9E94]">
-                {String(filteredProducts.length).padStart(2, "0")} CONFIGURATIONS
+                {formatCount(t.configurationsCount, filteredProducts.length)}
               </div>
             </div>
           </div>
@@ -181,14 +184,14 @@ export default function ProductGalleryGrid({
                   {/* Actions / Metadata */}
                   <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-2 shrink-0 pt-2 md:pt-0">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-[#738479]">
-                      {String(product.views.length).padStart(2, "0")} SYSTEM VIEWS
+                      {formatCount(t.systemViewsCount, product.views.length)}
                     </span>
                     <Link
                       href={product.link}
                       className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0E291E] hover:text-[#00A859] transition-colors group cursor-pointer"
                     >
-                      <span>View system specs</span>
-                      <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <span>{t.viewSpecs}</span>
+                      <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                     </Link>
                   </div>
                 </div>
@@ -228,13 +231,13 @@ export default function ProductGalleryGrid({
                           />
                           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                          {/* Angle View Badge in Top Left */}
-                          <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9.5px] font-mono uppercase tracking-wider text-[#18251E] font-medium border border-[#E0E7E2] shadow-xs">
+                          {/* Angle View Badge in Top Start corner */}
+                          <div className="absolute top-3 start-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9.5px] font-mono uppercase tracking-wider text-[#18251E] font-medium border border-[#E0E7E2] shadow-xs">
                             {view.viewTag}
                           </div>
 
-                          {/* Expand Icon in Bottom Right */}
-                          <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md text-[#18251E] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                          {/* Expand Icon in Bottom End corner */}
+                          <div className="absolute bottom-3 end-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md text-[#18251E] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                             <LuMaximize2 className="w-3.5 h-3.5" />
                           </div>
                         </div>
@@ -246,7 +249,7 @@ export default function ProductGalleryGrid({
                           </div>
                           <div className="flex items-center justify-between text-[15.5px] sm:text-[16.5px] font-semibold text-[#0E291E] tracking-tight group-hover:text-[#00A859] transition-colors">
                             <span>{view.title}</span>
-                            <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#738479] group-hover:text-[#00A859]" />
+                            <LuArrowUpRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5 text-[#738479] group-hover:text-[#00A859]" />
                           </div>
                           {view.description && (
                             <p className="text-[12.5px] text-[#55645C] leading-relaxed line-clamp-2">
@@ -265,10 +268,10 @@ export default function ProductGalleryGrid({
           /* Empty Search State */
           <div className="py-20 text-center space-y-3">
             <p className="text-[16px] text-[#0E291E] font-medium">
-              No matching system views found for &ldquo;{searchQuery}&rdquo;.
+              {t.noResults.replace("{query}", searchQuery)}
             </p>
             <p className="text-[13px] text-[#738479]">
-              Try a different keyword or reset the product filter.
+              {t.noResultsHint}
             </p>
             <button
               onClick={() => {
@@ -277,7 +280,7 @@ export default function ProductGalleryGrid({
               }}
               className="mt-3 px-5 py-2 rounded-full bg-[#0E291E] text-white text-[12.5px] font-medium hover:bg-[#00A859] transition-colors cursor-pointer"
             >
-              Reset filters
+              {t.resetFilters}
             </button>
           </div>
         )}
@@ -287,10 +290,10 @@ export default function ProductGalleryGrid({
         {/* ========================================================= */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-[12px] text-[#738479] leading-relaxed max-w-2xl font-normal">
-            Product imagery showcases authentic architectural views, internal reactors, front panels, and plumbing connections of ECOKlien&apos;s modular wastewater treatment systems.
+            {t.footerNote}
           </p>
           <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] whitespace-nowrap">
-            {String(totalViews).padStart(2, "0")} SYSTEM VIEWS · 03 CONFIGURATIONS
+            {formatCount(t.systemViewsCount, totalViews)} · {formatCount(t.configurationsCount, 3)}
           </div>
         </div>
       </div>

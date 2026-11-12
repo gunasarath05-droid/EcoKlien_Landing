@@ -7,25 +7,28 @@ import { FlaskConical, Minimize2 } from "lucide-react";
 import { images } from "@/data/images";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { landingMessages } from "@/i18n/messages/landing";
 
 export default function LandingHeroSection() {
+  const { hero } = useMessages(landingMessages);
   const highlights = [
     {
-      title: "No added chemicals",
+      title: hero.highlights.noChemicals,
       icon: (
         <FlaskConical className="w-5 h-5 text-white/90" strokeWidth={1.8} />
       ),
     },
     {
-      title: "Low sludge production",
+      title: hero.highlights.lowSludge,
       icon: <Minimize2 className="w-5 h-5 text-white/90" strokeWidth={2} />,
     },
     {
-      title: "Microbes Free",
+      title: hero.highlights.microbeFree,
       icon: <Minimize2 className="w-5 h-5 text-white/90" strokeWidth={2} />,
     },
     {
-      title: "No Odor",
+      title: hero.highlights.noOdor,
       icon: <Minimize2 className="w-5 h-5 text-white/90" strokeWidth={2} />,
     },
   ];
@@ -36,13 +39,13 @@ export default function LandingHeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src={images.landingHero}
-          alt="EcoKlien Laboratory Biomedical Liquid Waste Treatment System"
+          alt={hero.imageAlt}
           fill
           sizes="100vw"
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 sm:bg-black/50 md:bg-black/0  md:bg-gradient-to-r md:from-black/50 md:via-black/10 md:to-black/0" />
+        <div className="absolute inset-0 sm:bg-black/50 md:bg-black/0  md:bg-gradient-to-r md:rtl:bg-gradient-to-l md:from-black/50 md:via-black/10 md:to-black/0" />
       </div>
 
       {/* Main Hero Content */}
@@ -57,7 +60,7 @@ export default function LandingHeroSection() {
           >
             <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
             <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-white/75">
-              Advanced biomedical liquid waste treatment
+              {hero.eyebrow}
             </span>
           </motion.div>
 
@@ -68,11 +71,12 @@ export default function LandingHeroSection() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[34px] sm:text-[44px] lg:text-[50px] font-semibold text-white tracking-[-0.01em] leading-[1.0] sm:leading-[0.95] max-w-[440px] mb-5 sm:mb-6"
           >
-            Biomedical
-            <br />
-            Liquid Waste
-            <br />
-            Treatment System
+            {hero.titleLines.map((line, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <br />}
+                {line}
+              </React.Fragment>
+            ))}
           </motion.h1>
 
           {/* Subtitle */}
@@ -82,7 +86,7 @@ export default function LandingHeroSection() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-[17px] sm:text-[19px] font-normal text-white mb-8 sm:mb-12"
           >
-            Treat biomedical liquid waste. At the source.
+            {hero.subtitle}
           </motion.p>
 
           {/* Body Description */}
@@ -92,10 +96,7 @@ export default function LandingHeroSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] max-w-[440px] font-normal mb-8 sm:mb-12"
           >
-            ECOKlien uses advanced electrochemical technology to treat and
-            disinfect potentially contaminated liquid waste on site — without
-            added treatment chemicals, in a compact, modular system designed for
-            healthcare facilities and laboratories.
+            {hero.description}
           </motion.p>
 
           {/* CTAs */}
@@ -110,16 +111,16 @@ export default function LandingHeroSection() {
               href="https://ecoklien.com/products-biomedical-and-hospital-wastewater/"
               className="inline-flex items-center justify-center gap-5 sm:gap-6 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-[#0a9a3a] hover:bg-[#088231] text-white font-medium text-[14px] transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
-              <span>Buy now</span>
-              <FaArrowRight className="w-3.5 h-3.5 -rotate-[45deg] group-hover:rotate-0 transition-all duration-300 ease-in-out" />
+              <span>{hero.buyNow}</span>
+              <FaArrowRight className="w-3.5 h-3.5 -rotate-[45deg] group-hover:rotate-0 rtl:-scale-x-100 rtl:rotate-[45deg] rtl:group-hover:rotate-0 transition-all duration-300 ease-in-out" />
             </Link>
 
             {/* Get a quote link with underline */}
             <Link
-              href="https://ecoklien.com/contact/"
+              href="/contact"
               className="text-[14px] text-white/85 underline underline-offset-4 decoration-white/50 hover:text-white transition-colors"
             >
-              Get a quote
+              {hero.getQuote}
             </Link>
           </motion.div>
         </div>

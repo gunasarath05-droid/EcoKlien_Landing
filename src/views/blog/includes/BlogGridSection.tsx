@@ -6,22 +6,26 @@ import Link from "next/link";
 import { BlogPost, blogPosts } from "@/data/blog";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { blogMessages } from "@/i18n/messages/blog";
 
 interface BlogGridSectionProps {
   posts?: BlogPost[];
 }
 
-const categories = ["All insights", "Technology", "Applications", "Facility planning"] as const;
+type FilterValue = "all" | BlogPost["filterCategory"];
+const categories: FilterValue[] = ["all", "Technology", "Applications", "Facility planning"];
 
 export default function BlogGridSection({
   posts = blogPosts,
 }: BlogGridSectionProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("All insights");
+  const t = useMessages(blogMessages);
+  const [activeCategory, setActiveCategory] = useState<FilterValue>("all");
 
   // Filter out featured post for the journal grid, and apply category filter
   const journalPosts = posts.filter((p) => !p.isFeatured);
   const filteredPosts =
-    activeCategory === "All insights"
+    activeCategory === "all"
       ? journalPosts
       : journalPosts.filter((p) => p.filterCategory === activeCategory);
 
@@ -32,12 +36,12 @@ export default function BlogGridSection({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#EAEFEA]">
           <div>
             <h2 className="text-[26px] sm:text-[32px] font-semibold text-[#0E291E] tracking-tight">
-              From the journal.
+              {t.grid.title}
             </h2>
           </div>
 
           <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479]">
-            {String(filteredPosts.length).padStart(2, "0")} ARTICLES
+            {t.grid.articleCount(String(filteredPosts.length).padStart(2, "0"))}
           </div>
         </div>
 
@@ -55,7 +59,7 @@ export default function BlogGridSection({
                     : "bg-[#F1F4F2] text-[#4F6055] hover:bg-[#E5ECE7] hover:text-[#18251E]"
                 }`}
               >
-                {cat}
+                {t.grid.filters[cat]}
               </button>
             );
           })}
@@ -117,8 +121,8 @@ export default function BlogGridSection({
                     href={`/blog/${post.slug}`}
                     className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#18251E] group-hover:text-[#00A859] transition-colors"
                   >
-                    <span>Read article</span>
-                    <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <span>{t.readArticle}</span>
+                    <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
               </motion.article>
@@ -127,15 +131,15 @@ export default function BlogGridSection({
         </motion.div>
 
         {/* Bottom Ticker / Strip */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-16 sm:mt-20 pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-start">
           <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#738479]">
-            TRENDING ALL ESSENTIALS / EXPLORE THE SYSTEMS TO LEARN MORE
+            {t.grid.stripText}
           </div>
           <Link
             href="/products/biomedical-liquid-waste-treatment-system"
             className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#00A859] hover:underline"
           >
-            DISCOVER PLATFORMS →
+            {t.grid.discoverPlatforms} <span className="inline-block rtl:-scale-x-100">→</span>
           </Link>
         </div>
       </div>

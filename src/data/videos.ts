@@ -1,3 +1,11 @@
+import type { Locale } from "@/i18n/config";
+import { localizeList, localizeValue } from "@/i18n/localize";
+import { featuredVideo as featuredVideoEs, gridVideos as gridVideosEs } from "./i18n/es/videos";
+import { featuredVideo as featuredVideoAr, gridVideos as gridVideosAr } from "./i18n/ar/videos";
+
+// English video content (source of truth). Translations: src/data/i18n/{es,ar}/videos.ts, keyed by `id`.
+// URLs, YouTube IDs, thumbnails and categories are maintained here only.
+
 export interface VideoItem {
   id: string;
   title: string;
@@ -10,6 +18,9 @@ export interface VideoItem {
   videoUrl?: string;
   isFeatured?: boolean;
 }
+
+/** Translatable fields of a video. */
+export type VideoText = Pick<VideoItem, "id" | "title" | "tag" | "description">;
 
 export const featuredVideo: VideoItem = {
   id: "video-1",
@@ -158,3 +169,13 @@ export const gridVideos: VideoItem[] = [
     videoUrl: "https://youtu.be/yWBmmu3qC9o?list=PLtU5RHes_z6Jyu8ZvEszvXwVp5niEC-Hq",
   },
 ];
+
+/** Featured video in the given language. */
+export function getFeaturedVideo(locale: Locale): VideoItem {
+  return localizeValue<VideoItem>(locale, featuredVideo, { es: featuredVideoEs, ar: featuredVideoAr });
+}
+
+/** Grid videos in the given language (untranslated videos stay in English). */
+export function getGridVideos(locale: Locale): VideoItem[] {
+  return localizeList(locale, gridVideos, { es: gridVideosEs, ar: gridVideosAr }, "id");
+}

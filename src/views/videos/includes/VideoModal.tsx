@@ -3,6 +3,8 @@
 import React, { useEffect } from "react";
 import { LuX, LuArrowUpRight } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { videosMessages } from "@/i18n/messages/videos";
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -17,6 +19,8 @@ export default function VideoModal({
   youtubeId,
   title,
 }: VideoModalProps) {
+  const { modal } = useMessages(videosMessages);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -54,7 +58,7 @@ export default function VideoModal({
             {/* Top Bar with Title and Actions */}
             <div className="flex items-center justify-between px-5 py-3.5 bg-[#0A1712] border-b border-white/10 text-white">
               <span className="text-[13px] font-medium tracking-tight truncate max-w-md text-white/90">
-                {title || "ECOKlien Video"}
+                {title || modal.defaultTitle}
               </span>
               <div className="flex items-center gap-3">
                 {youtubeId && (
@@ -64,14 +68,14 @@ export default function VideoModal({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[11.5px] font-mono uppercase tracking-wider text-white/70 hover:text-[#00A859] transition-colors"
                   >
-                    <span>YouTube</span>
-                    <LuArrowUpRight className="w-3.5 h-3.5" />
+                    <span>{modal.youtube}</span>
+                    <LuArrowUpRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                   </a>
                 )}
                 <button
                   onClick={onClose}
                   className="p-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                  aria-label="Close video"
+                  aria-label={modal.close}
                 >
                   <LuX className="w-5 h-5" />
                 </button>
@@ -82,7 +86,7 @@ export default function VideoModal({
             <div className="relative aspect-[16/9] w-full bg-black">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`}
-                title={title || "YouTube video player"}
+                title={title || modal.playerTitle}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full border-0"

@@ -6,39 +6,27 @@ import Link from "next/link";
 import { images } from "@/data/images";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { landingMessages } from "@/i18n/messages/landing";
 
 export default function ConfigurationsSection() {
+  const { configurations: t } = useMessages(landingMessages);
   const configs = [
     {
       version: "ECOKlien V1",
-      title: "Biomedical Liquid Waste Treatment Systems",
-      subtitle: "(Point of Source System)",
-      description:
-        "For smaller or decentralised sources of biomedical liquid waste. Designed for treating liquid waste closer to where it is generated, reducing the need to collect and transport contaminated wastewater across the facility.",
-      bestSuited:
-        "LABORATORIES · PROCEDURE AREAS · SMALL HEALTHCARE FACILITIES · SPECIFIC WASTE STREAMS",
+      ...t.items.v1,
       image: images.product.product3,
       link: "https://ecoklien.com/biomedical-liquid-waste-treatment-system/",
     },
     {
       version: "ECOKlien V2",
-      title: "Hospital Effluent Treatment Systems",
-      subtitle: "(Decentralised facility treatment)",
-      description:
-        "For healthcare facilities generating larger and more continuous volumes of biomedical liquid waste. A compact treatment system designed to integrate into existing facility infrastructure while providing controlled treatment before discharge or further handling.",
-      bestSuited:
-        "HOSPITALS · DIAGNOSTIC CENTRES · MULTI-DEPARTMENT FACILITIES · HEALTHCARE CAMPUSES",
+      ...t.items.v2,
       image: images.product.product1,
       link: "https://ecoklien.com/hospital-effluent-treatment-systems/",
     },
     {
       version: "ECOKlien V3",
-      title: "Biomedical Liquid Waste Disinfection System",
-      subtitle: "(Point of Source System)",
-      description:
-        "An electrochemical disinfection system for microbial contamination in biomedical liquid waste. Compact and adaptable, where required as a dedicated treatment integrated into a broader wastewater treatment process.",
-      bestSuited:
-        "HOSPITALS · LABORATORIES · DIAGNOSTIC CENTRES · HEALTHCARE FACILITIES",
+      ...t.items.v3,
       image: images.product.product2,
       link: "https://ecoklien.com/biomedical-liquid-disinfection-system/",
     },
@@ -53,7 +41,7 @@ export default function ConfigurationsSection() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src={images.bioMedicalBg}
-          alt="Biomedical fluid backdrop"
+          alt={t.backdropAlt}
           fill
           sizes="100vw"
           priority
@@ -75,14 +63,17 @@ export default function ConfigurationsSection() {
             <div className="flex items-center gap-2.5 mb-4 sm:mb-6">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
               <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-white/75">
-                The systems
+                {t.eyebrow}
               </span>
             </div>
             {/* Title */}
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-normal text-white leading-[1.02]">
-              Three configurations.
-              <br />
-              One treatment principle.
+              {t.titleLines.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </h2>
           </motion.div>
 
@@ -94,11 +85,7 @@ export default function ConfigurationsSection() {
             className="lg:col-span-7 lg:pb-1"
           >
             <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] font-normal">
-              Biomedical liquid waste doesn&apos;t come from one source, and
-              healthcare facilities don&apos;t operate at one scale. ECOKlien
-              uses the same core electrochemical treatment approach across three
-              configurations, allowing the system to be matched to the volume,
-              source and treatment requirements of the facility.
+              {t.intro}
             </p>
           </motion.div>
         </div>
@@ -132,7 +119,7 @@ export default function ConfigurationsSection() {
                   />
 
                   {/* Top-Right Pill Badge: Configuration Version */}
-                  <div className="absolute top-4 right-4 z-10">
+                  <div className="absolute top-4 end-4 z-10">
                     <span className="px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white font-mono text-[11px] font-semibold tracking-wider uppercase">
                       {item.version}
                     </span>
@@ -156,11 +143,11 @@ export default function ConfigurationsSection() {
                     <Link
                       href={item.link}
                       className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 hover:bg-[#00B050] border border-white/30 hover:border-[#00B050] text-white flex items-center justify-center transition-all duration-300 shrink-0 backdrop-blur-md hover:scale-110 shadow-md group/btn"
-                      aria-label={`View details for ${item.title}`}
+                      aria-label={`${t.viewDetailsFor} ${item.title}`}
                     >
                       <LuArrowUpRight
                         size={18}
-                        className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                        className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover/btn:-translate-x-0.5"
                       />
                     </Link>
                   </div>
@@ -178,7 +165,7 @@ export default function ConfigurationsSection() {
                   {/* Best Suited For Tag Box */}
                   <div className="min-h-[80px] mb-6 sm:mb-8 text-[14px] sm:text-[15px] leading-[1.55]">
                     <b className="font-medium text-white block mb-1">
-                      Best suited for:
+                      {t.bestSuitedFor}
                     </b>
                     <span className="text-white/85 uppercase text-[12.5px] sm:text-[13.5px] tracking-wide">
                       {item.bestSuited}
@@ -191,7 +178,7 @@ export default function ConfigurationsSection() {
                       href={item.link}
                       className="text-[14px] sm:text-[15px] font-semibold text-white hover:text-[#7fe09a] transition-colors inline-block"
                     >
-                      [View configuration →]
+                      {t.viewConfiguration}
                     </Link>
                   </div>
                 </div>
@@ -210,23 +197,21 @@ export default function ConfigurationsSection() {
         >
           <div className="space-y-2 max-w-2xl">
             <h4 className="text-[18px] sm:text-[20px] font-medium text-white">
-              Not sure which configuration fits your facility?
+              {t.ctaTitle}
             </h4>
             <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] font-normal">
-              Tell us your approximate wastewater volume, source and operating
-              requirements. We&apos;ll help identify the appropriate ECOKlien
-              configuration.
+              {t.ctaText}
             </p>
           </div>
 
           <Link
-            href="https://ecoklien.com/contact/"
+            href="/contact"
             className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-black hover:bg-neutral-900 text-white text-[14px] font-medium transition-all duration-300 shadow-md shrink-0 inline-flex items-center gap-6 group hover:scale-[1.02]"
           >
-            <span>Talk to an engineer</span>
+            <span>{t.ctaButton}</span>
             <LuArrowUpRight
               size={16}
-              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
             />
           </Link>
         </motion.div>

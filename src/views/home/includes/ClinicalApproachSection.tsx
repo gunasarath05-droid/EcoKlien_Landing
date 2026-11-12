@@ -1,20 +1,12 @@
+"use client";
+
 import React from "react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { homeMessages } from "@/i18n/messages/home";
 
 export default function ClinicalApproachSection() {
-  const points = [
-    {
-      title: "Closer to generation",
-      description: "Bring treatment into the facility.",
-    },
-    {
-      title: "Less chemical dependence",
-      description: "An electrochemical approach to liquid waste.",
-    },
-    {
-      title: "Practical by design",
-      description: "Compact, modular and plug-and-play.",
-    },
-  ];
+  const { clinical: t, purposeBuilt } = useMessages(homeMessages);
+  const points = t.points;
 
   return (
     <section id="approach" className="py-20 md:py-28 bg-white border-b border-[#D7DED5]/80">
@@ -27,11 +19,11 @@ export default function ClinicalApproachSection() {
               <div className="flex items-center gap-2.5">
                 <span className="w-2 h-2 rounded-[1.5px] bg-[#00B050] shrink-0" />
                 <span className="text-xs font-mono font-medium tracking-[0.14em] uppercase text-[#839088]">
-                  THE PROPOSITION
+                  {t.eyebrow}
                 </span>
               </div>
               <p className="text-[15px] sm:text-base text-[#647069] leading-relaxed max-w-sm">
-                Purpose-built for the places where care and science happen.
+                {purposeBuilt}
               </p>
             </div>
 
@@ -53,26 +45,22 @@ export default function ClinicalApproachSection() {
           {/* Right Column: Narrative / Approach */}
           <div className="lg:col-span-7 space-y-7 lg:pt-1">
             <h2 className="text-4xl sm:text-[44px] lg:text-[50px] font-bold text-[#123D30] tracking-tight leading-[1.12]">
-              Clinical waste.<br />
-              A clearer treatment approach.
+              {t.titleLines.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </h2>
 
             <div className="space-y-5 text-[15px] sm:text-base text-[#647069] leading-relaxed pt-2">
-              <p>
-                Healthcare facilities generate liquid waste that requires careful treatment before it can move beyond the point of generation. Conventional approaches can involve chemical dosing, multiple handling steps and infrastructure that is difficult to adapt to every facility.
-              </p>
+              <p>{t.paragraphs[0]}</p>
 
-              <p className="font-semibold text-[#123D30]">
-                ECOKlien takes a different approach.
-              </p>
+              <p className="font-semibold text-[#123D30]">{t.paragraphs[1]}</p>
 
-              <p>
-                An engineering-led treatment system that brings treatment closer to where the waste is generated — treating and disinfecting potentially contaminated liquid waste on site, through a compact and modular system.
-              </p>
+              <p>{t.paragraphs[2]}</p>
 
-              <p>
-                Less complexity. More control. A more practical way to treat clinical liquid waste.
-              </p>
+              <p>{t.paragraphs[3]}</p>
             </div>
           </div>
         </div>

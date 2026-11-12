@@ -1,11 +1,15 @@
 import { Metadata } from "next";
 import AboutPage from "@/views/about/AboutPage";
+import { getLocale } from "@/i18n/server";
+import { aboutMessages } from "@/i18n/messages/about";
 
-export const metadata: Metadata = {
-  title: "About Us - EcoKlien | Biomedical Liquid Waste Treatment",
-  description:
-    "We are a manufacturer and supplier of Electrocoagulation and Electro-Oxidation-based Hybrid Biomedical Liquid Waste treatment plant/systems.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = aboutMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+  };
+}
 
 export default function About() {
   return (

@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogPost, blogPosts } from "@/data/blog";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { blogMessages } from "@/i18n/messages/blog";
 
 interface ArticleDetailHeroProps {
   post?: BlogPost;
@@ -13,6 +15,7 @@ interface ArticleDetailHeroProps {
 export default function ArticleDetailHero({
   post = blogPosts[0],
 }: ArticleDetailHeroProps) {
+  const t = useMessages(blogMessages);
   if (!post) return null;
 
   return (
@@ -21,15 +24,15 @@ export default function ArticleDetailHero({
         {/* Breadcrumb */}
         <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase text-[#738479] tracking-wider mb-6">
           <Link href="/" className="hover:text-[#00B050] transition-colors">
-            HOME
+            {t.breadcrumb.home}
           </Link>
           <span>/</span>
           <Link href="/blog" className="hover:text-[#00B050] transition-colors">
-            MEDIA
+            {t.breadcrumb.media}
           </Link>
           <span>/</span>
           <Link href="/blog" className="hover:text-[#00B050] transition-colors">
-            BLOG
+            {t.breadcrumb.blog}
           </Link>
           <span>/</span>
           <span className="text-[#18251E] font-medium">{post.category}</span>
@@ -62,9 +65,9 @@ export default function ArticleDetailHero({
             transition={{ duration: 0.55, delay: 0.1 }}
             className="lg:col-span-4 lg:flex lg:justify-end"
           >
-            <div className="text-[11.5px] font-mono uppercase tracking-wider text-[#738479] space-y-1 bg-[#F7F9F7] border border-[#E5EBE6] px-5 py-3.5 rounded-2xl inline-block lg:text-right">
-              <div>AUTHOR: <span className="text-[#18251E] font-medium">ECOKLIEN</span></div>
-              <div>PUBLISHED: <span className="text-[#18251E] font-medium">24 OCT 2026</span></div>
+            <div className="text-[11.5px] font-mono uppercase tracking-wider text-[#738479] space-y-1 bg-[#F7F9F7] border border-[#E5EBE6] px-5 py-3.5 rounded-2xl inline-block lg:text-end">
+              <div>{t.article.authorLabel} <span className="text-[#18251E] font-medium">{t.article.author}</span></div>
+              <div>{t.article.publishedLabel} <span className="text-[#18251E] font-medium">{t.article.publishedDate}</span></div>
               <div className="text-[#00A859] font-medium">{post.readTime}</div>
             </div>
           </motion.div>
@@ -88,7 +91,7 @@ export default function ArticleDetailHero({
             />
           </div>
           <p className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-[#738479]">
-            INSIGHT / TREATMENT CLOSER TO THE POINT OF LIQUID WASTE GENERATION
+            {t.article.heroCaption}
           </p>
         </motion.div>
       </div>

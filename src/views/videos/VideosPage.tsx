@@ -6,9 +6,15 @@ import VideoFeaturedSection from "./includes/VideoFeaturedSection";
 import VideoGridSection from "./includes/VideoGridSection";
 import VideoModal from "./includes/VideoModal";
 import BottomCtaBanner from "@/components/common/BottomCtaBanner";
-import { VideoItem, featuredVideo, gridVideos } from "@/data/videos";
+import { VideoItem, getFeaturedVideo, getGridVideos } from "@/data/videos";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { videosMessages } from "@/i18n/messages/videos";
 
 export default function VideosPage() {
+  const { locale } = useLocale();
+  const { cta } = useMessages(videosMessages);
+  const featuredVideo = getFeaturedVideo(locale);
+  const gridVideos = getGridVideos(locale);
   const [activeModalVideo, setActiveModalVideo] = useState<VideoItem | null>(null);
 
   const handleOpenModal = (video: VideoItem) => {
@@ -37,13 +43,8 @@ export default function VideosPage() {
       />
 
       {/* 4. Bottom CTA Banner */}
-      <BottomCtaBanner
-        eyebrow="LET'S TALK TREATMENT"
-        title="Go from an overview to your application."
-        subtitle="Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility."
-        buttonText="Talk to an engineer"
-        buttonLink="https://ecoklien.com/contact/"
-      />
+      {/* Eyebrow, subtitle and button use the translated defaults */}
+      <BottomCtaBanner title={cta.title} buttonLink="/contact" />
 
       {/* 5. Responsive YouTube Iframe Player Modal */}
       <VideoModal

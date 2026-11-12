@@ -1,12 +1,16 @@
 import { Metadata } from "next";
 import GlossaryPage from "@/views/glossary/GlossaryPage";
+import { getLocale } from "@/i18n/server";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 
-export const metadata: Metadata = {
-  title: "Glossary - EcoKlien | The Biomedical Glossary",
-  description:
-    "Key terms around biomedical liquid waste, hospital wastewater, antimicrobial resistance, BOD, sludge and waterborne diseases.",
-  alternates: { canonical: "/glossary" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { meta } = glossaryMessages[await getLocale()];
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: { canonical: "/glossary" },
+  };
+}
 
 export default function Glossary() {
   return (

@@ -1,13 +1,17 @@
 import { Metadata } from "next";
 import ProductPage from "@/views/products/ProductPage";
-import { defaultProduct } from "@/data/products";
+import { getDefaultProduct } from "@/data/products";
+import { getLocale } from "@/i18n/server";
 
-export const metadata: Metadata = {
-  title: `${defaultProduct.productname} - EcoKlien`,
-  description: defaultProduct.hero.description,
-};
-
-export default function ProductsRoutePage() {
-  return <ProductPage />;
+export async function generateMetadata(): Promise<Metadata> {
+  const product = getDefaultProduct(await getLocale());
+  return {
+    title: `${product.productname} - EcoKlien`,
+    description: product.hero.description,
+  };
 }
 
+export default async function ProductsRoutePage() {
+  const product = getDefaultProduct(await getLocale());
+  return <ProductPage product={product} />;
+}

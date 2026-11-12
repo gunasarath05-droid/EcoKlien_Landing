@@ -1,4 +1,12 @@
 import { images } from "./images";
+import type { Locale } from "@/i18n/config";
+import { localizeList, type TranslatedLocale } from "@/i18n/localize";
+import * as galleryEs from "./i18n/es/gallery";
+import * as galleryAr from "./i18n/ar/gallery";
+
+// English is the source of truth. Spanish/Arabic text lives in src/data/i18n/{es,ar}/gallery.ts
+// (text fields only, keyed by `id`); use getProductGalleryItems(locale) / getGalleryEvents(locale).
+// `category` values are logic values and stay in English.
 
 export interface ProductViewItem {
   id: string;
@@ -325,3 +333,61 @@ export const eventVideos = [
     videoUrl: "https://youtube.com/shorts/ce_dhnb_mPE?si=af9KhRiMquZp7TxW",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Translations (see src/i18n/README.md)
+// ---------------------------------------------------------------------------
+
+type TextOf<T, K extends keyof T> = Partial<T> & Pick<T, K>;
+
+/** A translated product: text fields only, plus translated views keyed by `id`. */
+export type ProductGalleryTranslation = Partial<
+  Pick<ProductGalleryItem, "title" | "subtitle" | "filterLabel" | "description" | "designedFor">
+> &
+  Pick<ProductGalleryItem, "id"> & {
+    views?: TextOf<Pick<ProductViewItem, "id" | "title" | "viewTag" | "description">, "id">[];
+  };
+
+/** A translated event: top-level text fields only; photos, video and certificates are translated by `id`. */
+export type EventTranslation = Partial<Pick<EventItem, "title" | "filterLabel" | "location" | "year" | "eyebrow">> &
+  Pick<EventItem, "id">;
+
+export interface GalleryTranslations {
+  productGallery: ProductGalleryTranslation[];
+  galleryEvents: EventTranslation[];
+  galleryPhotos: TextOf<Pick<PhotoGalleryItem, "id" | "title" | "eyebrow" | "category">, "id">[];
+  galleryVideos: TextOf<Pick<EventVideoItem, "id" | "title" | "eyebrow" | "description">, "id">[];
+  galleryCertificates: TextOf<Pick<CertificateItem, "id" | "title" | "eyebrow">, "id">[];
+}
+
+const galleryTranslations: Record<TranslatedLocale, GalleryTranslations> = {
+  es: galleryEs,
+  ar: galleryAr,
+};
+
+/** Product gallery items in the given language (untranslated items fall back to English). */
+export function getProductGalleryItems(locale: Locale): ProductGalleryItem[] {
+  if (locale === "en") return productGalleryItems;
+  const tr = galleryTranslations[locale].productGallery;
+  const topLevel = tr.map(({ views: _views, ...rest }) => rest); // eslint-disable-line @typescript-eslint/no-unused-vars
+  return localizeList(locale, productGalleryItems, { [locale]: topLevel }, "id").map((item) => ({
+    ...item,
+    views: localizeList(locale, item.views, { [locale]: tr.find((t) => t.id === item.id)?.views ?? [] }, "id"),
+  }));
+}
+
+/** Photo gallery events (with photos, video and certificates) in the given language. */
+export function getGalleryEvents(locale: Locale): EventItem[] {
+  if (locale === "en") return galleryEvents;
+  const tr = galleryTranslations[locale];
+  return localizeList(locale, galleryEvents, { [locale]: tr.galleryEvents }, "id").map((event) => ({
+    ...event,
+    photos: localizeList(locale, event.photos, { [locale]: tr.galleryPhotos }, "id"),
+    video: event.video
+      ? localizeList(locale, [event.video], { [locale]: tr.galleryVideos }, "id")[0]
+      : undefined,
+    certificates: event.certificates
+      ? localizeList(locale, event.certificates, { [locale]: tr.galleryCertificates }, "id")
+      : undefined,
+  }));
+}

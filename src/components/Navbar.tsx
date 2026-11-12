@@ -6,7 +6,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { images } from "@/data/images";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
-import { LuArrowUpRight, LuGlobe, LuChevronDown } from "react-icons/lu";
+import { LuArrowUpRight, LuGlobe, LuChevronDown, LuCheck } from "react-icons/lu";
+import { useLocale, useMessages } from "@/i18n/LocaleProvider";
+import { navMessages } from "@/i18n/messages/common";
+import { localeMeta, locales } from "@/i18n/config";
 
 interface NavLinkItem {
   title: string;
@@ -14,40 +17,46 @@ interface NavLinkItem {
 }
 
 /** A nav item is either a page link, or a dropdown parent that only opens its menu (no page of its own). */
-type NavItem = (NavLinkItem & { dropdown?: undefined }) | { title: string; dropdown: NavLinkItem[] };
+type NavItem = (NavLinkItem & { id: string; dropdown?: undefined }) | { id: string; title: string; dropdown: NavLinkItem[] };
 
-const navLinks: NavItem[] = [
-  { title: "Home", href: "/" },
-  { title: "About Us", href: "/about" },
-  {
-    title: "Products",
-    dropdown: [
-      { title: "Biomedical Liquid Waste Treatment Systems", href: "/products/biomedical-liquid-waste-treatment-system" },
-      { title: "Hospital Effluent Treatment Systems", href: "/products/hospital-effluent-treatment-systems" },
-      { title: "Biomedical Liquid Waste Disinfection System", href: "/products/biomedical-liquid-waste-disinfection-system" },
-    ],
-  },
-  {
-    title: "Media",
-    dropdown: [
-      { title: "Blog", href: "/blog" },
-      { title: "Product Gallery", href: "/product-gallery" },
-      { title: "Photo Gallery", href: "/photo-gallery" },
-      { title: "Videos", href: "/videos" },
-      { title: "FAQ", href: "/faq" },
-      { title: "Glossary", href: "/glossary" },
-    ],
-  },
-  { title: "Contact", href: "/contact" },
-];
+const LANGUAGE_MENU = "language";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const t = useMessages(navMessages);
+  const { locale, setLocale, isPending } = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const desktopNavRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  const navLinks: NavItem[] = [
+    { id: "home", title: t.home, href: "/" },
+    { id: "about", title: t.about, href: "/about" },
+    {
+      id: "products",
+      title: t.products,
+      dropdown: [
+        { title: t.productLinks.biomedical, href: "/products/biomedical-liquid-waste-treatment-system" },
+        { title: t.productLinks.hospital, href: "/products/hospital-effluent-treatment-systems" },
+        { title: t.productLinks.disinfection, href: "/products/biomedical-liquid-waste-disinfection-system" },
+      ],
+    },
+    {
+      id: "media",
+      title: t.media,
+      dropdown: [
+        { title: t.mediaLinks.blog, href: "/blog" },
+        { title: t.mediaLinks.productGallery, href: "/product-gallery" },
+        { title: t.mediaLinks.photoGallery, href: "/photo-gallery" },
+        { title: t.mediaLinks.videos, href: "/videos" },
+        { title: t.mediaLinks.faq, href: "/faq" },
+        { title: t.mediaLinks.glossary, href: "/glossary" },
+      ],
+    },
+    { id: "contact", title: t.contact, href: "/contact" },
+  ];
 
   const { scrollY } = useScroll();
 
@@ -71,7 +80,7 @@ export default function Navbar() {
   useEffect(() => {
     if (!openDesktopDropdown) return;
     const onPointerDown = (e: PointerEvent) => {
-      if (!desktopNavRef.current?.contains(e.target as Node)) setOpenDesktopDropdown(null);
+      if (!headerRef.current?.contains(e.target as Node)) setOpenDesktopDropdown(null);
     };
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpenDesktopDropdown(null);
@@ -96,8 +105,11 @@ export default function Navbar() {
     setOpenMobileDropdown(null);
   };
 
+  const languageOpen = openDesktopDropdown === LANGUAGE_MENU;
+
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
           ? "bg-white/92 backdrop-blur-xl border-b border-[#D7DED5]/90 shadow-[0_4px_25px_-4px_rgba(0,0,0,0.07)]"
           : "bg-white border-b border-[#D7DED5]/80"
@@ -117,7 +129,7 @@ export default function Navbar() {
                 fill
                 sizes="144px"
                 priority
-                className="object-contain object-left"
+                className="object-contain object-left rtl:object-right"
               />
             </div>
           ) : (
@@ -128,16 +140,16 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav ref={desktopNavRef} className="hidden md:flex items-center gap-7 lg:gap-9">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-9">
           {navLinks.map((item) => {
             if (item.dropdown) {
               const isParentActive = item.dropdown.some((sub) => isPathActive(sub.href));
-              const isOpen = openDesktopDropdown === item.title;
-              const menuId = `nav-menu-${item.title.toLowerCase()}`;
+              const isOpen = openDesktopDropdown === item.id;
+              const menuId = `nav-menu-${item.id}`;
 
               return (
                 <div
-                  key={item.title}
+                  key={item.id}
                   className="relative group py-2"
                   onMouseLeave={() => isOpen && setOpenDesktopDropdown(null)}
                 >
@@ -147,8 +159,8 @@ export default function Navbar() {
                     aria-haspopup="true"
                     aria-expanded={isOpen}
                     aria-controls={menuId}
-                    onClick={() => setOpenDesktopDropdown(isOpen ? null : item.title)}
-                    className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors relative py-1 cursor-pointer ${
+                    onClick={() => setOpenDesktopDropdown(isOpen ? null : item.id)}
+                    className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors relative py-1 cursor-pointer whitespace-nowrap ${
                       isParentActive || isOpen
                         ? "text-[#00B050]"
                         : "text-[#123D30] hover:text-[#00B050]"
@@ -161,7 +173,7 @@ export default function Navbar() {
                       }`}
                     />
                     <span
-                      className={`absolute bottom-0 left-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
+                      className={`absolute bottom-0 start-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
                         isParentActive || isOpen ? "w-full" : "w-0 group-hover:w-full"
                       }`}
                     />
@@ -170,7 +182,7 @@ export default function Navbar() {
                   {/* Dropdown menu (hover-bridge via pt-2); opens on hover, keyboard focus or click */}
                   <div
                     id={menuId}
-                    className={`absolute top-full left-0 pt-2 transition-all duration-200 ease-out z-50 ${
+                    className={`absolute top-full start-0 pt-2 transition-all duration-200 ease-out z-50 ${
                       isOpen
                         ? "opacity-100 visible pointer-events-auto"
                         : "opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto"
@@ -178,7 +190,7 @@ export default function Navbar() {
                   >
                     <div
                       className={`bg-white rounded-xl shadow-[0_12px_40px_-8px_rgba(18,61,48,0.14)] border border-[#E3ECE6] py-2 overflow-hidden ${
-                        item.title === "Products" ? "w-80 sm:w-96" : "w-52"
+                        item.id === "products" ? "w-80 sm:w-96" : "w-56"
                       }`}
                     >
                       {item.dropdown.map((sub, sIdx) => {
@@ -212,16 +224,16 @@ export default function Navbar() {
             const isActive = isPathActive(item.href);
             return (
               <Link
-                key={item.title}
+                key={item.id}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`text-[15px] font-medium transition-colors relative py-1 group ${
+                className={`text-[15px] font-medium transition-colors relative py-1 group whitespace-nowrap ${
                   isActive ? "text-[#00B050]" : "text-[#123D30] hover:text-[#00B050]"
                 }`}
               >
                 <span>{item.title}</span>
                 <span
-                  className={`absolute bottom-0 left-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
+                  className={`absolute bottom-0 start-0 h-[2px] bg-[#00B050] rounded-full transition-all duration-300 ${
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -231,24 +243,73 @@ export default function Navbar() {
         </nav>
 
         {/* Right Section: Language Selector + Get a quote CTA */}
-        <div className="hidden md:flex items-center gap-6">
-          {/* Language selector: Globe icon + en + chevron */}
-          <button
-            type="button"
-            className="flex items-center gap-1.5 text-xs font-mono font-medium text-[#123D30] hover:text-[#00B050] transition-colors cursor-pointer"
-          >
-            <LuGlobe className="w-4 h-4 text-[#123D30]" />
-            <span>en</span>
-            <LuChevronDown className="w-3 h-3 text-[#123D30]" />
-          </button>
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
+          {/* Language selector */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setOpenDesktopDropdown(languageOpen ? null : LANGUAGE_MENU)}
+              aria-haspopup="listbox"
+              aria-expanded={languageOpen}
+              aria-label={t.changeLanguage}
+              className={`flex items-center gap-1.5 text-xs font-mono font-medium transition-colors cursor-pointer ${
+                languageOpen ? "text-[#00B050]" : "text-[#123D30] hover:text-[#00B050]"
+              } ${isPending ? "opacity-60" : ""}`}
+            >
+              <LuGlobe className="w-4 h-4" />
+              <span>{localeMeta[locale].short}</span>
+              <LuChevronDown className={`w-3 h-3 transition-transform duration-200 ${languageOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            <AnimatePresence>
+              {languageOpen && (
+                <motion.ul
+                  role="listbox"
+                  aria-label={t.language}
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full end-0 mt-3 w-44 bg-white rounded-xl shadow-[0_12px_40px_-8px_rgba(18,61,48,0.14)] border border-[#E3ECE6] py-1.5 z-50"
+                >
+                  {locales.map((code) => {
+                    const selected = code === locale;
+                    return (
+                      <li key={code} role="option" aria-selected={selected}>
+                        <button
+                          type="button"
+                          lang={localeMeta[code].htmlLang}
+                          onClick={() => {
+                            setOpenDesktopDropdown(null);
+                            setLocale(code);
+                          }}
+                          className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-[14px] transition-colors cursor-pointer ${
+                            selected
+                              ? "text-[#00B050] font-semibold bg-[#F6FAF7]"
+                              : "text-[#2C3E35] hover:text-[#00B050] hover:bg-[#F6FAF7]"
+                          }`}
+                        >
+                          <span>{localeMeta[code].label}</span>
+                          <span className="flex items-center gap-2 text-[11px] font-mono uppercase text-[#738479]">
+                            {selected && <LuCheck className="w-3.5 h-3.5 text-[#00B050]" />}
+                            {localeMeta[code].short}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Get a quote button with diagonal arrow ↗ */}
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-sm font-medium tracking-normal transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#123D30] hover:bg-[#009933] text-white text-sm font-medium tracking-normal transition-all duration-300 shadow-sm hover:shadow hover:scale-[1.02] group whitespace-nowrap"
           >
-            <span>Get a quote</span>
-            <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>{t.getQuote}</span>
+            <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
           </Link>
         </div>
 
@@ -258,7 +319,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="w-10 h-10 rounded-xl flex flex-col items-center justify-center gap-1.5 text-[#123D30] hover:bg-[#F0F5F2] transition-colors"
-            aria-label="Toggle mobile menu"
+            aria-label={t.toggleMenu}
             aria-expanded={mobileMenuOpen}
           >
             <motion.span
@@ -293,21 +354,21 @@ export default function Navbar() {
             <div className="flex flex-col space-y-4">
               {navLinks.map((item, idx) => {
                 if (item.dropdown) {
-                  const isOpen = openMobileDropdown === item.title;
+                  const isOpen = openMobileDropdown === item.id;
                   const isParentActive = item.dropdown.some((sub) => isPathActive(sub.href));
 
                   return (
                     <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      key={item.id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.05, duration: 0.25 }}
                       className="border-b border-[#F0F5F2] pb-2"
                     >
                       {/* Whole row toggles the submenu; only sub-items navigate */}
                       <button
                         type="button"
-                        onClick={() => setOpenMobileDropdown(isOpen ? null : item.title)}
+                        onClick={() => setOpenMobileDropdown(isOpen ? null : item.id)}
                         aria-expanded={isOpen}
                         className={`w-full flex items-center justify-between py-1 text-[15.5px] font-medium transition-colors cursor-pointer ${
                           isParentActive || isOpen
@@ -330,7 +391,7 @@ export default function Navbar() {
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="overflow-hidden pl-3 mt-1.5 flex flex-col space-y-1 border-l-2 border-[#00B050]/40"
+                            className="overflow-hidden ps-3 mt-1.5 flex flex-col space-y-1 border-s-2 border-[#00B050]/40"
                           >
                             {item.dropdown.map((sub) => {
                               const isSubActive = isPathActive(sub.href);
@@ -360,9 +421,9 @@ export default function Navbar() {
                 const isActive = isPathActive(item.href);
                 return (
                   <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    key={item.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{ delay: idx * 0.05, duration: 0.25 }}
                   >
                     <Link
@@ -385,11 +446,31 @@ export default function Navbar() {
                 transition={{ delay: 0.2, duration: 0.25 }}
                 className="pt-4 border-t border-[#E3ECE6] flex flex-col gap-3"
               >
-                <div className="flex items-center justify-between text-xs font-mono text-[#526357] pb-1">
-                  <span className="flex items-center gap-1.5">
-                    <LuGlobe className="w-3.5 h-3.5" /> Language
+                {/* Mobile language switch */}
+                <div className="flex items-center justify-between gap-3 pb-1">
+                  <span className="flex items-center gap-1.5 text-xs font-mono text-[#526357]">
+                    <LuGlobe className="w-3.5 h-3.5" /> {t.language}
                   </span>
-                  <span className="font-semibold text-[#123D30] uppercase">EN</span>
+                  <div className="flex items-center gap-1 rounded-full bg-[#F0F5F2] p-1" role="radiogroup" aria-label={t.language}>
+                    {locales.map((code) => {
+                      const selected = code === locale;
+                      return (
+                        <button
+                          key={code}
+                          type="button"
+                          role="radio"
+                          aria-checked={selected}
+                          lang={localeMeta[code].htmlLang}
+                          onClick={() => setLocale(code)}
+                          className={`px-3 py-1 rounded-full text-[12.5px] font-medium transition-colors cursor-pointer ${
+                            selected ? "bg-[#123D30] text-white" : "text-[#123D30] hover:text-[#00B050]"
+                          }`}
+                        >
+                          {localeMeta[code].label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <Link
@@ -397,8 +478,8 @@ export default function Navbar() {
                   onClick={closeMobileMenu}
                   className="w-full py-3 text-sm font-medium text-white bg-[#123D30] hover:bg-[#009933] rounded-full transition-all shadow-sm flex items-center justify-center gap-2 group"
                 >
-                  <span>Get a quote</span>
-                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span>{t.getQuote}</span>
+                  <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
                 </Link>
               </motion.div>
             </div>

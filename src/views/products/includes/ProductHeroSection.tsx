@@ -89,7 +89,7 @@ export default function ProductHeroSection({
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-full bg-[#00A859] hover:bg-[#008f4c] text-white font-medium text-[14px] transition-all duration-300 shadow-md hover:shadow-xl hover:scale-[1.02] group"
             >
               <span>{hero.ctaText}</span>
-              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
             </Link>
 
             {/* Secondary Link */}

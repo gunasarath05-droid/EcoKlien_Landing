@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { LuArrowUpRight } from "react-icons/lu";
 import { GlossaryTerm, sortedGlossaryTerms, termLetter } from "@/data/glossary";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 
 interface GlossaryTermCardProps {
   term?: GlossaryTerm;
@@ -13,6 +17,7 @@ export default function GlossaryTermCard({
   term = sortedGlossaryTerms[0],
   variant = "index",
 }: GlossaryTermCardProps) {
+  const { term: t } = useMessages(glossaryMessages);
   if (!term) return null;
   if (variant === "related") {
     return (
@@ -30,8 +35,8 @@ export default function GlossaryTermCard({
         </div>
         <div className="pt-2">
           <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0E291E] group-hover:text-[#00A859] transition-colors">
-            <span>Read definition</span>
-            <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>{t.readDefinition}</span>
+            <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
           </span>
         </div>
       </Link>
@@ -52,7 +57,7 @@ export default function GlossaryTermCard({
             {term.title}
           </h3>
         </div>
-        <LuArrowUpRight className="shrink-0 mt-0.5 w-4 h-4 text-[#18251E] group-hover:text-[#00A859] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <LuArrowUpRight className="shrink-0 mt-0.5 w-4 h-4 text-[#18251E] group-hover:text-[#00A859] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
       </div>
       <p className="text-[13px] sm:text-[13.5px] text-[#55645C] leading-relaxed">
         {term.cardSummary}

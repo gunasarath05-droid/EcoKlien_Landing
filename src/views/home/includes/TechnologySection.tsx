@@ -5,31 +5,26 @@ import Image from "next/image";
 import { images } from "@/data/images";
 import { LuMoveDiagonal2, LuLayoutGrid, LuPlug, LuCross } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { homeMessages } from "@/i18n/messages/home";
 
 export default function TechnologySection() {
+  const { technology: t } = useMessages(homeMessages);
   const specs = [
     {
-      title: "Compact footprint",
-      description:
-        "A space-conscious system that brings treatment closer to where liquid waste is generated.",
+      ...t.specs.compact,
       icon: <LuMoveDiagonal2 size={24} strokeWidth={1.8} className="text-[#18251E]" />,
     },
     {
-      title: "Modular configuration",
-      description:
-        "Modular by design, with configuration to be discussed around your facility’s treatment needs.",
+      ...t.specs.modular,
       icon: <LuLayoutGrid size={24} strokeWidth={1.8} className="text-[#18251E]" />,
     },
     {
-      title: "Plug-and-play system",
-      description:
-        "Designed to make on-site biomedical liquid waste treatment more practical.",
+      ...t.specs.plugAndPlay,
       icon: <LuPlug size={24} strokeWidth={1.8} className="text-[#18251E]" />,
     },
     {
-      title: "Purpose-built treatment",
-      description:
-        "Treatment and disinfection designed for healthcare facilities and laboratories.",
+      ...t.specs.purposeBuilt,
       icon: <LuCross size={24} strokeWidth={1.8} className="text-[#18251E]" />,
     },
   ];
@@ -50,14 +45,17 @@ export default function TechnologySection() {
             <div className="flex items-center gap-2.5 mb-4">
               <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
               <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
-                Engineered for your facility
+                {t.eyebrow}
               </span>
             </div>
             {/* Title */}
             <h2 className="text-[28px] sm:text-[34px] lg:text-[38px] font-normal text-[#0e2a1e] tracking-[-0.01em] leading-[1.05]">
-              Serious technology.
-              <br />
-              Practical proportions.
+              {t.titleLines.map((line, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </React.Fragment>
+              ))}
             </h2>
           </motion.div>
 
@@ -69,7 +67,7 @@ export default function TechnologySection() {
             className="lg:col-span-4 lg:pb-1"
           >
             <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[360px] font-normal">
-              A compact, modular and plug-and-play design — built around the realities of on-site liquid waste treatment.
+              {t.intro}
             </p>
           </motion.div>
         </div>
@@ -87,7 +85,7 @@ export default function TechnologySection() {
             <div className="relative w-full h-[380px] sm:h-[460px] lg:h-full lg:min-h-[530px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
               <Image
                 src={images.facility}
-                alt="EcoKlien Biomedical Liquid Waste Treatment System"
+                alt={t.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 58vw, 750px"
                 className="object-cover object-center"
@@ -95,9 +93,9 @@ export default function TechnologySection() {
               />
 
               {/* Tag at bottom */}
-              <div className="absolute bottom-5 left-2 md:left-5 bg-white/92 backdrop-blur-sm rounded-[8px] px-2 py-1 md:px-4 md:py-2.5 shadow-sm">
+              <div className="absolute bottom-5 start-2 md:start-5 bg-white/92 backdrop-blur-sm rounded-[8px] px-2 py-1 md:px-4 md:py-2.5 shadow-sm">
                 <span className="text-[9px] md:text-[11px] font-mono tracking-[0.03em] text-[#1b2a22] font-medium block">
-                  ECOKlien / Biomedical liquid waste treatment system
+                  {t.imageTag}
                 </span>
               </div>
             </div>

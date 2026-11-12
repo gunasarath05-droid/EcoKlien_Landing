@@ -5,24 +5,15 @@ import Image from "next/image";
 import { images } from "@/data/images";
 import { LuMaximize2, LuBoxes, LuPlug } from "react-icons/lu";
 import { motion } from "motion/react";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { productGalleryMessages } from "@/i18n/messages/gallery";
 
 export default function ProductGalleryTechSection() {
+  const { tech } = useMessages(productGalleryMessages);
   const features = [
-    {
-      icon: LuMaximize2,
-      title: "Compact footprint",
-      description: "Space-conscious engineering for treatment closer to generation.",
-    },
-    {
-      icon: LuBoxes,
-      title: "Modular configuration",
-      description: "An approach shaped around your facility's treatment needs.",
-    },
-    {
-      icon: LuPlug,
-      title: "Plug-and-play design",
-      description: "Making on-site biomedical liquid waste treatment more practical.",
-    },
+    { icon: LuMaximize2, ...tech.features.compact },
+    { icon: LuBoxes, ...tech.features.modular },
+    { icon: LuPlug, ...tech.features.plugAndPlay },
   ];
 
   return (
@@ -33,20 +24,20 @@ export default function ProductGalleryTechSection() {
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
             <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#00A859] font-medium">
-              ENGINEERING FOR YOUR FACILITY
+              {tech.eyebrow}
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-14 items-end">
             <div className="lg:col-span-7">
               <h2 className="text-[32px] sm:text-[42px] font-semibold text-[#0E291E] tracking-tight leading-[1.08]">
-                Serious technology.<br />
-                Practical proportions.
+                {tech.titleLine1}<br />
+                {tech.titleLine2}
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pb-1">
               <p className="text-[14px] sm:text-[15px] text-[#55645C] leading-relaxed font-normal">
-                A compact, modular and plug-and-play approach to treatment within the facility.
+                {tech.description}
               </p>
             </div>
           </div>
@@ -65,17 +56,17 @@ export default function ProductGalleryTechSection() {
             <div className="relative aspect-[16/11] w-full rounded-[20px] overflow-hidden bg-[#10241B] border border-[#E5EBE6] shadow-xs">
               <Image
                 src={images.product.product1 || "/assests/images/home/Hospital Effluent Treatment Systems.png"}
-                alt="ECOKlien System Family"
+                alt={tech.familyAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
-              <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
-                ECOKlien / SYSTEM FAMILY
+              <div className="absolute bottom-3 start-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-[#18251E] font-medium shadow-sm">
+                {tech.familyBadge}
               </div>
             </div>
             <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-[#738479]">
-              HYBRID ELECTROCHEMICAL TREATMENT APPROACH
+              {tech.familyCaption}
             </div>
           </motion.div>
 
@@ -90,14 +81,14 @@ export default function ProductGalleryTechSection() {
             <div className="relative aspect-[16/11] w-full rounded-[20px] overflow-hidden bg-[#F0F3F1] border border-[#E5EBE6] shadow-xs">
               <Image
                 src={images.bloodToWater || "/assests/images/blood to water.png"}
-                alt="Point of Source Collection Sink"
+                alt={tech.sinkAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
             </div>
             <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-[#738479]">
-              POINT-OF-SOURCE / LIQUID WASTE COLLECTION
+              {tech.sinkCaption}
             </div>
           </motion.div>
         </div>

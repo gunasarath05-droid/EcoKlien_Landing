@@ -22,13 +22,7 @@ export default function GlossaryTermPage({
       <GlossaryRelatedSection term={term} />
 
       {/* 4. Bottom CTA Banner */}
-      <BottomCtaBanner
-        eyebrow="LET'S TALK TREATMENT"
-        title="Bring your questions. We'll bring the engineering."
-        subtitle="Tell us your wastewater source, approximate volume and operating requirements. Let's discuss the right approach for your facility."
-        buttonText="Talk to an engineer"
-        buttonLink="/contact"
-      />
+      <BottomCtaBanner />
     </div>
   );
 }

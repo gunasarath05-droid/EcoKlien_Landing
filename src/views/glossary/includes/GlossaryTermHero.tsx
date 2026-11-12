@@ -4,12 +4,15 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { GlossaryTerm, sortedGlossaryTerms } from "@/data/glossary";
+import { useMessages } from "@/i18n/LocaleProvider";
+import { glossaryMessages } from "@/i18n/messages/glossary";
 
 export default function GlossaryTermHero({
   term = sortedGlossaryTerms[0],
 }: {
   term?: GlossaryTerm;
 }) {
+  const { breadcrumb, term: t } = useMessages(glossaryMessages);
   if (!term) return null;
 
   return (
@@ -18,13 +21,13 @@ export default function GlossaryTermHero({
         {/* Breadcrumb */}
         <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase text-[#738479] tracking-wider mb-8">
           <Link href="/" className="hover:text-[#00B050] transition-colors">
-            HOME
+            {breadcrumb.home}
           </Link>
           <span>/</span>
-          <span>MEDIA</span>
+          <span>{breadcrumb.media}</span>
           <span>/</span>
           <Link href="/glossary" className="hover:text-[#00B050] transition-colors">
-            GLOSSARY
+            {breadcrumb.glossary}
           </Link>
           <span>/</span>
           <span className="text-[#18251E] font-medium">{term.title}</span>
@@ -34,7 +37,7 @@ export default function GlossaryTermHero({
         <div className="flex items-center gap-2 mb-4">
           <span className="w-1.5 h-1.5 bg-[#00A859] shrink-0" />
           <span className="text-[11px] font-mono uppercase tracking-[0.12em] text-[#5D6B62]">
-            THE BIOMEDICAL GLOSSARY
+            {t.eyebrow}
           </span>
         </div>
 
@@ -50,7 +53,9 @@ export default function GlossaryTermHero({
               {term.title}
             </h1>
             {term.pronunciation && (
-              <p className="text-[13px] font-mono text-[#738479]">/{term.pronunciation}/</p>
+              <p className="text-[13px] font-mono text-[#738479]">
+                <span dir="ltr">/{term.pronunciation}/</span>
+              </p>
             )}
           </motion.div>
 
@@ -64,7 +69,7 @@ export default function GlossaryTermHero({
               {term.intro}
             </p>
             <div className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479]">
-              {term.category} / TERM GUIDE
+              {term.category} / {t.termGuide}
             </div>
           </motion.div>
         </div>
@@ -77,7 +82,7 @@ export default function GlossaryTermHero({
           className="mt-10 sm:mt-12 rounded-[18px] sm:rounded-[20px] bg-[#EEF3EC] border border-[#DCE4DA] p-6 sm:p-10 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start"
         >
           <div className="md:col-span-3 text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] pt-1.5">
-            IN SIMPLE TERMS
+            {t.inSimpleTerms}
           </div>
           <p className="md:col-span-9 text-[17px] sm:text-[19px] font-medium text-[#0E291E] leading-relaxed">
             {term.simpleTerms}
