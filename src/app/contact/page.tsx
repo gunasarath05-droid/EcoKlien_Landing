@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ContactPage from "@/pages/contact/ContactPage";
+import ContactPage from "@/views/contact/ContactPage";
 
 export const metadata: Metadata = {
   title: "Contact - EcoKlien | Talk to Our Team or Become a Dealer",

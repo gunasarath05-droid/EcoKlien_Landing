@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ProductPage from "@/pages/products/ProductPage";
+import ProductPage from "@/views/products/ProductPage";
 import { defaultProduct } from "@/data/products";
 
 export const metadata: Metadata = {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ArticleDetailPage from "@/pages/blog/ArticleDetailPage";
+import ArticleDetailPage from "@/views/blog/ArticleDetailPage";
 import { blogPosts } from "@/data/blog";
 
 interface PageProps {

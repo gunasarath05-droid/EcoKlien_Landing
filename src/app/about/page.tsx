@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import AboutPage from "@/pages/about/AboutPage";
+import AboutPage from "@/views/about/AboutPage";
 
 export const metadata: Metadata = {
   title: "About Us - EcoKlien | Biomedical Liquid Waste Treatment",

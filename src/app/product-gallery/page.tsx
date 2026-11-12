@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ProductGalleryPage from "@/pages/product-gallery/ProductGalleryPage";
+import ProductGalleryPage from "@/views/product-gallery/ProductGalleryPage";
 
 export const metadata: Metadata = {
   title: "Product Gallery - EcoKlien | System Configurations & Models",

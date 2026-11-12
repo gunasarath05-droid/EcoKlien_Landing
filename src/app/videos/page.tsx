@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import VideosPage from "@/pages/videos/VideosPage";
+import VideosPage from "@/views/videos/VideosPage";
 
 export const metadata: Metadata = {
   title: "Videos & Explainers - EcoKlien | See the Approach. Understand the System.",

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import FaqPage from "@/pages/faq/FaqPage";
+import FaqPage from "@/views/faq/FaqPage";
 
 export const metadata: Metadata = {
   title: "FAQ - EcoKlien | Useful Answers & Practical Guidance",

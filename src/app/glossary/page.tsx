@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import GlossaryPage from "@/pages/glossary/GlossaryPage";
+import GlossaryPage from "@/views/glossary/GlossaryPage";
 
 export const metadata: Metadata = {
   title: "Glossary - EcoKlien | The Biomedical Glossary",

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ProductGalleryItem, productGalleryItems } from "@/data/gallery";
 import { LuArrowUpRight, LuSearch, LuX, LuMaximize2 } from "react-icons/lu";
 import { motion, AnimatePresence } from "motion/react";
-import PhotoLightboxModal from "@/pages/photo-gallery/includes/PhotoLightboxModal";
+import PhotoLightboxModal from "@/views/photo-gallery/includes/PhotoLightboxModal";
 
 interface ProductGalleryGridProps {
   items?: ProductGalleryItem[];

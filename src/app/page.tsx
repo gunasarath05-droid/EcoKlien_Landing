@@ -1,5 +1,5 @@
 
-import LandingPage from "@/pages/landing";
+import LandingPage from "@/views/landing/LandingPage";
 
 export default function Page() {
   return (

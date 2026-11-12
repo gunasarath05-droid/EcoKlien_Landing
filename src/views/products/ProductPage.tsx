@@ -4,8 +4,8 @@ import ProductHeroSection from "./includes/ProductHeroSection";
 import ProductTechnologySection from "./includes/ProductTechnologySection";
 import ProductTreatmentFlowSection from "./includes/ProductTreatmentFlowSection";
 import ProductConfigurationsSection from "./includes/ProductConfigurationsSection";
-import { WasteNotFromOnePlaceSection } from "../landing";
-import { ApplicationsSection } from "../home";
+import { WasteNotFromOnePlaceSection } from "../landing/LandingPage";
+import { ApplicationsSection } from "../home/HomePage";
 
 export {
   ProductHeroSection,

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import BlogPage from "@/pages/blog/BlogPage";
+import BlogPage from "@/views/blog/BlogPage";
 
 export const metadata: Metadata = {
   title: "Blog & Insights - EcoKlien | Clearer Thinking. Better Treatment.",

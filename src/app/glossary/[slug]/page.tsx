@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import GlossaryTermPage from "@/pages/glossary/GlossaryTermPage";
+import GlossaryTermPage from "@/views/glossary/GlossaryTermPage";
 import { glossaryTerms, getGlossaryTerm } from "@/data/glossary";
 
 interface PageProps {
