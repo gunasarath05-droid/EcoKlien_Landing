@@ -59,7 +59,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position: "top-[48%] start-0 sm:start-auto sm:end-[74%]",
+      position: "top-[56%] start-0 sm:start-auto sm:end-[74%]",
     },
     {
       title: streamNames.urine,
@@ -71,7 +71,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position: "top-[53%] end-0 sm:end-auto sm:start-[73%]",
+      position: "top-[48%] end-0 sm:end-auto sm:start-[73%]",
     },
     {
       title: streamNames.bodyFluids,
@@ -83,7 +83,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position: "top-[63%] end-0 sm:end-auto sm:start-[62%]",
+      position: "top-[68%] end-0 sm:end-auto sm:start-[62%]",
     },
     {
       title: streamNames.blood,
