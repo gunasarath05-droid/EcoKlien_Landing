@@ -90,16 +90,20 @@ function Block({ block }: { block: GlossaryBlock }) {
     case "cta": {
       const isInternal = block.href.startsWith("/");
       return (
-        <div className="rounded-[16px] bg-[#EEF3EC] border border-[#DCE4DA] p-6 sm:p-8 space-y-3">
-          <p className="text-[19px] sm:text-[22px] font-semibold text-[#0E291E] tracking-tight leading-snug">
+        <div className="mt-8 sm:mt-12 rounded-[18px] bg-[#0E291E] p-6 sm:p-9 space-y-3 shadow-[0_18px_40px_rgba(14,41,30,0.18)]">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[#00B050] shrink-0" />
+            <span className="w-8 h-px bg-white/25" />
+          </div>
+          <p className="text-[19px] sm:text-[22px] font-semibold text-white tracking-tight leading-snug">
             {block.title}
           </p>
-          {block.text && <p className={`${SMALL_P_CLASS} max-w-2xl`}>{block.text}</p>}
-          <div className="pt-1">
+          {block.text && <p className="text-[14px] sm:text-[14.5px] text-white/75 leading-relaxed max-w-2xl">{block.text}</p>}
+          <div className="pt-3">
             <Link
               href={block.href}
               {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-              className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#00A859] hover:text-[#0E291E] transition-colors group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00B050] hover:bg-[#009a45] text-white text-[13.5px] font-semibold transition-colors group"
             >
               <span>{block.label}</span>
               <LuArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />

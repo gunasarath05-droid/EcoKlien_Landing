@@ -176,9 +176,13 @@ export default function ConfigurationsSection() {
                   <div className="mt-auto pt-2">
                     <Link
                       href={item.link}
-                      className="text-[14px] sm:text-[15px] font-semibold text-white hover:text-[#7fe09a] transition-colors inline-block"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 bg-white/[0.06] hover:bg-white/15 hover:border-white/45 text-[13px] sm:text-[14px] font-medium text-white transition-colors group/view"
                     >
-                      {t.viewConfiguration}
+                      <span>{t.viewConfiguration}</span>
+                      <LuArrowUpRight
+                        size={15}
+                        className="transition-transform group-hover/view:translate-x-0.5 group-hover/view:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover/view:-translate-x-0.5"
+                      />
                     </Link>
                   </div>
                 </div>

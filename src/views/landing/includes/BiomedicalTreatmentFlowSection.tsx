@@ -35,7 +35,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "light",
-      position: "top-4 left-4 sm:top-8 sm:left-12 lg:top-8 lg:left-16",
+      position: "top-[28%] start-0 sm:start-auto sm:end-[68%]",
     },
     {
       title: streamNames.dialysis,
@@ -47,7 +47,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "light",
-      position: "top-18 right-4 sm:top-20 sm:right-10 lg:top-20 lg:right-14",
+      position: "top-[18%] end-0 sm:end-auto sm:start-[60%]",
     },
     {
       title: streamNames.sputum,
@@ -59,7 +59,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position: "top-[52%] left-2 sm:left-8 lg:left-12",
+      position: "top-[48%] start-0 sm:start-auto sm:end-[74%]",
     },
     {
       title: streamNames.urine,
@@ -71,7 +71,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position: "top-[48%] right-4 sm:right-10 lg:right-16",
+      position: "top-[53%] end-0 sm:end-auto sm:start-[73%]",
     },
     {
       title: streamNames.bodyFluids,
@@ -83,8 +83,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position:
-        "bottom-24 right-8 sm:bottom-28 sm:right-20 lg:bottom-28 lg:right-28",
+      position: "top-[63%] end-0 sm:end-auto sm:start-[62%]",
     },
     {
       title: streamNames.blood,
@@ -96,8 +95,7 @@ export default function BiomedicalTreatmentFlowSection() {
         />
       ),
       theme: "dark",
-      position:
-        "bottom-8 left-[24%] sm:bottom-10 sm:left-[30%] lg:bottom-12 lg:left-[34%]",
+      position: "top-[78%] start-[8%] sm:start-[26%]",
     },
   ];
 
@@ -204,7 +202,7 @@ export default function BiomedicalTreatmentFlowSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-auto h-[90%] sm:h-[105%] md:h-[115%] aspect-square z-10 drop-shadow-2xl mt-0 sm:-mt-8 md:-mt-16 lg:-mt-32"
+            className="relative w-auto h-[90%] sm:h-[105%] md:h-[115%] aspect-square z-10 max-sm:w-full max-sm:h-auto mt-0 sm:-mt-8 md:-mt-16 lg:-mt-32"
           >
             <Image
               src={images.liquid1}
@@ -212,11 +210,10 @@ export default function BiomedicalTreatmentFlowSection() {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 700px, 700px"
               priority
-              className="object-contain"
+              className="object-contain drop-shadow-2xl"
             />
-          </motion.div>
 
-          {/* Floating Badges */}
+          {/* Floating badges: placed on the blob's own box so every badge overlaps it */}
           {streams.map((item, idx) => {
             const isLight = item.theme === "light";
             return (
@@ -231,10 +228,10 @@ export default function BiomedicalTreatmentFlowSection() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className={`absolute z-20 flex items-center gap-3 px-5 py-3 rounded-xl text-xs sm:text-lg font-medium shadow-sm transition-all cursor-default ${
+                className={`absolute z-20 flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-3 rounded-xl text-xs sm:text-lg font-medium whitespace-nowrap shadow-sm transition-all cursor-default ${
                   isLight
                     ? "bg-[#C2C2C2]/10 backdrop-blur-lg border border-white/15 text-[#18251E]"
-                    : "bg-[#C2C2C2]/10 backdrop-blur-lg border border-white/15 text-white"
+                    : "bg-[#C2C2C2]/10 max-sm:bg-[#0E291E]/80 backdrop-blur-lg border border-white/15 text-white"
                 } ${item.position}`}
               >
                 <div>{item.icon}</div>
@@ -242,6 +239,7 @@ export default function BiomedicalTreatmentFlowSection() {
               </motion.div>
             );
           })}
+          </motion.div>
         </div>
 
         {/* Description Text inside the Dark Fluid Band */}
@@ -289,8 +287,16 @@ export default function BiomedicalTreatmentFlowSection() {
         
         <div className="max-w-7xl relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Header Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 lg:mb-16">
-            {/* Left Column: Eyebrow + Heading */}
+          {/* Eyebrow sits above both columns so the title and the description start on the same line */}
+          <div className="flex items-center gap-2.5 mb-4">
+            <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
+            <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
+              {t.approachEyebrow}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start mb-12 lg:mb-16">
+            {/* Left Column: Heading */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -298,13 +304,6 @@ export default function BiomedicalTreatmentFlowSection() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5"
             >
-              <div className="flex items-center gap-2.5 mb-4">
-                <span className="w-1.5 h-1.5 bg-[#13a538] shrink-0" />
-                <span className="text-[11px] font-mono uppercase tracking-[0.04em] text-[#5d6762]">
-                  {t.approachEyebrow}
-                </span>
-              </div>
-
               <h2 className="text-[28px] sm:text-[32px] lg:text-[36px] font-normal text-white tracking-tight leading-[1.05]">
                 {t.approachTitleLines.map((line, i) => (
                   <React.Fragment key={i}>
@@ -325,23 +324,23 @@ export default function BiomedicalTreatmentFlowSection() {
                 delay: 0.15,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="lg:col-span-7 lg:pt-3"
+              className="lg:col-span-7"
             >
-              <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] max-w-2xl font-normal">
+              <p className="text-[14px] sm:text-[15px] text-white/90 leading-[1.55] font-normal">
                 {t.approachText}
               </p>
             </motion.div>
           </div>
 
           {/* Lower Content: CTA Button on Left + 2x2 Feature Cards Grid on Right */}
-          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-end">
             {/* Left: Button aligned over liquid splash & white bottom */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-7 pb-6 lg:pb-8"
+              className="lg:col-span-5 pb-6 lg:pb-8"
             >
               <Link
                 href="#configurations"
@@ -355,8 +354,8 @@ export default function BiomedicalTreatmentFlowSection() {
               </Link>
             </motion.div>
 
-            {/* Right: 2x2 Cards Grid */}
-            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {/* Right: 2x2 cards, exactly as wide as the description above */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {cards.map((card, idx) => {
                 const isDark = card.theme === "dark";
                 return (

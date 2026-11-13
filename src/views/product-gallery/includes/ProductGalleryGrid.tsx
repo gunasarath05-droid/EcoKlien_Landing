@@ -221,13 +221,13 @@ export default function ProductGalleryGrid({
                         }
                       >
                         {/* Image Container with View Tag Badge */}
-                        <div className="relative aspect-[16/11] w-full rounded-[18px] sm:rounded-[20px] overflow-hidden bg-[#FAFBFA] border border-[#E3ECE6] shadow-xs flex items-center justify-center p-3">
+                        <div className="relative aspect-[16/11] w-full rounded-[18px] sm:rounded-[20px] overflow-hidden bg-[#FAFBFA] border border-[#E3ECE6] shadow-xs">
                           <Image
                             src={view.image}
                             alt={view.title}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105"
+                            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 

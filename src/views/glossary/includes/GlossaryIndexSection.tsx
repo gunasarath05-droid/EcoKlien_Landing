@@ -41,6 +41,16 @@ export default function GlossaryIndexSection() {
     });
   }, [terms, query, activeLetter]);
 
+  // Terms grouped by first letter, so each letter starts its own row.
+  const groups = useMemo(() => {
+    const map = new Map<string, typeof filtered>();
+    for (const term of filtered) {
+      const key = termLetter(term);
+      map.set(key, [...(map.get(key) ?? []), term]);
+    }
+    return [...map.entries()];
+  }, [filtered]);
+
   const reset = () => {
     setQuery("");
     setLetter(null);
@@ -148,12 +158,21 @@ export default function GlossaryIndexSection() {
             </button>
           </div>
         ) : (
+          <div className="space-y-10 sm:space-y-12">
+            {groups.map(([groupLetter, groupTerms]) => (
+              <section key={groupLetter} aria-label={groupLetter}>
+                <div className="flex items-center gap-4 mb-4 sm:mb-5">
+                  <span className="min-w-8 text-[24px] sm:text-[28px] font-semibold text-[#0E291E] leading-none">
+                    {groupLetter}
+                  </span>
+                  <span className="h-px flex-1 bg-[#EAEFEA]" />
+                </div>
           <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"
           >
             <AnimatePresence>
-              {filtered.map((term, i) => (
+              {groupTerms.map((term, i) => (
                 <motion.div
                   key={term.slug}
                   layout
@@ -171,6 +190,9 @@ export default function GlossaryIndexSection() {
               ))}
             </AnimatePresence>
           </motion.div>
+              </section>
+            ))}
+          </div>
         )}
 
         {/* Bottom Footnote */}

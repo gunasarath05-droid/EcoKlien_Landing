@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/data/images";
-import { LuInstagram, LuFacebook, LuYoutube, LuLinkedin, LuArrowUpRight } from "react-icons/lu";
+import { LuArrowUpRight } from "react-icons/lu";
+import { FaSquareInstagram, FaSquareFacebook, FaYoutube, FaLinkedin } from "react-icons/fa6";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { footerMessages } from "@/i18n/messages/common";
 
@@ -56,7 +57,7 @@ export default function Footer() {
               {t.socials}
             </span>
 
-            {/* Outline Social Icons */}
+            {/* Filled social logos */}
             <div className="flex items-center gap-5 text-[#1E3B2F]">
               <a
                 href="https://www.instagram.com/ecoklien/"
@@ -65,7 +66,7 @@ export default function Footer() {
                 aria-label="Instagram"
                 className="text-[#1E3B2F] hover:text-[#00B050] transition-all hover:scale-110"
               >
-                <LuInstagram className="w-6 h-6" />
+                <FaSquareInstagram className="w-6 h-6" />
               </a>
               <a
                 href="https://www.facebook.com/profile.php?id=61550611929208"
@@ -74,7 +75,7 @@ export default function Footer() {
                 aria-label="Facebook"
                 className="text-[#1E3B2F] hover:text-[#00B050] transition-all hover:scale-110"
               >
-                <LuFacebook className="w-6 h-6" />
+                <FaSquareFacebook className="w-6 h-6" />
               </a>
               <a
                 href="https://www.youtube.com/playlist?list=PLtU5RHes_z6Jyu8ZvEszvXwVp5niEC-Hq"
@@ -83,7 +84,7 @@ export default function Footer() {
                 aria-label="YouTube"
                 className="text-[#1E3B2F] hover:text-[#00B050] transition-all hover:scale-110"
               >
-                <LuYoutube className="w-6 h-6" />
+                <FaYoutube className="w-6 h-6" />
               </a>
               <a
                 href="https://www.linkedin.com/company/ecoklien/"
@@ -92,7 +93,7 @@ export default function Footer() {
                 aria-label="LinkedIn"
                 className="text-[#1E3B2F] hover:text-[#00B050] transition-all hover:scale-110"
               >
-                <LuLinkedin className="w-6 h-6" />
+                <FaLinkedin className="w-6 h-6" />
               </a>
             </div>
 

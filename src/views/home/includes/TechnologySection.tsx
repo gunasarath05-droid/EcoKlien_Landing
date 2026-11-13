@@ -73,7 +73,7 @@ export default function TechnologySection() {
         </div>
 
         {/* Content: Image on Left + 2x2 Feature Grid on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left: Machine in facility visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -82,7 +82,7 @@ export default function TechnologySection() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 relative"
           >
-            <div className="relative w-full h-[380px] sm:h-[460px] lg:h-full lg:min-h-[530px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
+            <div className="relative w-full h-[380px] sm:h-[460px] lg:h-[650px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
               <Image
                 src={images.facility}
                 alt={t.imageAlt}
@@ -102,7 +102,7 @@ export default function TechnologySection() {
           </motion.div>
 
           {/* Right: 2x2 Cards Grid */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-fr lg:min-h-[650px] gap-4 sm:gap-5">
             {specs.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -115,12 +115,12 @@ export default function TechnologySection() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="p-6 sm:p-7 rounded-[14px] bg-[#f0f2ef] hover:bg-[#e7ece6] transition-colors flex flex-col justify-start cursor-default"
+                className="p-6 rounded-[14px] bg-[#f0f2ef] hover:bg-[#e7ece6] transition-colors flex flex-col justify-start cursor-default"
               >
-                <div className="mb-5 sm:mb-6 text-[#0e2a1e]">
+                <div className="mb-5 text-[#0e2a1e]">
                   {item.icon}
                 </div>
-                <h3 className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] mb-4 leading-[1.2]">
+                <h3 className="text-[18px] sm:text-[20px] font-normal text-[#0e2a1e] mb-3 leading-[1.2]">
                   {item.title}
                 </h3>
                 <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] font-normal">

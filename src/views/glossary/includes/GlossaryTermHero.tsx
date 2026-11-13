@@ -84,7 +84,7 @@ export default function GlossaryTermHero({
           <div className="md:col-span-3 text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] pt-1.5">
             {t.inSimpleTerms}
           </div>
-          <p className="md:col-span-9 text-[17px] sm:text-[19px] font-medium text-[#0E291E] leading-relaxed">
+          <p className="md:col-span-9 text-[14.5px] sm:text-[15.5px] font-semibold text-[#0E291E] leading-relaxed">
             {term.simpleTerms}
           </p>
         </motion.div>

@@ -61,42 +61,42 @@ export default function ProductTreatmentFlowSection({
       title: t.streams.lab,
       icon: <LuMicroscope className="w-4 h-4 text-white" />,
       theme: "dark",
-      position: "top-8 left-4 sm:top-12 sm:left-10 lg:top-14 lg:left-16",
+      position: "top-[28%] start-0 sm:start-auto sm:end-[68%]",
     },
     {
       id: "dialysis",
       title: t.streams.dialysis,
       icon: <LuFlaskConical className="w-4 h-4 text-white" />,
       theme: "dark",
-      position: "top-14 right-4 sm:top-20 sm:right-8 lg:top-20 lg:right-16",
+      position: "top-[18%] end-0 sm:end-auto sm:start-[60%]",
     },
     {
       id: "sputum",
       title: t.streams.sputum,
       icon: <LuPipette className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
-      position: "top-[54%] left-2 sm:left-8 lg:left-12",
+      position: "top-[48%] start-0 sm:start-auto sm:end-[74%]",
     },
     {
       id: "urine",
       title: t.streams.urine,
       icon: <LuTestTube className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
-      position: "top-[52%] right-4 sm:right-10 lg:right-14",
+      position: "top-[41%] end-0 sm:end-auto sm:start-[74%]",
     },
     {
       id: "blood",
       title: t.streams.blood,
       icon: <LuDroplet className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
-      position: "bottom-14 left-[24%] sm:bottom-16 sm:left-[30%] lg:bottom-16 lg:left-[32%]",
+      position: "top-[78%] start-[8%] sm:start-[26%]",
     },
     {
       id: "fluids",
       title: t.streams.fluids,
       icon: <LuFlaskConical className="w-4 h-4 text-[#18251E]" />,
       theme: "light",
-      position: "bottom-20 right-6 sm:bottom-22 sm:right-16 lg:bottom-24 lg:right-24",
+      position: "top-[63%] end-0 sm:end-auto sm:start-[62%]",
     },
   ];
 
@@ -253,7 +253,7 @@ export default function ProductTreatmentFlowSection({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-[88%] sm:h-[95%] md:h-[105%] aspect-square z-10 drop-shadow-2xl"
+            className="relative w-auto h-[88%] sm:h-[95%] md:h-[105%] aspect-square z-10 max-sm:w-full max-sm:h-auto"
           >
             <Image
               src={fluidsSection.fluidImage || images.liquid1}
@@ -261,11 +261,10 @@ export default function ProductTreatmentFlowSection({
               fill
               sizes="(max-width: 768px) 100vw, 650px"
               priority
-              className="object-contain"
+              className="object-contain drop-shadow-2xl"
             />
-          </motion.div>
 
-          {/* Floating Badges */}
+          {/* Floating badges: placed on the blob's own box so every badge overlaps it */}
           {streamBadges.map((badge, idx) => {
             const isDark = badge.theme === "dark";
             return (
@@ -280,9 +279,9 @@ export default function ProductTreatmentFlowSection({
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className={`absolute z-20 flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-[12.5px] sm:text-[14px] font-medium shadow-md transition-all cursor-default whitespace-nowrap ${
+                className={`absolute z-20 flex items-center gap-2 sm:gap-2.5 px-3 sm:px-5 py-2 sm:py-3 rounded-full text-[12.5px] sm:text-[14px] font-medium shadow-md transition-all cursor-default whitespace-nowrap ${
                   isDark
-                    ? "bg-[#C2C2C2]/10 backdrop-blur-lg border border-white/15 text-white"
+                    ? "bg-[#C2C2C2]/10 max-sm:bg-[#0E291E]/80 backdrop-blur-lg border border-white/15 text-white"
                     : "bg-white/50 backdrop-blur-lg border border-white/15 text-[#18251E] shadow-sm"
                 } ${badge.position}`}
               >
@@ -291,6 +290,7 @@ export default function ProductTreatmentFlowSection({
               </motion.div>
             );
           })}
+          </motion.div>
         </div>
 
         {/* Bottom Description Paragraph on pure white */}

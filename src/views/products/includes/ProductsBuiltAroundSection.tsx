@@ -59,13 +59,13 @@ export default function ProductsBuiltAroundSection() {
         </div>
 
         {/* Image + feature cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease }}
-            className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] rounded-[18px] overflow-hidden bg-gradient-to-br from-[#F1F3F2] via-[#E2E7E4] to-[#C9D1CC]"
+            className="lg:col-span-6 relative min-h-[300px] sm:min-h-[380px] lg:h-[460px] rounded-[18px] overflow-hidden bg-gradient-to-br from-[#F1F3F2] via-[#E2E7E4] to-[#C9D1CC]"
           >
             <Image
               src={images.machineBML}
@@ -79,7 +79,7 @@ export default function ProductsBuiltAroundSection() {
             </span>
           </motion.div>
 
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-fr lg:min-h-[460px] gap-4 lg:gap-5">
             {features.map(({ title, description, Icon }, idx) => (
               <motion.div
                 key={title}

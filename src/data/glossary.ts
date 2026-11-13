@@ -1119,38 +1119,31 @@ function localizedTerms(locale: Locale): GlossaryTerm[] {
 }
 
 /** Terms sorted A–Z by their title in the given language (the order used on the glossary index). */
+/** Title used for sorting and grouping: Arabic ignores the definite article "ال", as dictionaries do. */
+const sortTitle = (title: string, locale: Locale) =>
+  locale === "ar" ? title.replace(/^ال/, "") : title;
+
 export function getGlossaryTerms(locale: Locale = "en"): GlossaryTerm[] {
-  return localizedTerms(locale).sort((a, b) => a.title.localeCompare(b.title, locale));
+  return localizedTerms(locale).sort((a, b) =>
+    sortTitle(a.title, locale).localeCompare(sortTitle(b.title, locale), locale)
+  );
 }
 
 /** Terms sorted A–Z (English). */
 export const sortedGlossaryTerms = getGlossaryTerms("en");
 
-/** Previous / next order, as linked on ecoklien.com term pages. */
-const TERM_CHAIN = [
-  "antimicrobial-resistance",
-  "wastewater",
-  "waterborne-diseases",
-  "communicable-diseases",
-  "hospital-wastewater",
-  "pharmaceutical-waste",
-  "bloodborne-pathogens",
-  "biomedical-waste",
-  "sludge",
-  "biomedical-liquid-waste",
-  "greywater",
-  "bod-biochemical-oxygen-demand",
-];
 
 export function getGlossaryTerm(slug: string, locale: Locale = "en") {
   return localizedTerms(locale).find((t) => t.slug === slug);
 }
 
+/** Previous / next term in alphabetical order, the same order as the glossary list in that language. */
 export function getAdjacentTerms(slug: string, locale: Locale = "en") {
-  const idx = TERM_CHAIN.indexOf(slug);
+  const ordered = getGlossaryTerms(locale);
+  const idx = ordered.findIndex((t) => t.slug === slug);
   return {
-    prev: idx > 0 ? getGlossaryTerm(TERM_CHAIN[idx - 1], locale) : undefined,
-    next: idx >= 0 && idx < TERM_CHAIN.length - 1 ? getGlossaryTerm(TERM_CHAIN[idx + 1], locale) : undefined,
+    prev: idx > 0 ? ordered[idx - 1] : undefined,
+    next: idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : undefined,
   };
 }
 
@@ -1162,5 +1155,5 @@ export function getRelatedTerms(term: GlossaryTerm, locale: Locale = "en") {
 
 /** First letter of the title, without accents (so "Á" files under "A"). */
 export const termLetter = (term: GlossaryTerm) =>
-  term.title.charAt(0).normalize("NFD").replace(/\p{M}/gu, "").toUpperCase();
+  term.title.replace(/^ال/, "").charAt(0).normalize("NFD").replace(/\p{M}/gu, "").toUpperCase();
 

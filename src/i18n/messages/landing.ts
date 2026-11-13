@@ -100,7 +100,7 @@ export const landingMessages = defineMessages(
       },
       viewDetailsFor: "View details for",
       bestSuitedFor: "Best suited for:",
-      viewConfiguration: "[View configuration →]",
+      viewConfiguration: "View configuration",
       ctaTitle: "Not sure which configuration fits your facility?",
       ctaText:
         "Tell us your approximate wastewater volume, source and operating requirements. We'll help identify the appropriate ECOKlien configuration.",
@@ -213,7 +213,7 @@ export const landingMessages = defineMessages(
       },
       viewDetailsFor: "Ver detalles de",
       bestSuitedFor: "Ideal para:",
-      viewConfiguration: "[Ver configuración →]",
+      viewConfiguration: "Ver configuración",
       ctaTitle: "¿No está seguro de qué configuración se adapta a su instalación?",
       ctaText:
         "Indíquenos el volumen aproximado de aguas residuales, su fuente y sus requisitos operativos. Le ayudaremos a identificar la configuración de ECOKlien adecuada.",
@@ -320,7 +320,7 @@ export const landingMessages = defineMessages(
       },
       viewDetailsFor: "عرض تفاصيل",
       bestSuitedFor: "الأنسب لـ:",
-      viewConfiguration: "[عرض التكوين ←]",
+      viewConfiguration: "عرض التكوين",
       ctaTitle: "لست متأكدًا من التكوين المناسب لمنشأتك؟",
       ctaText:
         "أخبرنا بالحجم التقريبي لمياه الصرف لديك ومصدرها ومتطلبات التشغيل. وسنساعدك في تحديد تكوين ECOKlien المناسب.",

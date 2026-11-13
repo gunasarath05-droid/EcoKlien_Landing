@@ -63,7 +63,7 @@ export default function VideoGridSection({
         {/* 2x2 Grid of Video Cards */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 pt-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-8"
         >
           <AnimatePresence>
             {filteredVideos.map((video, idx) => (
