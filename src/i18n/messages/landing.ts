@@ -30,7 +30,7 @@ export const landingMessages = defineMessages(
     },
     treatmentFlow: {
       bandAlt: "Biomedical dark fluid background",
-      eyebrow: "WHAT IT TREAT:",
+      eyebrow: "WHAT IT TREATS:",
       titleLines: ["From blood to", "body fluids."],
       splashAlt: "Bio-waste fluid splash",
       fluidsBgAlt: "Fluids background",

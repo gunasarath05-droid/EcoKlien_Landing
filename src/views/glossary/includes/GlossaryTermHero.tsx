@@ -79,7 +79,7 @@ export default function GlossaryTermHero({
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 sm:mt-12 rounded-[18px] sm:rounded-[20px] bg-[#EEF3EC] border border-[#DCE4DA] p-6 sm:p-10 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-start"
+          className="mt-10 sm:mt-12 rounded-[14px] sm:rounded-[16px] bg-[#EEF3EC] border border-[#DCE4DA] px-4 py-6 sm:py-10 sm:px-4 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-2 items-start"
         >
           <div className="md:col-span-3 text-[11px] font-mono uppercase tracking-[0.14em] text-[#738479] pt-1.5">
             {t.inSimpleTerms}

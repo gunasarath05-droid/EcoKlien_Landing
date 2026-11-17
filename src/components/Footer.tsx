@@ -8,6 +8,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 import { FaSquareInstagram, FaSquareFacebook, FaYoutube, FaLinkedin } from "react-icons/fa6";
 import { useMessages } from "@/i18n/LocaleProvider";
 import { footerMessages } from "@/i18n/messages/common";
+import { GrInstagram } from "react-icons/gr";
 
 export default function Footer() {
   const t = useMessages(footerMessages);
@@ -66,7 +67,7 @@ export default function Footer() {
                 aria-label="Instagram"
                 className="text-[#1E3B2F] hover:text-[#00B050] transition-all hover:scale-110"
               >
-                <FaSquareInstagram className="w-6 h-6" />
+                <GrInstagram className="w-6 h-6" />
               </a>
               <a
                 href="https://www.facebook.com/profile.php?id=61550611929208"

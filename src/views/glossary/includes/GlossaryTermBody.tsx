@@ -68,7 +68,7 @@ function Block({ block }: { block: GlossaryBlock }) {
 
     case "numbered":
       return (
-        <ol className="space-y-7 pt-1">
+        <ol className="space-y-4 pt-1">
           {block.items.map((item, i) => (
             <li key={i} className="grid grid-cols-[32px_1fr] sm:grid-cols-[40px_1fr] gap-2 items-start">
               <span className="pt-[3px] text-[11px] font-mono text-[#738479]">{pad(i + 1)}</span>
@@ -219,7 +219,7 @@ export default function GlossaryTermBody({
                   );
                 })}
               </nav>
-            </div>
+            </div> 
 
             <div className="pt-8 border-t border-[#EAEFEA] space-y-3.5">
               <h3 className="text-[20px] font-semibold text-[#0E291E] leading-tight tracking-tight">

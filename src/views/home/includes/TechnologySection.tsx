@@ -39,7 +39,7 @@ export default function TechnologySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-8"
+            className="lg:col-span-7"
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2.5 mb-4">
@@ -64,9 +64,9 @@ export default function TechnologySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-4 lg:pb-1"
+            className="lg:col-span-5 lg:pb-1"
           >
-            <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] max-w-[360px] font-normal">
+            <p className="text-[14px] sm:text-[15px] text-[#5d6762] leading-[1.55] font-normal">
               {t.intro}
             </p>
           </motion.div>
@@ -82,7 +82,7 @@ export default function TechnologySection() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 relative"
           >
-            <div className="relative w-full h-[380px] sm:h-[460px] lg:h-[650px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
+            <div className="relative w-full h-[380px] sm:h-[460px] lg:h-[550px] rounded-[20px] overflow-hidden bg-[#EFF3ED]">
               <Image
                 src={images.facility}
                 alt={t.imageAlt}
@@ -102,7 +102,7 @@ export default function TechnologySection() {
           </motion.div>
 
           {/* Right: 2x2 Cards Grid */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-fr lg:min-h-[650px] gap-4 sm:gap-5">
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-fr lg:min-h-[550px] gap-4 sm:gap-5">
             {specs.map((item, idx) => (
               <motion.div
                 key={idx}
