@@ -344,7 +344,7 @@ export default function BiomedicalTreatmentFlowSection() {
             >
               <Link
                 href="#configurations"
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#871F22] hover:bg-[#9E2428] text-white font-medium text-[14px] shadow-2xl transition-all duration-300 group"
+                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white hover:bg-gray-100 text-black font-medium text-[14px] shadow-2xl transition-all duration-300 group"
               >
                 <span>{t.viewConfigurations}</span>
                 <LuArrowUpRight
