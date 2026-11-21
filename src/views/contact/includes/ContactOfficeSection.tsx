@@ -46,7 +46,7 @@ export default function ContactOfficeSection() {
                 </span>
               ))}
             </address>
-            <a
+            {/* <a
               href={officeDirectionsHref}
               target="_blank"
               rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export default function ContactOfficeSection() {
             >
               <span>{office.directions}</span>
               <LuArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
-            </a>
+            </a> */}
           </div>
         </motion.div>
       </div>
