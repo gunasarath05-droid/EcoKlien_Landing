@@ -4,6 +4,7 @@ import ArticleDetailPage from "@/views/blog/ArticleDetailPage";
 import { blogPosts, getBlogPosts } from "@/data/blog";
 import { getLocale } from "@/i18n/server";
 import { blogMessages } from "@/i18n/messages/blog";
+import { linkGlossaryTerms } from "@/data/glossaryLinks";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -31,7 +32,8 @@ export async function generateMetadata({
 
 export default async function BlogArticleRoute({ params }: PageProps) {
   const { slug } = await params;
-  const posts = getBlogPosts(await getLocale());
+  const locale = await getLocale();
+  const posts = getBlogPosts(locale);
   const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
@@ -40,7 +42,7 @@ export default async function BlogArticleRoute({ params }: PageProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <ArticleDetailPage post={post} posts={posts} />
+      <ArticleDetailPage post={linkGlossaryTerms(post, locale)} posts={posts} />
     </div>
   );
 }
