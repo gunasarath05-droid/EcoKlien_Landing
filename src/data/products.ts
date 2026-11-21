@@ -397,7 +397,7 @@ export const products: ProductDetail[] = [
       heading: "Continuous High-Capacity Hybrid Treatment",
       description:
         "Combines Primary Reactor and Secondary Reactor to treat complex multi-department hospital effluent reliably.",
-      ctaText: "Select System",
+      ctaText: "View Configurations",
       ctaLink: "#configurations",
       image: images.machineAdvancedTreatmentCabinet,
       imageBadge: "ECOKlien / FACILITY TREATMENT SYSTEM",
@@ -559,7 +559,7 @@ export const products: ProductDetail[] = [
       heading: "Electrochemical Microbial Disinfection",
       description:
         "Harnesses mixed oxidant generators to eliminate bacteria, viruses, and fungi with rapid contact times.",
-      ctaText: "Select System",
+      ctaText: "View Configurations",
       ctaLink: "#configurations",
       image: images.machineDisinfectionUnit,
       imageBadge: "ECOKlien / DISINFECTION UNIT",

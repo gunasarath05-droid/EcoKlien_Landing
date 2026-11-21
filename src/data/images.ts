@@ -17,11 +17,11 @@ export const images = {
   },
 
   productBML: "/assests/images/products/BML.png",
-  machineBML: "/assests/images/products/BMLmachine.png",
+  machineBML: "/assests/images/products/MachineBML.png",
   heroDisinfectionUnit: "/assests/images/products/ECOKlien Biomedical Waste Treatment Tank.png",
-  machineDisinfectionUnit: "/assests/images/products/EcoKlien Biomedical Waste Treatment System.png",
+  machineDisinfectionUnit: "/assests/images/products/EcoKlien Biomedical Wastewater Treatment Unit.png",
   heroAdvancedTreatmentCabinet: "/assests/images/products/ECOKlien Advanced Treatment System.png",
-  machineAdvancedTreatmentCabinet: "/assests/images/products/ECOKlien Industrial Wastewater Treatment Cabinet.png",
+  machineAdvancedTreatmentCabinet: "/assests/images/products/ECOKlien Advanced Wastewater Treatment System.png",
 
   fluidbg: "/assests/images/home/Fluids.png",
   fluidbg2: "/assests/images/home/Fluids2.png",
