@@ -30,9 +30,9 @@ export const faqCategories: FaqCategoryText[] = [
     heading: "Cómo funciona el enfoque",
     items: [
       {
-        question: "¿Cómo actúan conjuntamente la electrocoagulación y la electrooxidación?",
+        question: "¿Cómo actúan conjuntamente el Reactor primario y el Reactor secundario?",
         answer:
-          "La electrocoagulación desestabiliza los contaminantes y los agrega en flóculos de mayor tamaño, lo que facilita su separación. Los sólidos resultantes se separan del líquido, lo que reduce la carga contaminante. Un tratamiento electroquímico y una desinfección adicionales actúan sobre los contaminantes orgánicos y los microorganismos restantes.\n\nLa vía de tratamiento se analiza en relación con las aguas residuales entrantes y los requisitos de la aplicación.",
+          "El Reactor primario desestabiliza los contaminantes y los agrega en flóculos de mayor tamaño, lo que facilita su separación. Los sólidos resultantes se separan del líquido, lo que reduce la carga contaminante. Un tratamiento electroquímico y una desinfección adicionales actúan sobre los contaminantes orgánicos y los microorganismos restantes.\n\nLa vía de tratamiento se analiza en relación con las aguas residuales entrantes y los requisitos de la aplicación.",
       },
       {
         question: "¿Utiliza ECOKlien la dosificación química convencional?",

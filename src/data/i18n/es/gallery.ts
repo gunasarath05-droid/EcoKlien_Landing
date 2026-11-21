@@ -72,7 +72,7 @@ export const productGallery: GalleryTranslations["productGallery"] = [
         title: "Sistema de tratamiento de efluentes hospitalarios (lado derecho)",
         viewTag: "Vista lateral derecha",
         description:
-          "Perfil derecho con la tubería del colector hidráulico y el alojamiento de los electrodos de electrooxidación.",
+          "Perfil derecho con la tubería del colector hidráulico y el alojamiento de los electrodos del Reactor secundario.",
       },
       {
         id: "v2-3",

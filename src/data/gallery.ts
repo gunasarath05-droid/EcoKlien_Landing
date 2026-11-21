@@ -145,7 +145,7 @@ export const productGalleryItems: ProductGalleryItem[] = [
         title: "Hospital Effluent Treatment System (right side)",
         viewTag: "Right Side View",
         image: "/assests/images/Product Gallery/Image-9-300x200.webp",
-        description: "Right profile featuring hydraulic manifold piping and electro-oxidation electrode housing.",
+        description: "Right profile featuring hydraulic manifold piping and Secondary Reactor electrode housing.",
       },
       {
         id: "v2-3",

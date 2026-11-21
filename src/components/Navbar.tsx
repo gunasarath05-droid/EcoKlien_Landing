@@ -33,6 +33,14 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
+  // Desktop menus also open on CSS hover/focus. After a menu link is clicked, keep that menu
+  // hidden until the pointer leaves it, otherwise it stays open over the new page.
+  const [dismissedDesktopDropdown, setDismissedDesktopDropdown] = useState<string | null>(null);
+  const dismissDesktopDropdown = (id: string) => {
+    setOpenDesktopDropdown(null);
+    setDismissedDesktopDropdown(id);
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+  };
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -153,6 +161,7 @@ export default function Navbar() {
                 (item.href !== undefined && isPathActive(item.href)) ||
                 item.dropdown.some((sub) => isPathActive(sub.href));
               const isOpen = openDesktopDropdown === item.id;
+              const isDismissed = !isOpen && dismissedDesktopDropdown === item.id;
               const menuId = `nav-menu-${item.id}`;
               const parentClassName = `flex items-center gap-1.5 text-[15px] font-medium transition-colors relative py-1 cursor-pointer whitespace-nowrap ${
                 isParentActive || isOpen
@@ -179,14 +188,17 @@ export default function Navbar() {
                 <div
                   key={item.id}
                   className="relative group py-2"
-                  onMouseLeave={() => isOpen && setOpenDesktopDropdown(null)}
+                  onMouseLeave={() => {
+                    if (isOpen) setOpenDesktopDropdown(null);
+                    if (isDismissed) setDismissedDesktopDropdown(null);
+                  }}
                 >
                   {item.href ? (
                     /* Dropdown parent with its own page: click navigates, hover/focus shows the menu */
                     <Link
                       href={item.href}
                       aria-current={pathname === item.href ? "page" : undefined}
-                      onClick={() => setOpenDesktopDropdown(null)}
+                      onClick={() => dismissDesktopDropdown(item.id)}
                       className={parentClassName}
                     >
                       {parentContent}
@@ -211,6 +223,8 @@ export default function Navbar() {
                     className={`absolute top-full start-0 pt-2 transition-all duration-200 ease-out z-50 ${
                       isOpen
                         ? "opacity-100 visible pointer-events-auto"
+                        : isDismissed
+                        ? "opacity-0 invisible pointer-events-none"
                         : "opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto"
                     }`}
                   >
@@ -225,7 +239,7 @@ export default function Navbar() {
                           <Link
                             key={sub.href}
                             href={sub.href}
-                            onClick={() => setOpenDesktopDropdown(null)}
+                            onClick={() => dismissDesktopDropdown(item.id)}
                             aria-current={isSubActive ? "page" : undefined}
                             className={`block px-5 py-3 text-[14px] font-medium transition-colors ${
                               isSubActive

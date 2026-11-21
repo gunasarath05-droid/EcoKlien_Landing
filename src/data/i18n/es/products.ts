@@ -38,7 +38,7 @@ export const products: ProductTranslation[] = [
       imageBadge: "ECOKlien / SISTEMA HÍBRIDO IN SITU",
       stages: [
         {
-          title: "Electrocoagulación",
+          title: "Reactor primario",
           description:
             "Los contaminantes se desestabilizan y se agregan en flóculos más grandes, lo que facilita su separación del líquido.",
         },
@@ -48,7 +48,7 @@ export const products: ProductTranslation[] = [
             "La desinfección electroquímica actúa sobre los microorganismos y reduce la carga de patógenos sin necesidad de manipular productos químicos peligrosos.",
         },
         {
-          title: "Oxidación",
+          title: "Reactor secundario",
           description:
             "La oxidación electroquímica descompone los contaminantes orgánicos persistentes y los compuestos químicos presentes en las corrientes de residuos biomédicos.",
         },
@@ -161,12 +161,12 @@ export const products: ProductTranslation[] = [
       eyebrow: "La tecnología",
       heading: "Tratamiento híbrido continuo de alta capacidad",
       description:
-        "Combina electrocoagulación y electrooxidación para tratar de forma fiable efluentes hospitalarios complejos procedentes de múltiples departamentos.",
+        "Combina Reactor primario y Reactor secundario para tratar de forma fiable efluentes hospitalarios complejos procedentes de múltiples departamentos.",
       ctaText: "Seleccionar sistema",
       imageBadge: "ECOKlien / SISTEMA DE TRATAMIENTO PARA INSTALACIONES",
       stages: [
         {
-          title: "Electrocoagulación",
+          title: "Reactor primario",
           description:
             "Desestabiliza los sólidos en suspensión, los fármacos y los contaminantes orgánicos y los convierte en flóculos separables.",
         },
@@ -176,7 +176,7 @@ export const products: ProductTranslation[] = [
             "La generación de oxidantes in situ elimina las bacterias hospitalarias multirresistentes sin productos químicos peligrosos.",
         },
         {
-          title: "Oxidación avanzada",
+          title: "Reactor secundario",
           description: "Descompone antibióticos refractarios, disruptores endocrinos y residuos químicos.",
         },
         {

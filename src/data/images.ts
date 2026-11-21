@@ -18,6 +18,8 @@ export const images = {
    
   productBML:"/assests/images/products/BML.png",
   machineBML:"/assests/images/products/BMLmachine.png",
+  heroDisinfectionUnit: "/assests/images/products/EcoKlien Biomedical Waste Treatment Unit.png",
+  heroAdvancedTreatmentCabinet: "/assests/images/products/EcoKlien Advanced Treatment Cabinet.png",
 
   fluidbg: "/assests/images/home/Fluids.png",
   fluidbg2: "/assests/images/home/Fluids2.png",

@@ -3,7 +3,7 @@
 > Biomedical Liquid Waste Treatment system - Hospital wastewater treatment system. Using advanced hybrid electrochemical technology for hospital effluent treatment and biomedical liquid waste treatment.
 
 ## Overview
-EcoKlien designs and manufactures automated onsite effluent treatment plants (ETP) and biomedical liquid waste disinfection systems tailored for healthcare campuses, hospitals, clinical laboratories, and diagnostic centers. The systems leverage advanced hybrid electrochemical and electro-oxidation technologies to neutralize pathogens, active pharmaceutical ingredients (APIs), blood, body fluids, and hazardous chemical reagents at the source before discharge.
+EcoKlien designs and manufactures automated onsite effluent treatment plants (ETP) and biomedical liquid waste disinfection systems tailored for healthcare campuses, hospitals, clinical laboratories, and diagnostic centers. The systems leverage advanced hybrid electrochemical and Secondary Reactor technologies to neutralize pathogens, active pharmaceutical ingredients (APIs), blood, body fluids, and hazardous chemical reagents at the source before discharge.
 
 ## Systems & Configurations
 - **ECOKlien V1**: Dedicated for clinical laboratories, procedure areas, and diagnostic centers with small-to-medium specialized liquid waste streams.

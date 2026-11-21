@@ -6,13 +6,13 @@ export const aboutMessages = defineMessages(
     meta: {
       title: "About Us - EcoKlien | Biomedical Liquid Waste Treatment",
       description:
-        "We are a manufacturer and supplier of Electrocoagulation and Electro-Oxidation-based Hybrid Biomedical Liquid Waste treatment plant/systems.",
+        "We are a manufacturer and supplier of Primary Reactor and Secondary Reactor based Hybrid Biomedical Liquid Waste treatment plant/systems.",
     },
     hero: {
       eyebrow: "ABOUT ECOKLIEN",
       title: "The Perfect Liquid Waste Solution For Hospitals, Pharmacies & More",
       description:
-        "We are a manufacturer and supplier of Electrocoagulation and Electro-Oxidation-based Hybrid Biomedical Liquid Waste treatment plant/systems, and offer ECO safe Hospital Wastewater Treatment (HWTP) using electrochemical technologies.",
+        "We are a manufacturer and supplier of Primary Reactor and Secondary Reactor based Hybrid Biomedical Liquid Waste treatment plant/systems, and offer ECO safe Hospital Wastewater Treatment (HWTP) using electrochemical technologies.",
       tagline:
         "Advanced electro-chemical wastewater (effluent) treatment systems for hospitals and biomedical uses.",
       tags: ["ENGINEERING", "HEALTHCARE", "ENVIRONMENTAL TECHNOLOGY"],
@@ -53,13 +53,13 @@ export const aboutMessages = defineMessages(
     meta: {
       title: "Quiénes somos - EcoKlien | Tratamiento de residuos biomédicos líquidos",
       description:
-        "Somos fabricantes y proveedores de plantas/sistemas híbridos de tratamiento de residuos biomédicos líquidos basados en electrocoagulación y electrooxidación.",
+        "Somos fabricantes y proveedores de plantas/sistemas híbridos de tratamiento de residuos biomédicos líquidos basados en Reactor primario y Reactor secundario.",
     },
     hero: {
       eyebrow: "ACERCA DE ECOKLIEN",
       title: "La solución perfecta para residuos líquidos en hospitales, farmacias y más",
       description:
-        "Somos fabricantes y proveedores de plantas/sistemas híbridos de tratamiento de residuos biomédicos líquidos basados en electrocoagulación y electrooxidación, y ofrecemos el tratamiento de aguas residuales hospitalarias ECO safe (HWTP) mediante tecnologías electroquímicas.",
+        "Somos fabricantes y proveedores de plantas/sistemas híbridos de tratamiento de residuos biomédicos líquidos basados en Reactor primario y Reactor secundario, y ofrecemos el tratamiento de aguas residuales hospitalarias ECO safe (HWTP) mediante tecnologías electroquímicas.",
       tagline:
         "Sistemas avanzados de tratamiento electroquímico de aguas residuales (efluentes) para hospitales y usos biomédicos.",
       tags: ["INGENIERÍA", "ATENCIÓN SANITARIA", "TECNOLOGÍA AMBIENTAL"],
@@ -100,13 +100,13 @@ export const aboutMessages = defineMessages(
     meta: {
       title: "من نحن - EcoKlien | معالجة النفايات الطبية الحيوية السائلة",
       description:
-        "نحن شركة مُصنِّعة ومورِّدة لمحطات/أنظمة هجينة لمعالجة النفايات الطبية الحيوية السائلة تعتمد على التخثير الكهربائي والأكسدة الكهربائية.",
+        "نحن شركة مُصنِّعة ومورِّدة لمحطات/أنظمة هجينة لمعالجة النفايات الطبية الحيوية السائلة تعتمد على المفاعل الأولي والمفاعل الثانوي.",
     },
     hero: {
       eyebrow: "عن ECOKlien",
       title: "الحل المثالي للنفايات السائلة في المستشفيات والصيدليات وغيرها",
       description:
-        "نحن شركة مُصنِّعة ومورِّدة لمحطات/أنظمة هجينة لمعالجة النفايات الطبية الحيوية السائلة تعتمد على التخثير الكهربائي والأكسدة الكهربائية، ونقدّم معالجة مياه الصرف الخاصة بالمستشفيات ECO safe ‏(HWTP) باستخدام التقنيات الكهروكيميائية.",
+        "نحن شركة مُصنِّعة ومورِّدة لمحطات/أنظمة هجينة لمعالجة النفايات الطبية الحيوية السائلة تعتمد على المفاعل الأولي والمفاعل الثانوي، ونقدّم معالجة مياه الصرف الخاصة بالمستشفيات ECO safe ‏(HWTP) باستخدام التقنيات الكهروكيميائية.",
       tagline:
         "أنظمة متقدمة للمعالجة الكهروكيميائية لمياه الصرف (المياه العادمة) للمستشفيات والاستخدامات الطبية الحيوية.",
       tags: ["الهندسة", "الرعاية الصحية", "التقنيات البيئية"],

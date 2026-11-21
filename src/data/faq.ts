@@ -52,9 +52,9 @@ export const faqCategories: FaqCategory[] = [
     heading: "How the approach works",
     items: [
       {
-        question: "How do electrocoagulation and electro-oxidation work together?",
+        question: "How do the Primary Reactor and Secondary Reactor work together?",
         answer:
-          "Electrocoagulation destabilises contaminants and aggregates them into larger flocs, making separation easier. The resulting solids are separated from the liquid, reducing the pollutant load. Further electrochemical treatment and disinfection act on remaining organic contaminants and microorganisms.\n\nThe treatment pathway is discussed in relation to the incoming wastewater and the requirements of the application.",
+          "The Primary Reactor destabilises contaminants and aggregates them into larger flocs, making separation easier. The resulting solids are separated from the liquid, reducing the pollutant load. Further electrochemical treatment and disinfection act on remaining organic contaminants and microorganisms.\n\nThe treatment pathway is discussed in relation to the incoming wastewater and the requirements of the application.",
       },
       {
         question: "Does ECOKlien use conventional chemical dosing?",

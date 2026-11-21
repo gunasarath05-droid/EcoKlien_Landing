@@ -26,7 +26,7 @@ export const blogPostsEs: BlogPostTranslation[] = [
           id: "electrochemical-approach",
           title: "Un enfoque electroquímico",
           paragraphs: [
-            "ECOKlien utiliza electrocoagulación y electrooxidación híbridas en un espacio compacto. En lugar de añadir grandes cantidades de desinfectantes químicos que corroen la infraestructura y generan subproductos tóxicos, nuestro tratamiento in situ utiliza potencial eléctrico para coagular y oxidar rápidamente los contaminantes.",
+            "ECOKlien utiliza un Reactor primario y un Reactor secundario híbridos en un espacio compacto. En lugar de añadir grandes cantidades de desinfectantes químicos que corroen la infraestructura y generan subproductos tóxicos, nuestro tratamiento in situ utiliza potencial eléctrico para coagular y oxidar rápidamente los contaminantes.",
             "Los contaminantes se desestabilizan y forman flóculos más grandes que se separan con facilidad, lo que deja un efluente transparente y saneado que cumple con las normas ambientales.",
           ],
         },
@@ -69,7 +69,7 @@ export const blogPostsEs: BlogPostTranslation[] = [
   },
   {
     slug: "electrocoagulation-and-electro-oxidation-explained",
-    title: "La electrocoagulación y la electrooxidación, explicadas",
+    title: "El Reactor primario y el Reactor secundario, explicados",
     readTime: "4 MIN DE LECTURA",
     category: "TECNOLOGÍA",
     excerpt:

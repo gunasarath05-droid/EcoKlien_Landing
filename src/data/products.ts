@@ -174,7 +174,7 @@ export const products: ProductDetail[] = [
       stages: [
         {
           id: "coagulation",
-          title: "Electrocoagulation",
+          title: "Primary Reactor",
           description:
             "Contaminants are destabilised and aggregated into larger flocs, making them easier to separate from the liquid.",
           iconType: "coagulation",
@@ -188,7 +188,7 @@ export const products: ProductDetail[] = [
         },
         {
           id: "oxidation",
-          title: "Oxidation",
+          title: "Secondary Reactor",
           description:
             "Electrochemical oxidation breaks down stubborn organic contaminants and chemical compounds present in biomedical waste streams.",
           iconType: "oxidation",
@@ -374,7 +374,7 @@ export const products: ProductDetail[] = [
         "For healthcare facilities generating larger and more continuous volumes of biomedical liquid waste. A compact treatment system designed to integrate into existing facility infrastructure while providing controlled treatment before discharge or further handling.",
       ctaText: "Explore",
       ctaLink: "#technology",
-      image: images.product.product1,
+      image: images.heroAdvancedTreatmentCabinet,
     },
     sourcesSection: {
       eyebrow: "The challenge",
@@ -396,7 +396,7 @@ export const products: ProductDetail[] = [
       eyebrow: "The technology",
       heading: "Continuous High-Capacity Hybrid Treatment",
       description:
-        "Combines electrocoagulation and electro-oxidation to treat complex multi-department hospital effluent reliably.",
+        "Combines Primary Reactor and Secondary Reactor to treat complex multi-department hospital effluent reliably.",
       ctaText: "Select System",
       ctaLink: "#configurations",
       image: images.product.product1,
@@ -404,7 +404,7 @@ export const products: ProductDetail[] = [
       stages: [
         {
           id: "coagulation",
-          title: "Electrocoagulation",
+          title: "Primary Reactor",
           description:
             "Destabilises suspended solids, pharmaceuticals, and organic contaminants into separable flocs.",
           iconType: "coagulation",
@@ -418,7 +418,7 @@ export const products: ProductDetail[] = [
         },
         {
           id: "oxidation",
-          title: "Advanced Oxidation",
+          title: "Secondary Reactor",
           description:
             "Breaks down refractory antibiotics, endocrine disruptors, and chemical residues.",
           iconType: "oxidation",
@@ -536,7 +536,7 @@ export const products: ProductDetail[] = [
         "An electrochemical disinfection system for microbial contamination in biomedical liquid waste. Compact and adaptable, where required as a dedicated treatment integrated into a broader wastewater treatment process.",
       ctaText: "Explore",
       ctaLink: "#technology",
-      image: images.product.product2,
+      image: images.heroDisinfectionUnit,
     },
     sourcesSection: {
       eyebrow: "The microbial risk",

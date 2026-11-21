@@ -205,20 +205,20 @@ export default function ArticleDetailBody({
               </div>
             )}
 
-            {/* Section 4: Before the next conversation */}
-            {sections[3] && (
-              <div id={sections[3].id} className="space-y-5 scroll-mt-28">
+            {/* Section 4 onward (e.g. "Before the next conversation"); the checklist follows the last one */}
+            {sections.slice(3).map((section, sectionIndex, rest) => (
+              <div key={section.id} id={section.id} className="space-y-5 scroll-mt-28">
                 <h2 className="text-[22px] sm:text-[26px] font-semibold text-[#0E291E] tracking-tight">
-                  {sections[3].title}
+                  {section.title}
                 </h2>
-                {sections[3].paragraphs.map((p, i) => (
+                {section.paragraphs.map((p, i) => (
                   <p key={i} className="text-[14.5px] sm:text-[15.5px] text-[#4F6055] leading-relaxed">
                     {p}
                   </p>
                 ))}
 
                 {/* Checklist */}
-                {content.checklist && (
+                {sectionIndex === rest.length - 1 && content.checklist && (
                   <div className="space-y-3.5 pt-2">
                     {content.checklist.map((item, i) => (
                       <div
@@ -239,7 +239,7 @@ export default function ArticleDetailBody({
                   </div>
                 )}
               </div>
-            )}
+            ))}
 
             {/* Bottom Meta & Back Link */}
             <div className="pt-8 border-t border-[#EAEFEA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
