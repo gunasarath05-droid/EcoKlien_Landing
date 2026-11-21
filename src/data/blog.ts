@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
     isFeatured: true,
     excerpt:
       "A practical look at biomedical liquid waste, the point of generation and the case for on-site treatment.",
-    image: images.landingHero || "/assests/images/Hero1.jpg",
+    image: "/assests/images/blog/why-treatment-belongs-closer-to-the-source.jpg",
     content: {
       leadParagraph:
         "Biomedical liquid waste doesn't begin at a treatment plant. It begins where care, diagnosis and research happen.",
@@ -130,7 +130,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Technology",
     excerpt:
       "Understanding the complementary stages inside a hybrid electrochemical treatment system.",
-    image: images.hero || "/assests/images/home/Hero.png",
+    image: "/assests/images/blog/electrocoagulation-and-electro-oxidation-explained.jpg",
   },
   {
     slug: "different-waste-streams-different-treatment-conversations",
@@ -140,7 +140,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Applications",
     excerpt:
       "Why the source and composition of liquid waste matter when discussing a treatment approach.",
-    image: images.application.app2 || "/assests/images/home/Application 2.png",
+    image: "/assests/images/blog/different-waste-streams-different-treatment-conversations.jpg",
   },
   {
     slug: "what-to-prepare-before-a-facility-assessment",
@@ -150,7 +150,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Facility planning",
     excerpt:
       "Wastewater volumes, available space and operating needs: the starting points for a useful discussion.",
-    image: images.application.app1 || "/assests/images/home/Application 1.png",
+    image: "/assests/images/blog/what-to-prepare-before-a-facility-assessment.jpg",
   },
   {
     slug: "one-platform-three-ways-to-deploy-it",
@@ -160,7 +160,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Technology",
     excerpt:
       "Point-of-source treatment, hospital effluent treatment and dedicated disinfection in context.",
-    image: images.product.product1 || "/assests/images/home/Hospital Effluent Treatment Systems.png",
+    image: "/assests/images/blog/one-platform-three-ways-to-deploy-it.jpg",
   },
   {
     slug: "the-role-of-separation-in-liquid-waste-treatment",
@@ -170,7 +170,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Technology",
     excerpt:
       "How separating aggregated contaminants fits into the wider treatment pathway.",
-    image: images.bloodToWater || "/assests/images/blood to water.png",
+    image: "/assests/images/blog/the-role-of-separation-in-liquid-waste-treatment.jpg",
   },
   {
     slug: "designing-around-care-and-science",
@@ -180,7 +180,7 @@ export const blogPosts: BlogPost[] = [
     filterCategory: "Applications",
     excerpt:
       "Compact, modular engineering for healthcare facilities and laboratories that cannot stand still.",
-    image: images.facility || "/assests/images/home/Firefly.png",
+    image: "/assests/images/blog/designing-around-care-and-science.jpg",
   },
   // Posts below are seeded from the ecoklien.com blog (/the-biomedical-blog/), newest first.
   {
