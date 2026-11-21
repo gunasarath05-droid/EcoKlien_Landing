@@ -691,7 +691,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "تحدثنا بمزيد من التفصيل عن [انتشار الأمراض السارية عبر النفايات الطبية الحيوية السائلة](/blog) وعن [تأثر المجتمعات](/blog) بذلك.",
+            text: "تحدثنا بمزيد من التفصيل عن [انتشار الأمراض السارية عبر النفايات الطبية الحيوية السائلة](/blog/spread-communicable-diseases-biomedical-liquid-waste) وعن [تأثر المجتمعات](/blog/biomedical-waste-and-communities-living-on-the-edge) بذلك.",
           },
         ],
       },
@@ -811,7 +811,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
           },
           {
             type: "p",
-            text: "اقرأ المزيد عن [الآثار على البيئة](/blog) وعن [المجتمعات التي تعيش على الهامش](/blog).",
+            text: "اقرأ المزيد عن [الآثار على البيئة](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment) وعن [المجتمعات التي تعيش على الهامش](/blog/biomedical-waste-and-communities-living-on-the-edge).",
           },
         ],
       },

@@ -723,7 +723,7 @@ export const glossaryTerms: GlossaryTerm[] = [
         blocks: [
           {
             type: "p",
-            text: "We have talked more on communicable [diseases spreading through biomedical liquid waste](/blog) and how [communities are affected](/blog) by the same.",
+            text: "We have talked more on communicable [diseases spreading through biomedical liquid waste](/blog/spread-communicable-diseases-biomedical-liquid-waste) and how [communities are affected](/blog/biomedical-waste-and-communities-living-on-the-edge) by the same.",
           },
         ],
       },
@@ -837,7 +837,7 @@ export const glossaryTerms: GlossaryTerm[] = [
           },
           {
             type: "p",
-            text: "Read more about the [effects on the environment](/blog) and [communities living on the edge](/blog).",
+            text: "Read more about the [effects on the environment](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment) and [communities living on the edge](/blog/biomedical-waste-and-communities-living-on-the-edge).",
           },
         ],
       },

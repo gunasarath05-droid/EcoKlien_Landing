@@ -2,12 +2,12 @@ import React from "react";
 import Link from "next/link";
 
 /**
- * Renders the small inline-markdown subset used in glossary data:
+ * Renders the small inline-markdown subset used in blog and glossary data:
  *   [label](href), [[Source]](href) citation chips, and **bold**.
  */
 const TOKEN = /\[((?:\[[^\]]+\])|[^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g;
 
-export default function GlossaryRichText({ text = "" }: { text?: string }) {
+export default function RichText({ text = "" }: { text?: string }) {
   if (!text) return null;
   const nodes: React.ReactNode[] = [];
   let last = 0;

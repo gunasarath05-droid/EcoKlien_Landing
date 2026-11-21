@@ -6,7 +6,7 @@ import { LuArrowLeft, LuArrowRight, LuArrowUpRight } from "react-icons/lu";
 import { GlossaryBlock, GlossaryTerm, getAdjacentTerms, sortedGlossaryTerms } from "@/data/glossary";
 import { useLocale, useMessages } from "@/i18n/LocaleProvider";
 import { glossaryMessages } from "@/i18n/messages/glossary";
-import GlossaryRichText from "./GlossaryRichText";
+import RichText from "@/components/RichText";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -23,7 +23,7 @@ function Block({ block }: { block: GlossaryBlock }) {
     case "p":
       return (
         <p className={P_CLASS}>
-          <GlossaryRichText text={block.text} />
+          <RichText text={block.text} />
         </p>
       );
 
@@ -39,7 +39,7 @@ function Block({ block }: { block: GlossaryBlock }) {
         <figure className="rounded-[14px] bg-[#F2F6F1] border border-[#DEE7DD] p-5 sm:p-6 space-y-3">
           {block.label && <div className={MONO_LABEL_CLASS}>{block.label}</div>}
           <blockquote className="text-[15px] sm:text-[16px] font-medium text-[#0E291E] leading-relaxed">
-            <GlossaryRichText text={block.text} />
+            <RichText text={block.text} />
           </blockquote>
           {block.note && <figcaption className="text-[12.5px] text-[#738479]">{block.note}</figcaption>}
         </figure>
@@ -50,7 +50,7 @@ function Block({ block }: { block: GlossaryBlock }) {
         <div className="space-y-4">
           {block.intro && (
             <p className={P_CLASS}>
-              <GlossaryRichText text={block.intro} />
+              <RichText text={block.intro} />
             </p>
           )}
           <ul className="space-y-4">
@@ -58,7 +58,7 @@ function Block({ block }: { block: GlossaryBlock }) {
               <li key={i} className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A859] shrink-0 mt-[9px]" />
                 <span className={SMALL_P_CLASS}>
-                  <GlossaryRichText text={item} />
+                  <RichText text={item} />
                 </span>
               </li>
             ))}
@@ -78,7 +78,7 @@ function Block({ block }: { block: GlossaryBlock }) {
                 </div>
                 {item.text && (
                   <p className={SMALL_P_CLASS}>
-                    <GlossaryRichText text={item.text} />
+                    <RichText text={item.text} />
                   </p>
                 )}
               </div>
@@ -122,7 +122,7 @@ function Block({ block }: { block: GlossaryBlock }) {
                 {item.question}
               </h3>
               <p className={SMALL_P_CLASS}>
-                <GlossaryRichText text={item.answer} />
+                <RichText text={item.answer} />
               </p>
             </div>
           ))}

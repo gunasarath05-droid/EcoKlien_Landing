@@ -724,7 +724,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
         blocks: [
           {
             type: "p",
-            text: "Hemos hablado con más detalle sobre las [enfermedades transmisibles que se propagan a través de los residuos líquidos biomédicos](/blog) y sobre cómo [se ven afectadas las comunidades](/blog) por ello.",
+            text: "Hemos hablado con más detalle sobre las [enfermedades transmisibles que se propagan a través de los residuos líquidos biomédicos](/blog/spread-communicable-diseases-biomedical-liquid-waste) y sobre cómo [se ven afectadas las comunidades](/blog/biomedical-waste-and-communities-living-on-the-edge) por ello.",
           },
         ],
       },
@@ -847,7 +847,7 @@ export const glossaryTerms: (Partial<GlossaryTerm> & Pick<GlossaryTerm, "slug">)
           },
           {
             type: "p",
-            text: "Lea más sobre los [efectos en el medio ambiente](/blog) y sobre las [comunidades que viven al límite](/blog).",
+            text: "Lea más sobre los [efectos en el medio ambiente](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment) y sobre las [comunidades que viven al límite](/blog/biomedical-waste-and-communities-living-on-the-edge).",
           },
         ],
       },

@@ -7,6 +7,7 @@ import { BlogPost, blogPosts, getBlogPosts } from "@/data/blog";
 import { LuArrowUpRight, LuCheck, LuCopy } from "react-icons/lu";
 import { useLocale, useMessages } from "@/i18n/LocaleProvider";
 import { blogMessages } from "@/i18n/messages/blog";
+import RichText from "@/components/RichText";
 
 interface ArticleDetailBodyProps {
   post?: BlogPost;
@@ -126,7 +127,7 @@ export default function ArticleDetailBody({
             {/* Lead Paragraph */}
             {content.leadParagraph && (
               <p className="text-[17px] sm:text-[19px] text-[#1E3026] leading-relaxed font-medium">
-                {content.leadParagraph}
+                <RichText text={content.leadParagraph} />
               </p>
             )}
 
@@ -138,7 +139,7 @@ export default function ArticleDetailBody({
                 </h2>
                 {sections[0].paragraphs.map((p, i) => (
                   <p key={i} className="text-[14.5px] sm:text-[15.5px] text-[#4F6055] leading-relaxed">
-                    {p}
+                    <RichText text={p} />
                   </p>
                 ))}
               </div>
@@ -154,7 +155,7 @@ export default function ArticleDetailBody({
                   </span>
                 </div>
                 <p className="text-[20px] sm:text-[23px] font-semibold text-[#0E291E] tracking-tight leading-snug">
-                  &ldquo;{content.calloutText}&rdquo;
+                  &ldquo;<RichText text={content.calloutText} />&rdquo;
                 </p>
               </div>
             )}
@@ -167,7 +168,7 @@ export default function ArticleDetailBody({
                 </h2>
                 {sections[1].paragraphs.map((p, i) => (
                   <p key={i} className="text-[14.5px] sm:text-[15.5px] text-[#4F6055] leading-relaxed">
-                    {p}
+                    <RichText text={p} />
                   </p>
                 ))}
               </div>
@@ -199,7 +200,7 @@ export default function ArticleDetailBody({
                 </h2>
                 {sections[2].paragraphs.map((p, i) => (
                   <p key={i} className="text-[14.5px] sm:text-[15.5px] text-[#4F6055] leading-relaxed">
-                    {p}
+                    <RichText text={p} />
                   </p>
                 ))}
               </div>
@@ -213,7 +214,7 @@ export default function ArticleDetailBody({
                 </h2>
                 {section.paragraphs.map((p, i) => (
                   <p key={i} className="text-[14.5px] sm:text-[15.5px] text-[#4F6055] leading-relaxed">
-                    {p}
+                    <RichText text={p} />
                   </p>
                 ))}
 
@@ -231,7 +232,7 @@ export default function ArticleDetailBody({
                             {item.title}
                           </div>
                           <div className="text-[13.5px] text-[#55645C] mt-0.5">
-                            {item.description}
+                            <RichText text={item.description} />
                           </div>
                         </div>
                       </div>

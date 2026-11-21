@@ -218,7 +218,7 @@ export const blogPosts: BlogPost[] = [
           paragraphs: [
             "Let’s take a look at Kathmandu’s Bagmati river. Once a lifeline of the Kathmandu Valley, the Bagmati River had crystal-clear waters supporting ecosystems, and sustaining diverse flora and fauna along its banks. The river served as a source of drinking water, irrigation, and recreation for local communities, fostering a deep connection between people and nature. As a symbol of purity and spiritual significance, the Bagmati played a central role in the cultural and religious practices of the valley’s inhabitants. Today, it is essentially a black slurry of solid waste, untreated sewage and industrial effluent, turning its once-pristine waters into a toxic cesspool, prone to spreading diseases.",
             "“The main problem is the attitude of the people toward the river. We consider it a holy river, yet we throw solid waste and dispose of untreated sewage in the river.”",
-            "– Bhesh Raj Thapa, water resources engineer, Universal Engineering and Science College",
+            "– [Bhesh Raj Thapa](https://www.eco-business.com/news/reservoir-seen-to-revitalise-nepals-ecologically-dead-holy-river/), water resources engineer, Universal Engineering and Science College",
             "One of Bagmatis tributaries, Bishnumati has faced a similar fate. Koshi, Gandaki and Karnali, the major rivers of Nepal are also polluted by untreated wastewater from the healthcare facilities along their banks.",
             "While climate change and population growth pose challenges, a significant portion of water scarcity stems from untreated wastewater rendering freshwater sources unusable.",
             "Hence, Nepal isn’t short of water, but it is short of safe water. It’s the crucial difference between water availability and water accessibility."
@@ -263,17 +263,17 @@ export const blogPosts: BlogPost[] = [
           id: "what-is-antimicrobial-resistance",
           title: "What is Antimicrobial Resistance?",
           paragraphs: [
-            "Antimicrobial resistance happens when germs like bacteria and fungi develop the ability to defeat the drugs designed to kill them. That means the germs are not killed and continue to grow. Resistant infections can be difficult, and sometimes impossible, to treat. – CDC",
+            "Antimicrobial resistance happens when germs like bacteria and fungi develop the ability to defeat the drugs designed to kill them. That means the germs are not killed and continue to grow. Resistant infections can be difficult, and sometimes impossible, to treat. – [CDC](https://www.cdc.gov/drugresistance/about.html#:~:text=Print-,About%20Antimicrobial%20Resistance,and%20sometimes%20impossible%2C%20to%20treat.)",
             "Antimicrobial resistance is a natural phenomenon accelerated by the overuse and misuse of antimicrobial drugs in healthcare, agriculture, and other sectors.",
-            "Microorganisms develop resistance to antimicrobial drugs, rendering them ineffective in treating infections. This phenomenon poses significant threats to public health, as it limits treatment options for infectious diseases and increases the risk of morbidity and mortality. It has the potential to affect people at any stage of life, as well as the healthcare, veterinary, and agriculture industries. This makes it one of the world’s most urgent public health problems, with a burden likely to be higher than that of HIV or malaria, according to an assessment of bacterial AMR published in The Lancet.",
-            "In 2019, AMR killed at least 1.27 million people worldwide and was associated with nearly 5 million deaths. In addition to death and disability, AMR has significant economic costs. The World Bank estimates that AMR could result in US$ 1 trillion additional healthcare costs by 2050, and US$ 1 trillion to US$ 3.4 trillion gross domestic product (GDP) losses per year by 2030."
+            "Microorganisms develop resistance to antimicrobial drugs, rendering them ineffective in treating infections. This phenomenon poses significant threats to public health, as it limits treatment options for infectious diseases and increases the risk of morbidity and mortality. It has the potential to affect people at any stage of life, as well as the healthcare, veterinary, and agriculture industries. This makes it one of the world’s most urgent public health problems, with a burden likely to be higher than that of HIV or malaria, according to an assessment of bacterial AMR published in [The Lancet.](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736%2822%2900091-5/fulltext)",
+            "[In 2019, AMR killed at least 1.27 million people worldwide and was associated with nearly 5 million deaths.](https://www.cdc.gov/drugresistance/about.html#:~:text=Print-,About%20Antimicrobial%20Resistance,and%20sometimes%20impossible%2C%20to%20treat.) In addition to death and disability, AMR has significant [economic costs](https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance). The World Bank estimates that AMR could result in US$ 1 trillion additional healthcare costs by 2050, and US$ 1 trillion to US$ 3.4 trillion gross domestic product (GDP) losses per year by 2030."
           ]
         },
         {
           id: "what-is-the-role-of-biomedical-liquid-waste-in-antimicrobial-resistance",
           title: "What is The Role of Biomedical Liquid Waste in Antimicrobial Resistance?",
           paragraphs: [
-            "Biomedical liquid waste from healthcare facilities, pharmaceutical manufacturing plants, and agricultural runoff contains significant amounts of antimicrobial agents and drug-resistant bacteria. When collected at a treatment plant, it becomes a source of collection for antibiotics and a habitat for antimicrobial-resistant bacteria and their genes. Effluent from healthcare and pharmaceutical facilities in particular have become important sites for the spread of AMR, owing to the expected higher concentration of antibiotic-resistant bacteria (ARB) and antibiotic residues than that in other urban wastewater sources.",
+            "Biomedical liquid waste from healthcare facilities, pharmaceutical manufacturing plants, and agricultural runoff contains significant amounts of antimicrobial agents and drug-resistant bacteria. When collected at a treatment plant, it becomes a source of collection for [antibiotics and a habitat for antimicrobial-resistant bacteria](https://www.sciencedirect.com/science/article/pii/S2213716523000851#:~:text=Wastewater%20facilitates%20gene%20transfer%20and%20antimicrobial%20resistance.&text=AMR%20in%20bacteria%20in%20wastewaters%20occurs%20through%20natural%20and%20acquired%20phenomena.&text=Agriculture%2C%20pharmaceutical%20manufacturing%20plants%2C%20and%20effluents%20contribute%20to%20AMR.&text=Wastewater%20treatment%20can%20reduce%20the%20rapid%20spread%20of%20AMR.) and their genes. Effluent from healthcare and pharmaceutical facilities in particular have become important sites for the spread of AMR, owing to the expected higher concentration of antibiotic-resistant bacteria (ARB) and antibiotic residues than that in other urban wastewater sources.",
             "Traditional Wastewater Treatment Plants employ various treatment processes, such as physical, chemical, and biological techniques, to remove various contaminants from wastewater and sewage. However, in the case of inefficiencies in these processes, antibiotic-resistant bacteria (ARB) are retained in the treated water and may be disseminated into the environment. As such, there is a concern that these ARB and their resistance genes may cause untreatable or difficult-to-treat infections in humans and animals."
           ]
         },
@@ -283,15 +283,15 @@ export const blogPosts: BlogPost[] = [
           paragraphs: [
             "Traditional Wastewater Treatment Plants were initially designed to remove physical pollutants such as debris, pathogens, and high loads of organics before discharging the treated water into various water bodies such as dams, streams, rivers, and oceans, to prevent eutrophication.",
             "Although treatment technologies have greatly improved to account for the population growth, industrial expansion, and new challenges, the complete removal of antimicrobial compounds and other emerging pollutants remains a challenge – especially with biological treatment processes.",
-            "In general, Biomedical Liquid Waste, owing to its makeup, contains a different degree of disease burden, antimicrobial compounds, and AMR, depending on the supply sources. It plays an important ecological and evolutionary role in AMR, as it mixes bacteria from different environments, humans, and animals, providing a platform for genetic transfer between and among the different species. This is even more the case in wastewater, owing to the high levels of nutrients and the bacterial load in the presence of antibacterial compounds and their derivatives."
+            "In general, Biomedical Liquid Waste, owing to its makeup, [contains a different degree](https://www.sciencedirect.com/science/article/abs/pii/S0160412018303817?via%3Dihub) of disease burden, antimicrobial compounds, and AMR, depending on the supply sources. It plays an important ecological and evolutionary role in AMR, as it mixes bacteria from different environments, humans, and animals, providing a platform for genetic transfer between and among the different species. This is even more the case in wastewater, owing to the high levels of nutrients and the bacterial load in the presence of antibacterial compounds and their derivatives."
           ]
         },
         {
           id: "the-environmental-and-public-health-implications",
           title: "The Environmental and Public Health Implications",
           paragraphs: [
-            "Drug resistant infections already cost too many lives today. Around 1.27 Million people die every year from drug resistance directly. That is more people than cancer and road traffic accidents combined together. Our ability to cure infections that were once considered benign is already damaged as we have already started using ‘last line’ antibiotics.",
-            "With resistance on the rise, we stand to lose the immense ground we have gained in the last century. This includes: 1) our fight against life threatening infectious diseases such as pneumonia, TB, HIV and malaria; 2) our battle against conditions such as cancer, where antibiotics are crucial in helping chemotherapy patients avoid and fight infection; and 3) huge advances in surgical procedures like organ transplants and cesarean sections, which have now become routine and relatively low risk, thanks to our ability to effectively stave off or treat acute infections with antibiotics. Common infections, such as pneumonia, tuberculosis, and urinary tract infections, become more difficult to treat, posing a significant challenge to healthcare systems worldwide.",
+            "Drug resistant infections already cost too many lives today. Around [1.27 Million](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10700598/#:~:text=Whether%20on%20a%20global%20scale,%E2%80%936.57%29%20deaths%20indirectly%20worldwide.) people die every year from drug resistance directly. That is [more people](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6563737/#ref1) than cancer and road traffic accidents combined together. Our ability to cure infections that were once considered benign is already damaged as we have already started using ‘last line’ antibiotics.",
+            "With resistance on the rise, [we stand to lose](https://amr-review.org/sites/default/files/160518_Final%20paper_with%20cover.pdf) the immense ground we have gained in the last century. This includes: 1) our fight against life threatening infectious diseases such as pneumonia, TB, HIV and malaria; 2) our battle against conditions such as cancer, where antibiotics are crucial in helping chemotherapy patients avoid and fight infection; and 3) huge advances in surgical procedures like organ transplants and cesarean sections, which have now become routine and relatively low risk, thanks to our ability to effectively stave off or treat acute infections with antibiotics. Common infections, such as pneumonia, tuberculosis, and urinary tract infections, become more difficult to treat, posing a significant challenge to healthcare systems worldwide.",
             "In the environment, drug-resistant bacteria can transfer their resistance genes to other bacteria, creating new strains of superbugs that are resistant to multiple antibiotics. This heavily compromises the effectiveness of antibiotic treatments as they are strains of bacteria, viruses, parasites and fungi that are resistant to most of the antibiotics and other medications commonly used to treat the infections they cause. A few examples of superbugs include resistant bacteria that can cause pneumonia, urinary tract infections and skin infections."
           ]
         },
@@ -308,8 +308,8 @@ export const blogPosts: BlogPost[] = [
           id: "conclusion",
           title: "Conclusion",
           paragraphs: [
-            "Antimicrobial Resistance is an urgent public health crisis that needs to be addressed and rectified. Various studies have shown the role wastewater plays in the spread of AMR not only in the healthcare sector, but also across communities. It is impossible to predict the path of emerging drug resistance, but it is a trend that has largely run only in one direction so far. The reality will have to be accepted by all sooner or later. If done proactively, the consequences will be far less than what is to come in the following years.",
-            "With ECOKlien, let’s make a proactive effort. Partner with a brand that understands the complexities involved in the process. One that has simplified the process and made it hassle free for healthcare facilities to incorporate in their procedures. Let’s team up and take a step in the right direction."
+            "Antimicrobial Resistance is an urgent public health crisis that needs to be addressed and rectified. Various studies have shown the role wastewater plays in the spread of AMR not only in the healthcare sector, but also across communities. [It is impossible to predict the path of emerging drug resistance, but it is a trend that has largely run only in one direction so far.](https://amr-review.org/sites/default/files/160518_Final%20paper_with%20cover.pdf) The reality will have to be accepted by all sooner or later. If done proactively, the consequences will be far less than what is to come in the following years.",
+            "With [ECOKlien](/products/biomedical-liquid-waste-treatment-system), let’s make a proactive effort. Partner with a brand that understands the complexities involved in the process. One that has simplified the process and made it hassle free for healthcare facilities to incorporate in their procedures. Let’s team up and take a step in the right direction."
           ]
         }
       ]
@@ -330,10 +330,10 @@ export const blogPosts: BlogPost[] = [
           id: "what-is-reclaimed-water",
           title: "What is Reclaimed Water?",
           paragraphs: [
-            "• Reclaimed water is commonly defined as treated municipal wastewater that is able to be used again, a practice known as water reuse – source",
-            "• Reclaimed — or recycled — water starts out as domestic wastewater (sewage), but is then treated and tested to use for specific purposes. It is then no longer sewage or wastewater – source",
-            "• Reclaimed water is not drinking water. It can be used for landscaping, recreational field uses, parks, to replenish groundwater, industrial uses, to flush toilets in commercial and industrial buildings, HVAC cooling water or for similar purposes. – source",
-            "For many, the mere idea of treated water implies impurity and unfitness for reuse, as psychologically, the origin of water plays an important role. Used by marketers widely, this stereotype, deeply ingrained in societal perceptions, requires a paradigm shift. It’s a part of nature. Regardless of technology, even the natural cycle turns sewage into freshwater."
+            "• Reclaimed water is commonly defined as treated municipal wastewater that is able to be used again, a practice known as water reuse – [[Source]](https://extension.unr.edu/publication.aspx?PubID=3813)",
+            "• Reclaimed — or recycled — water starts out as domestic wastewater (sewage), but is then treated and tested to use for specific purposes. It is then no longer sewage or wastewater – [[Source]](https://ecology.wa.gov/Water-Shorelines/Water-quality/Reclaimed-water)",
+            "• Reclaimed water is not drinking water. It can be used for landscaping, recreational field uses, parks, to replenish groundwater, industrial uses, to flush toilets in commercial and industrial buildings, HVAC cooling water or for similar purposes. – [[Source]](https://ecology.wa.gov/Water-Shorelines/Water-quality/Reclaimed-water)",
+            "For many, the mere idea of treated water implies impurity and unfitness for reuse, as psychologically, [the origin of water](https://lucidmanager.org/marketing/recycled-water-yuck-factor/) plays an important role. Used by marketers widely, this stereotype, deeply ingrained in societal perceptions, requires a paradigm shift. It’s a part of nature. Regardless of technology, even the [natural cycle turns sewage into freshwater](https://lucidmanager.org/marketing/recycled-water-yuck-factor/)."
           ]
         },
         {
@@ -349,7 +349,7 @@ export const blogPosts: BlogPost[] = [
           id: "challenging-the-perception-of-biomedical-liquid-waste",
           title: "Challenging the Perception of Biomedical Liquid Waste",
           paragraphs: [
-            "ECOKlien’s Biomedical Liquid Waste Treatment System (BML) stands out for its ability to not only disinfect but also treat hazardous liquid waste without the addition of harmful chemicals or microbes. With advanced innovative technology, we ensure that the treated water undergoes rigorous filtration, disinfection, and purification, resulting in an output that surpasses stringent quality standards.",
+            "ECOKlien’s Biomedical Liquid Waste Treatment System ([BML](/products/biomedical-liquid-waste-treatment-system)) stands out for its ability to not only disinfect but also treat hazardous liquid waste without the addition of harmful chemicals or microbes. With advanced innovative technology, we ensure that the treated water undergoes rigorous filtration, disinfection, and purification, resulting in an output that surpasses stringent quality standards.",
             "Contrary to the stereotype, the output from ECOKlien’s system is crystal clear, odorless, and thoroughly disinfected, meeting the highest water quality standards for reuse or safe discharge.",
             "By challenging the stereotype of treated water being inferior, ECOKlien aims to reshape perceptions and promote awareness. The outputs are proven to meet and exceed regulatory guidelines, demonstrating that reclaimed water, when treated with advanced technologies, is a reliable resource that can be safely reused across various applications. By showcasing the high-quality outputs and emphasizing the safety of treated water, ECOKlien aims to transform the narrative around reclaimed water, encouraging its acceptance as a viable resource for various purposes.",
             "To conclude, ECOKlien’s commitment to delivering treated water of impeccable quality challenges the stereotype that treated water is synonymous with dirty or unusable water. Through advanced technology wastewater treatment system and stringent processes, ECOKlien not only produces safe, clear, and odorless water but also plays a crucial role in altering perceptions, advocating for the acceptance and utilization of reclaimed water as a sustainable and valuable resource."
@@ -402,22 +402,22 @@ export const blogPosts: BlogPost[] = [
           id: "respiratory-skin-infections",
           title: "Respiratory & Skin Infections",
           paragraphs: [
-            "Exposure to untreated biomedical waste can cause inhalation of aerosols or fumes from the waste or direct accidental physical contact, leading to respiratory issues and skin infections like dermatitis, pruritus, and nose irritation. In a study, exposed people were found to have a chronic cough, chronic phlegm, chronic bronchitis, asthma, dyspnea, and nasal catarrh. – source"
+            "Exposure to untreated biomedical waste can cause inhalation of aerosols or fumes from the waste or direct accidental physical contact, leading to respiratory issues and skin infections like dermatitis, pruritus, and nose irritation. In a study, exposed people were found to have a chronic cough, chronic phlegm, chronic bronchitis, asthma, dyspnea, and nasal catarrh. – [[Source]](https://www.tandfonline.com/doi/abs/10.1080/10934529809376810)"
           ]
         },
         {
           id: "antimicrobial-resistance-amr",
           title: "Antimicrobial Resistance (AMR)",
           paragraphs: [
-            "Pharmaceutical residues from biomedical waste may enter water bodies through untreated wastewater. The constant exposure to the discharge develops antimicrobial resistance, making certain bacteria resistant to antibiotics. AMR poses a global health threat. It reduces the effectiveness of medications used to treat various infections, claiming millions every year. – source"
+            "Pharmaceutical residues from biomedical waste may enter water bodies through untreated wastewater. The constant exposure to the discharge develops antimicrobial resistance, making certain bacteria resistant to antibiotics. AMR poses a global health threat. It reduces the effectiveness of medications used to treat various infections, claiming millions every year. – [[Source]](https://www.cdc.gov/drugresistance/about.html)"
           ]
         },
         {
           id: "public-health-environmental-impact",
           title: "Public Health & Environmental Impact",
           paragraphs: [
-            "Communities residing near areas receiving untreated biomedical liquid waste are at a heightened risk of contracting communicable diseases. (Read more about affected communities here) Vulnerable populations, including children, the elderly, and individuals with compromised immune systems, face a higher risk of infection from contaminated water sources.",
-            "The discharge of untreated biomedical waste into public sewers contaminates water bodies, adversely impacting aquatic ecosystems and wildlife. It disrupts the balance of natural ecosystems and poses a risk to the environment’s health and biodiversity. (Read more about the environmental impact here)"
+            "Communities residing near areas receiving untreated biomedical liquid waste are at a heightened risk of contracting communicable diseases. ([Read more about affected communities here](/blog/biomedical-waste-and-communities-living-on-the-edge)) Vulnerable populations, including children, the elderly, and individuals with compromised immune systems, face a higher risk of infection from contaminated water sources.",
+            "The discharge of untreated biomedical waste into public sewers contaminates water bodies, adversely impacting aquatic ecosystems and wildlife. It disrupts the balance of natural ecosystems and poses a risk to the environment’s health and biodiversity. ([Read more about the environmental impact here](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment))"
           ]
         },
         {
@@ -460,14 +460,14 @@ export const blogPosts: BlogPost[] = [
           id: "the-latest-covid-updates",
           title: "The Latest COVID Updates",
           paragraphs: [
-            "New York saw a 48% increase in hospitalized cases last week since Christmas. India reports increasing numbers of daily cases and deaths due to COVID. The number of new COVID-19 hospitalizations in Georgia is surging after the holidays, reaching levels not seen in nearly a year. The World Health Organisation has officially classified JN1 as a variant of interest."
+            "[New York saw a 48% increase in hospitalized cases last week since Christmas.](https://www.timesunion.com/health/article/covid-19-surging-new-york-post-holidays-18595886.php) [India reports increasing numbers of daily cases and deaths due to COVID.](https://timesofindia.indiatimes.com/india/india-reports-756-new-covid-cases-and-5-deaths-in-last-24-hours/articleshow/106610835.cms) [The number of new COVID-19 hospitalizations in Georgia is surging after the holidays, reaching levels not seen in nearly a year.](https://www.ajc.com/news/health-news/following-holidays-georgia-reports-jump-in-covid-19-hospitalizations/VQM5KGS56JFA7BY3PHRG57PAJY/) [The World Health Organisation has officially classified JN1 as a variant of interest.](https://www.thenationalnews.com/world/2023/12/20/jn1-covid-variant-what-threat/)"
           ]
         },
         {
           id: "covid-in-hospital-wastewater",
           title: "COVID in Hospital Wastewater",
           paragraphs: [
-            "Wastewater is commonly tested to detect traces of infectious diseases circulating in a community, even if people don’t have symptoms. The JN1 variant was detected in wastewater in various countries, suggesting the possibility of the virus moving from the lungs to the gastrointestinal system, leading to the presence of the virus in sewage. Wastewater viral levels, in particular, have increased rapidly in recent weeks, with COVID-19 presence estimated to be higher than it was a year ago.",
+            "Wastewater is commonly tested to detect traces of infectious diseases circulating in a community, even if people don’t have symptoms. The JN1 variant was [detected in wastewater](https://www.dailyexpress.com.my/news/226412/thailand-monitoring-new-covid-19-variant/) in various countries, suggesting the possibility of the virus moving from the lungs to the gastrointestinal system, leading to the presence of the virus in sewage. Wastewater viral levels, in particular, have [increased rapidly in recent weeks](https://www.timesunion.com/health/article/covid-19-surging-new-york-post-holidays-18595886.php), with COVID-19 presence estimated to be higher than it was a year ago.",
             "However, as important as wastewater is for monitoring the spread of infection, it is also important that it be monitored carefully. The same wastewater can be the reason for the revival of said infection.",
             "Hospitals and healthcare facilities put their all to cure patients affected with COVID. It is also their duty to ensure that the infectious wastewater from their facility is disinfected before discharge. If not, water bodies are infected, affecting the communities living along these water bodies with the virus, and the additional possibility of antimicrobial resistance."
           ]
@@ -476,7 +476,7 @@ export const blogPosts: BlogPost[] = [
           id: "a-liquid-waste-treatment-solution",
           title: "A Liquid Waste Treatment Solution",
           paragraphs: [
-            "While infectious waste treatment seems daunting, ECOKlien provides a hassle free solution that not only disinfects the liquid waste, but also treats it to 80% reusability. Our chemical free, microbe free and fully automated process ensures risk free handling and management of biomedical liquid waste. Talk to us to know more and take a step towards a healthier community."
+            "While infectious waste treatment seems daunting, ECOKlien provides a [hassle free solution](/products/hospital-effluent-treatment-systems) that not only disinfects the liquid waste, but also treats it to 80% reusability. Our chemical free, microbe free and fully automated process ensures risk free handling and management of biomedical liquid waste. Talk to us to know more and take a step towards a healthier community."
           ]
         }
       ]
@@ -506,7 +506,7 @@ export const blogPosts: BlogPost[] = [
           paragraphs: [
             "License revocation, heavy fines, lawsuits, criminal charges, imprisonment, reputation damage and lawsuits. The significance of inefficiency decides the severity of the consequences.",
             "While a combination of national and international laws are being implemented to regulate wastewater treatment and discharge from healthcare facilities, monitoring the process might often be cumbersome.",
-            "ECOKlien’s compact, advanced hybrid treatment systems treat liquid waste from healthcare facilities to meet all standards before discharge. Our chemical free and microbe free systems ensure that legalities are no longer an issue while also providing a sustainable solution for every healthcare facility."
+            "[ECOKlien’s](/products/hospital-effluent-treatment-systems) compact, advanced hybrid treatment systems treat liquid waste from healthcare facilities to meet all standards before discharge. Our chemical free and microbe free systems ensure that legalities are no longer an issue while also providing a sustainable solution for every healthcare facility."
           ]
         }
       ]
@@ -521,15 +521,15 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Minorities bear the consequences invisible to the privileged",
     image: "/assests/images/blog/biomedical-waste-and-communities-living-on-the-edge.jpg",
     content: {
-      leadParagraph: "Wastewater management is critical for public health and environmental protection. However, many communities worldwide bear the brunt of untreated wastewater. Affected communities are often those that are already marginalized and disadvantaged. They are more likely to live in areas with poor sanitation and wastewater management infrastructure.",
+      leadParagraph: "Wastewater management is critical for public health and [environmental](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment) protection. However, many communities worldwide bear the brunt of untreated wastewater. Affected communities are often those that are already marginalized and disadvantaged. [They are more likely to live in areas with poor sanitation and wastewater management infrastructure.](https://www.thelancet.com/journals/langlo/article/PIIS2214-109X%2823%2900006-2/fulltext#:~:text=Historically%20marginalised%20people%20and%20communities,Panel%204%2C%20Panel%205%29.)",
       sections: [
         {
           id: "how-is-community-health-affected",
           title: "How is Community Health Affected?",
           paragraphs: [
-            "The most immediate and severe impact on communities is the risk of waterborne diseases. Bacteria, viruses and parasites thrive in untreated wastewater, and are especially harmful to children and the elderly. Diarrhea is one of the most common waterborne diseases along with cholera, typhoid and dysentery. According to WHO 525,000 children die every year due to diarrhea, 1.8 billion people die from waterborne diseases and 88% of them are children under the age of 5.",
-            "Besides waterborne diseases, respiratory issues, cancer and skin conditions like dermatitis are also common in communities exposed to untreated wastewater. Children also tend to face developmental issues and malnutrition. Then, there is the issue of antimicrobial resistance.",
-            "In 2010, a cholera outbreak in Haiti killed over 10,000 people and sickened over 820,000. The primary reason for the outbreak was untreated wastewater contaminating drinking water sources."
+            "The most immediate and severe impact on communities is the risk of waterborne diseases. Bacteria, viruses and parasites thrive in untreated wastewater, and are especially harmful to children and the elderly. [Diarrhea is one of the most common waterborne diseases along with cholera, typhoid](https://www.news-medical.net/health/Water-Borne-Diseases.aspx) and dysentery. According to [WHO](https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease) 525,000 children die every year due to diarrhea, [1.8 billion](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6419249/#:~:text=Water%2Drelated%20diseases%20account%20for,sanitation%2C%20and%20poor%20personal%20hygiene.) people die from waterborne diseases and 88% of them are children under the age of 5.",
+            "Besides waterborne [diseases, respiratory issues, cancer and skin conditions like dermatitis](https://www.frontiersin.org/articles/10.3389/fenvs.2022.880246/full) are also common in communities exposed to untreated wastewater. Children also tend to face developmental issues and malnutrition. Then, there is the issue of antimicrobial resistance.",
+            "[In 2010](https://www.cdc.gov/cholera/haiti/index.html), a cholera outbreak in Haiti killed over 10,000 people and sickened over 820,000. The primary reason for the outbreak was untreated wastewater contaminating drinking water sources."
           ]
         },
         {
@@ -537,7 +537,7 @@ export const blogPosts: BlogPost[] = [
           title: "What is the Effect on the Community’s Environment?",
           paragraphs: [
             "The communities along affected water bodies depend on them. It is often their primary source of water, utilized for multiple everyday activities like fishing, agriculture and animal husbandry, which gets severely impacted. Reduced yields, poor crop quality laden with toxins are common issues threatening food security.",
-            "Further, a community’s native ecosystem faces critical damage. It’s a chain reaction. Aquatic ecosystems take a hit. A loss of biodiversity can be observed with behavioral changes in species. An imbalance of nutrients in the waterbody leads it slowly towards eutrophication.It’s a chain reaction. Because everything mentioned so far affects the community’s economy."
+            "Further, a community’s native ecosystem faces critical damage. It’s a chain reaction. Aquatic ecosystems take a hit. [A loss of biodiversity can be observed with behavioral changes in species.](https://www.intechopen.com/chapters/79111) An imbalance of nutrients in the waterbody leads it slowly towards eutrophication.It’s a chain reaction. Because everything mentioned so far affects the community’s economy."
           ]
         },
         {
@@ -545,7 +545,7 @@ export const blogPosts: BlogPost[] = [
           title: "How is the Community’s Economy affected?",
           paragraphs: [
             "A community’s economy heavily depends on local resources. When said resources are deteriorating, so does the economy.",
-            "The pollution of water bodies causes damage to fisheries and aquatic life, affecting the fishing industry. They face lower yields and collected yield may have toxic traits. Additionally, the health effects on these communities reduce the overall productivity.",
+            "The pollution of water bodies causes [damage to fisheries](https://www.intechopen.com/chapters/79111) and aquatic life, affecting the fishing industry. They face lower yields and collected yield may have toxic traits. Additionally, the health effects on these communities reduce the overall productivity.",
             "Tourism in the affected communities takes a big hit as well. Polluted water bodies are not much of an ideal tourist spot. Reduced tourism is a loss of substantial revenue. Revenue that can help develop the community and contribute to treating and supplying drinking water."
           ]
         },
@@ -556,7 +556,7 @@ export const blogPosts: BlogPost[] = [
             "• Investing in advanced wastewater treatment infrastructure",
             "• Educate the risks of untreated wastewater",
             "• Enforce strict environmental regulations",
-            "The most effective way to control the impact of untreated wastewater is to invest in advanced treatment infrastructure. Investment for the same might be costly, but choosing the right system can make a huge difference on the final and recurring costs. A World Bank study found that investing in infrastructure can generate benefits of up to 15 times the cost of investment. However, it doesn’t stop there. Strict laws and regulations need to be put in place and followed while also educating the public regarding the risks of untreated wastewater. This ensures that each individual does their part in reforming the current wastewater management status."
+            "The most effective way to control the impact of untreated wastewater is to invest in advanced treatment infrastructure. Investment for the same might be costly, but choosing the [right system](/) can make a huge difference on the final and recurring costs. A World Bank study found that investing in infrastructure can generate benefits of up to 15 times the cost of investment. However, it doesn’t stop there. Strict laws and regulations need to be put in place and followed while also educating the public regarding the risks of untreated wastewater. This ensures that each individual does their part in reforming the current wastewater management status."
           ]
         },
         {
@@ -593,7 +593,7 @@ export const blogPosts: BlogPost[] = [
             "• Total Coliform, Fecal Coliform, E-Coli",
             "• Fecal Streptococci, Enterococci",
             "• Hepatitis A, E",
-            "These pollutants can have a devastating impact on water bodies, the ecosystem and the economy.",
+            "These pollutants can have a devastating [impact on water bodies](/blog/biomedical-liquid-waste-and-hospital-effluent-effects-on-the-environment), the ecosystem and the economy.",
             "Let’s take a look around the world. Some of the major water bodies make the list of the most polluted. Listing in no particular order:",
             "• The Ganges/Ganga, India",
             "• Yamuna, India",
@@ -608,42 +608,42 @@ export const blogPosts: BlogPost[] = [
           id: "the-ganges-ganga-india",
           title: "The Ganges/Ganga, India",
           paragraphs: [
-            "The Ganges River is a major river in India providing for around 650 million people. Though considered a sacred and holy waterbody, The Ganga is also one of the most polluted in the world. Scientists have discovered ‘super bacteria’ living in the waters that are resistant to most forms of commonly used antibiotics. According to the National Mission for Clean Ganga (NMCG), despite various efforts, over 3/4th of the untreated wastewater still enters the Ganges. This has led to a variety of health problems for people who rely on the river for drinking water and other essential needs. Over the years, the river has also seen multiple species get endangered, The Ganges River Dolphin being the most well-known."
+            "The Ganges River is a major river in India providing for around [650 million people](https://www.wwf.org.uk/where-we-work/ganges#:~:text=About%20the%20Ganges%20river&text=Its%20river%20basin%20is%20more,to%20over%20650%20million%20people.). Though considered a sacred and holy waterbody, The Ganga is also one of the most polluted in the world. Scientists have discovered ‘[super bacteria](https://geographical.co.uk/culture/the-ganges-river-of-life-religion-and-pollution)’ living in the waters that are resistant to most forms of commonly used antibiotics. According to the National Mission for Clean Ganga (NMCG), despite various efforts, [over 3/4th of the untreated wastewater still enters the Ganges](https://www.reuters.com/graphics/INDIA-RIVER/010081TW39P/index.html#:~:text=Over%20three%2Dquarters%20of%20the,has%20not%20been%20made%20public.). This has led to a variety of health problems for people who rely on the river for drinking water and other essential needs. Over the years, the river has also seen multiple species get endangered, The Ganges River Dolphin being the most well-known."
           ]
         },
         {
           id: "yamuna-india",
           title: "Yamuna, India",
           paragraphs: [
-            "The Yamuna River meets the daily needs of 57 million residents. It is estimated that just Delhi, whose primary source of water is Yamuna, discharges over 170 million of gallons of untreated wastewater per day into the river, with a significant amount being hospital and biomedical wastewater. Haryana adds its own with over 540 million liters of untreated wastewater per day. This has led to high levels of pollution in the river, causing it to become a dead river in some seasons. The river water has turned black, covered in white foam, with almost no oxygen. Ammonia levels have risen 5 times over the treatable limit."
+            "[The Yamuna River meets the daily needs of 57 million residents.](https://yamuna-revival.nic.in/pollution-of-the-yamuna-section/#:~:text=In%20the%20early%2020th%20century,Delhi%2C%20the%20capital%20of%20India.) It is estimated that just Delhi, whose primary source of water is Yamuna, discharges over 170 million of gallons of untreated wastewater per day into the river, with a significant amount being hospital and biomedical wastewater. Haryana adds its own with over 540 million liters of untreated wastewater per day. This has led to high levels of pollution in the river, causing it to become a [dead river](https://observers.france24.com/en/tv-shows/the-observers/20230425-india-the-yamuna-a-sacred-river-in-a-state-of-ecological-death) in some seasons. The river [water has turned black, covered in white foam, with almost no oxygen. Ammonia levels have risen 5 times over the treatable limit.](https://www.indiatimes.com/explainers/news/how-every-action-to-save-yamuna-river-has-failed-miserably-569866.html#:~:text=remained%20the%20same.-,Almost%20no%20oxygen%20in%20Yamuna%20river%20water,quality%20of%20the%20Yamuna%20water.)"
           ]
         },
         {
           id: "yellow-river-china",
           title: "Yellow River, China",
           paragraphs: [
-            "Called the Cradle of the Chinese Civilisation, the Yellow river is one of the longest rivers in the world. It was also chronically polluted. In recent news, it is said to have improved water quality since the passing of multiple laws and regulations. However, prior to such strict steps, 50% of the river was declared biologically dead. Some areas along the river had a dramatic increase in cancer, birth defects and waterborne disease."
+            "Called the Cradle of the Chinese Civilisation, the Yellow river is [one of the longest](https://education.nationalgeographic.org/resource/huang-he-valley/) rivers in the world. It was also chronically polluted. In recent news, it is said to have improved water quality since the passing of multiple laws and regulations. However, prior to such strict steps, 50% of the river was declared biologically dead. [Some areas along the river had a dramatic increase in cancer, birth defects and waterborne disease.](https://factsanddetails.com/china/cat15/sub103/item448.html)"
           ]
         },
         {
           id: "citarum-river-indonesia",
           title: "Citarum River, Indonesia",
           paragraphs: [
-            "The Citarum is relied on by millions, but just the smell is enough to know the state of the river. A dense odor, dead animals and an unnatural color. Still, around 25 million people depend on it. A river with lead levels more than 1000 times the drinking water standards. From above, the river isn’t even visible, only waste and plastic. But underneath all that, it’s a mix of various toxic compounds from multiple sources."
+            "The Citarum is relied on by millions, but just the smell is enough to know the state of the river. A dense odor, dead animals and an unnatural color. Still, around [25 million](https://thediplomat.com/2018/04/indonesias-citarum-the-worlds-most-polluted-river/) people depend on it. A river with lead levels more than [1000 times the drinking water standards.](https://www.theguardian.com/global-development/2020/nov/02/rotten-river-life-on-one-of-the-worlds-most-polluted-waterways-photo-essay) From above, the river isn’t even visible, only waste and plastic. But underneath all that, it’s a mix of various toxic compounds from multiple sources."
           ]
         },
         {
           id: "buriganga-river-bangladesh",
           title: "Buriganga River, Bangladesh",
           paragraphs: [
-            "Pitch black water with a foul smell throughout the year indicates the biological death of the Buriganga River in Bangladesh. A 2004 newspaper article pointed out that up to 80 percent of Dhaka’s wastewater was untreated. 4 million people along the river depend completely on it, but the water causes skin diseases, burning and infections."
+            "[Pitch black water with a foul smell throughout the year indicates the biological death of the Buriganga River in Bangladesh](https://www.reuters.com/investigates/special-report/earth-day-bangladesh-river/). [A 2004 newspaper article pointed out that up to 80 percent of Dhaka’s wastewater was untreated.](https://www.ecohubmap.com/hot-spot/pollution-of-buriganga-river/1qdjaml81o73xx) 4 million people along the river depend completely on it, but the water causes skin diseases, burning and infections."
           ]
         },
         {
           id: "how-to-reduce-the-threat-to-water-bodies",
           title: "How to reduce the Threat to Water Bodies?",
           paragraphs: [
-            "Let’s start with prioritizing efficient treatment before disposal. Invest in Advanced Wastewater Treatment. Proper infrastructure is a necessity along with its maintenance and management. Set up a system that makes wastewater treatment simple and hassle free. Raising public awareness about the dangers of untreated hospital liquid waste and the importance of proper wastewater management is crucial."
+            "Let’s start with prioritizing efficient treatment before disposal. Invest in [Advanced Wastewater Treatment.](/) Proper infrastructure is a necessity along with its maintenance and management. Set up a system that makes wastewater treatment simple and hassle free. Raising public awareness about the dangers of untreated hospital liquid waste and the importance of proper wastewater management is crucial."
           ]
         }
       ]
@@ -732,7 +732,7 @@ export const blogPosts: BlogPost[] = [
           title: "Conclusion",
           paragraphs: [
             "As healthcare industries struggle with the complexities of liquid waste management, ECOKlien has emerged with an advanced biomedical liquid waste management solution using electrochemical technology, providing a multifaceted solution. The challenges are now no longer insurmountable with ECOKlien providing the highest standards of safety, by addressing the diverse waste types, minimizing contamination risks, and mitigating environmental and public health concerns, protecting both human health and the environment in the process.",
-            "ECOKlien is not just about treating wastewater; it is about transforming the future of healthcare, one drop at a time."
+            "[ECOKlien](/products) is not just about treating wastewater; it is about transforming the future of healthcare, one drop at a time."
           ]
         }
       ]
@@ -803,7 +803,7 @@ export const blogPosts: BlogPost[] = [
           title: "Conclusion",
           paragraphs: [
             "ECOKlien is redefining Hospital and Biomedical Liquid Waste treatment in the world of healthcare and pharmaceuticals. With its advanced hybrid electrochemical technology, it offers a sustainable solution for transforming wastewater into reclaimed water suitable for multiple non-potable uses. From cost savings and space efficiency to environmental stewardship, ECOKlien’s impact reaches far beyond the treatment process. It empowers healthcare facilities to embrace a more sustainable approach to water management, benefiting both industries and the environment in a remarkable way.",
-            "ECOKlien is not just about treating wastewater; it is about transforming the future of healthcare, one drop at a time."
+            "[ECOKlien](/products) is not just about treating wastewater; it is about transforming the future of healthcare, one drop at a time."
           ]
         }
       ]
