@@ -399,7 +399,7 @@ export const products: ProductDetail[] = [
         "Combines Primary Reactor and Secondary Reactor to treat complex multi-department hospital effluent reliably.",
       ctaText: "Select System",
       ctaLink: "#configurations",
-      image: images.product.product1,
+      image: images.machineAdvancedTreatmentCabinet,
       imageBadge: "ECOKlien / FACILITY TREATMENT SYSTEM",
       stages: [
         {
@@ -561,7 +561,7 @@ export const products: ProductDetail[] = [
         "Harnesses mixed oxidant generators to eliminate bacteria, viruses, and fungi with rapid contact times.",
       ctaText: "Select System",
       ctaLink: "#configurations",
-      image: images.product.product2,
+      image: images.machineDisinfectionUnit,
       imageBadge: "ECOKlien / DISINFECTION UNIT",
       stages: [
         {

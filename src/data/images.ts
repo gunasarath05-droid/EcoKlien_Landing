@@ -15,11 +15,13 @@ export const images = {
     product2: "/assests/images/home/Biomedical Liquid Waste Disinfection System.png",
     product3: "/assests/images/home/Biomedical Liquid Waste Treatment Systems.png",
   },
-   
-  productBML:"/assests/images/products/BML.png",
-  machineBML:"/assests/images/products/BMLmachine.png",
-  heroDisinfectionUnit: "/assests/images/products/EcoKlien Biomedical Waste Treatment Unit.png",
-  heroAdvancedTreatmentCabinet: "/assests/images/products/EcoKlien Advanced Treatment Cabinet.png",
+
+  productBML: "/assests/images/products/BML.png",
+  machineBML: "/assests/images/products/BMLmachine.png",
+  heroDisinfectionUnit: "/assests/images/products/ECOKlien Biomedical Waste Treatment Tank.png",
+  machineDisinfectionUnit: "/assests/images/products/EcoKlien Biomedical Waste Treatment System.png",
+  heroAdvancedTreatmentCabinet: "/assests/images/products/ECOKlien Advanced Treatment System.png",
+  machineAdvancedTreatmentCabinet: "/assests/images/products/ECOKlien Industrial Wastewater Treatment Cabinet.png",
 
   fluidbg: "/assests/images/home/Fluids.png",
   fluidbg2: "/assests/images/home/Fluids2.png",
