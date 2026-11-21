@@ -516,7 +516,7 @@ export const products: ProductDetail[] = [
       ],
       ctaCard: {
         image: images.landingHero,
-        buttonText: "Schedule Facility Audit",
+        buttonText: "Download Brochure",
         buttonLink: "/contact",
       },
       footerNote:
@@ -670,7 +670,7 @@ export const products: ProductDetail[] = [
       ],
       ctaCard: {
         image: images.landingHero,
-        buttonText: "Request Disinfection Demo",
+        buttonText: "Download Brochure",
         buttonLink: "/contact",
       },
       footerNote:
